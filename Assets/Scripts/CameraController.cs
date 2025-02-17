@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] GameObject virtualCamera;
+    CinemachineVirtualCamera vrCamComp;
     //[SerializeField] GameObject player;
     [SerializeField] float rotationSpeed;
 
@@ -16,11 +17,16 @@ public class CameraController : MonoBehaviour
 
     Quaternion targetRotation;
 
+    bool stealMode = false;
+    bool collisionMode = false;
+
     private void Start()
     {
         cameraRotation = virtualCamera.transform.rotation;
 
         objectsColliding = new List<GameObject>();
+
+        vrCamComp = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void Update()
@@ -46,27 +52,32 @@ public class CameraController : MonoBehaviour
     {
         targetRotation = cameraRotation;
         isRotating = true;
+
+        collisionMode = false;
     }
 
-
-    //public void AddObjectCollidingWithCamera(GameObject objectColliding)
-    //{
-    //    objectsColliding.Add(objectColliding);
-    //}
-
-    //public void RemoveObjectCollidingWithCamera(GameObject objectColliding)
-    //{
-    //    objectColliding.SetActive(true);
-    //    objectsColliding.Remove(objectColliding);
-    //}
+    public void SetCollisionCamera()
+    {
+        RotateCamera(Quaternion.Euler(80, 0, 0));
+        collisionMode = true;
+    }
 
     public void SetStealCamera()
     {
-        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.45f;
-        GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0.09f;
+        stealMode = true;
+        //if (!collisionMode)
+            RotateCamera(Quaternion.identity);
+        //else
+        //    vrCamComp.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.49f;
+        //ToggleComponent<CinemachineFollowZoom>(true);
+        vrCamComp.GetComponent<CinemachineFollowZoom>().enabled = true;
+        vrCamComp.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.45f;
+        vrCamComp.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0.09f;
 
-        //foreach (GameObject objectColliding in objectsColliding)
-        //    objectColliding.SetActive(false);
+        foreach (GameObject objectColliding in objectsColliding)
+            objectColliding.SetActive(false);
+
+        
     }
 
     public void ToggleComponent<T>(bool enable) where T : Behaviour
@@ -78,24 +89,52 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    //private void OnTriggerStay(Collider other)
-    //{
 
-    //    if(other.TryGetComponent<Building>(out Building building))
-    //    {
-    //        isRotating = true;
-    //        targetRotation = Quaternion.Euler(80, 0, 0);
-    //    }
-    //}
+    public void AddObjectCollidingWithCamera(GameObject objectColliding)
+    {
+        objectsColliding.Add(objectColliding);
+        
+    }
 
-    //private void OnTriggerExit(Collider other)
-    //{
+    public void RemoveObjectCollidingWithCamera(GameObject objectColliding)
+    {
+        objectColliding.SetActive(true);
+        objectsColliding.Remove(objectColliding);
+    }
 
 
-    //    if (other.TryGetComponent<Building>(out Building building))
-    //    {
-    //        targetRotation = cameraRotation;
-    //        isRotating = true;
-    //    }
-    //}
+
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+       
+        print(other.gameObject.name);
+        //cameraController.AddObjectCollidingWithCamera(other.gameObject);
+
+        if (other.TryGetComponent<Building>(out Building building))
+        {
+            print(other.gameObject.name + " building enter");
+            AddObjectCollidingWithCamera(other.gameObject);
+
+
+        }
+        if (stealMode)
+            foreach (GameObject objectColl in objectsColliding)
+                objectColl.SetActive(false);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //cameraController.RemoveObjectCollidingWithCamera(other.gameObject);
+
+        if (other.TryGetComponent<Building>(out Building building))
+        {
+            //cameraController.RemoveObjectCollidingWithCamera(other.gameObject);
+
+
+        }
+    }
 }

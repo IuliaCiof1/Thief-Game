@@ -18,15 +18,31 @@ public class CollisionChecker : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-
+        print(other.gameObject.name + " stay");
         //cameraController.AddObjectCollidingWithCamera(other.gameObject);
 
         if (!buildingFound && other.TryGetComponent<Building>(out Building building))
         {
+            cameraController.AddObjectCollidingWithCamera(other.gameObject);
+            print(other.gameObject.name + " building stay");
+            buildingFound = true;
+            //cameraController.RotateCamera(Quaternion.Euler(80, 0, 0));
+            cameraController.SetCollisionCamera();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        print(other.gameObject.name);
+        //cameraController.AddObjectCollidingWithCamera(other.gameObject);
+
+        if (!buildingFound && other.TryGetComponent<Building>(out Building building))
+        {
+            print(other.gameObject.name + " building enter");
            // cameraController.AddObjectCollidingWithCamera(other.gameObject);
 
-            buildingFound = true;
-            cameraController.RotateCamera(Quaternion.Euler(80, 0, 0));
+          
         }
     }
 

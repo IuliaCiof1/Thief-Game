@@ -20,9 +20,9 @@ public class PlayerActions : MonoBehaviour
         //steal action
         if (Input.GetKeyDown(KeyCode.E))
         {
-            cameraController.RotateCamera(Quaternion.identity);
+            //cameraController.RotateCamera(Quaternion.identity);
             cameraController.SetStealCamera();
-            cameraController.ToggleComponent<CinemachineFollowZoom>(true);
+            //cameraController.ToggleComponent<CinemachineFollowZoom>(true);
             stealCanvas.SetActive(true);
         }
     }
