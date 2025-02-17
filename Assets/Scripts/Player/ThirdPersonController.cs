@@ -10,6 +10,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] float rotationSpeed = 2;
     [SerializeField] Animator animator;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +28,9 @@ public class ThirdPersonController : MonoBehaviour
         if (move!=Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move.normalized);
-            print(targetRotation);
+           
             //Rotate smoothly to this target:
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
+            animator.gameObject.transform.rotation = Quaternion.Slerp(animator.gameObject.transform.rotation, targetRotation, rotationSpeed);
 
             animator.SetTrigger("RunForward");
         }

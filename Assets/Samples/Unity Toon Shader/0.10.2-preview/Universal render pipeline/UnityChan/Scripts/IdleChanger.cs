@@ -42,7 +42,7 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 		void  Update ()
 		{
 			// ↑キー/スペースが押されたら、ステートを次に送る処理
-			if (Input.GetKeyDown ("up") || Input.GetButton ("Jump")) {
+			if (Input.GetKeyDown("up") || Input.GetButton ("Jump")) {
 				// ブーリアンNextをtrueにする
 				anim.SetBool ("Next", true);
 			}
