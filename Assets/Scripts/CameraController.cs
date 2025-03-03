@@ -20,6 +20,14 @@ public class CameraController : MonoBehaviour
     bool stealMode = false;
     bool collisionMode = false;
 
+
+    CinemachineFollowZoom vrCamCompZoom;
+    float iniScreenX;
+    float iniScreenY;
+    CinemachineFramingTransposer vrCamCompFrameTransposer;
+    CinemachineBasicMultiChannelPerlin vrCamCompPerlin;
+    float iniAplitudeGain;
+
     private void Start()
     {
         cameraRotation = virtualCamera.transform.rotation;
@@ -27,6 +35,14 @@ public class CameraController : MonoBehaviour
         objectsColliding = new List<GameObject>();
 
         vrCamComp = GetComponent<CinemachineVirtualCamera>();
+
+
+        vrCamCompZoom = vrCamComp.GetComponent<CinemachineFollowZoom>();
+        vrCamCompFrameTransposer = vrCamComp.GetCinemachineComponent<CinemachineFramingTransposer>();
+        iniScreenX = vrCamCompFrameTransposer.m_ScreenX;
+        iniScreenY = vrCamCompFrameTransposer.m_ScreenY;
+        vrCamCompPerlin = vrCamComp.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        iniAplitudeGain = vrCamCompPerlin.m_AmplitudeGain;
     }
 
     private void Update()
@@ -54,6 +70,11 @@ public class CameraController : MonoBehaviour
         isRotating = true;
 
         collisionMode = false;
+
+        vrCamCompZoom.enabled = false;
+        vrCamCompFrameTransposer.m_ScreenX = iniScreenX;
+        vrCamCompFrameTransposer.m_ScreenY = iniScreenY;
+        vrCamCompPerlin.m_AmplitudeGain = iniAplitudeGain;
     }
 
     public void SetCollisionCamera()
@@ -70,9 +91,10 @@ public class CameraController : MonoBehaviour
         //else
         //    vrCamComp.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.49f;
         //ToggleComponent<CinemachineFollowZoom>(true);
-        vrCamComp.GetComponent<CinemachineFollowZoom>().enabled = true;
-        vrCamComp.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 0.45f;
-        vrCamComp.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0.09f;
+        vrCamCompZoom.enabled = true;
+        vrCamCompFrameTransposer.m_ScreenX = 0.45f;
+        vrCamCompFrameTransposer.m_ScreenY = 0.62f;
+        vrCamCompPerlin.m_AmplitudeGain = 0.09f;
 
         foreach (GameObject objectColliding in objectsColliding)
             objectColliding.SetActive(false);
@@ -110,8 +132,7 @@ public class CameraController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-       
-        print(other.gameObject.name);
+      
         //cameraController.AddObjectCollidingWithCamera(other.gameObject);
 
         if (other.TryGetComponent<Building>(out Building building))

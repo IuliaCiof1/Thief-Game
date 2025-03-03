@@ -2,28 +2,162 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerActions : MonoBehaviour
 {
     [SerializeField] CameraController cameraController;
     [SerializeField] GameObject stealCanvas;
+    [SerializeField] StealTimer stealTImer;
+    [SerializeField] Animator animator;
+
+
+    bool isStealing = false;
+
+
+    ThirdPersonController thirdPersonController;
+
+
+    [SerializeField] private Transform rayPosition;
+    [SerializeField] private float radius;
+    private GameObject currentTarget;
+
+
+
+    [SerializeField] TMP_Text keyboardHintText;
+    GameObject keyboardHintPanel;
+    bool showKeyboardHint;
+    bool actionInProgress;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        thirdPersonController = GetComponent<ThirdPersonController>();
+        keyboardHintPanel = keyboardHintText.transform.parent.gameObject;
     }
+
+
+
+    void GetTarget()
+    {
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Camera.main.transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, distance)
+        // Physics.Raycast(rayPosition.position, rayPosition.forward, out RaycastHit hitInfo, distance)
+
+        Collider[] colliders = Physics.OverlapSphere(rayPosition.position, radius);
+
+
+        foreach (Collider collider in colliders)
+        {
+            if (!actionInProgress)
+            {
+                if (collider.TryGetComponent(out NPC npc))
+                {
+                    currentTarget = collider.gameObject;
+                   
+                    showKeyboardHint = true;
+                    keyboardHintText.text = "<size=26><sprite=64></size>  Pickpocket";
+
+                    break;
+                }
+                else
+                    showKeyboardHint = false;
+            }
+            
+
+        }
+
+
+        //Debug.Draw(rayPosition.position, rayPosition.forward * distance, Color.red);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+        GetTarget();
+
+        if(!showKeyboardHint)
+            keyboardHintPanel.SetActive(false);
+        else
+            keyboardHintPanel.SetActive(true);
+
         //steal action
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //cameraController.RotateCamera(Quaternion.identity);
-            cameraController.SetStealCamera();
-            //cameraController.ToggleComponent<CinemachineFollowZoom>(true);
-            stealCanvas.SetActive(true);
+
+            if (currentTarget && currentTarget.TryGetComponent(out NPC npc))
+            {
+
+
+                if (!isStealing)
+                {
+                    showKeyboardHint = false;
+                    actionInProgress = true;
+
+                    //cameraController.RotateCamera(Quaternion.identity);
+                    cameraController.SetStealCamera();
+                    //cameraController.ToggleComponent<CinemachineFollowZoom>(true);
+                    stealCanvas.SetActive(true);
+
+                    thirdPersonController.enabled = false;
+                    animator.SetTrigger("Steal");
+                }
+                else if (isStealing)
+                {
+                    animator.SetTrigger("PutInBag");
+
+
+                    StartCoroutine(DisableStealUI());
+
+
+                }
+
+                isStealing = !isStealing;
+            }
         }
+
+        if (isStealing)
+        {
+            if (stealTImer.Value <= 0)
+            {
+                StartCoroutine(DisableStealUI());
+                thirdPersonController.enabled = true;
+                stealCanvas.SetActive(false);
+                cameraController.ResetCameraRotation();
+                animator.SetTrigger("Idle");
+                isStealing = !isStealing;
+                stealTImer.Value = 2;
+                
+            }
+        }
+
+        //if (stealTImer.Value <= 0)
+        //{
+        //    stealCanvas.SetActive(false);
+        //}
+
+
+        //DebugExtension.DebugWireSphere(transform.position, debugWireSphere_Color, debugWireSphere_Radius); //debug spherecast
     }
+
+    IEnumerator DisableStealUI()
+    {
+
+        yield return new WaitForSeconds(1.5f);
+        actionInProgress = false;
+        stealCanvas.SetActive(false);
+        cameraController.ResetCameraRotation();
+        
+        thirdPersonController.enabled = true;
+    }
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
 }

@@ -10,19 +10,28 @@ public class Hand : MonoBehaviour
     [SerializeField] float smoothing;
     [SerializeField] Canvas canvas;
 
-    private void Start()
-    {
-       
-    }
+    Vector3 movementDirection; // Track movement direction
+    [SerializeField]Rigidbody rb;
+
 
     void Update()
     {
-        //Move Hand UI position with the mouse cursor.
+ 
+        // Convert mouse position to world space
         Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, canvas.worldCamera, out pos);
-        transform.position = Vector3.Lerp(transform.position, canvas.transform.TransformPoint(pos), smoothing * Time.deltaTime);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform, Input.mousePosition, canvas.worldCamera, out pos);
+        Vector3 targetPosition = canvas.transform.TransformPoint(pos);
 
-       // transform.position = Vector3.Lerp(transform.position, Input.mousePosition, smoothing*Time.deltaTime);
+        // Calculate the direction and apply force
+        Vector3 direction = (targetPosition - rb.position);
+        float distance = direction.magnitude;
+        Vector3 force = direction.normalized * smoothing * distance * 0.1f;
+        
+        force = Vector3.ClampMagnitude(force, 0.5f); // Limits max force to 5
+
+        rb.AddForce(force, ForceMode.Force);
+
         if (Input.GetMouseButton(0))
         {
             isGrabbing = true;
@@ -41,4 +50,35 @@ public class Hand : MonoBehaviour
             handPalm.SetActive(true);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.TryGetComponent<PocketItem>(out PocketItem pocketItem))
+        {;
+            if (isGrabbing)
+                pocketItem.GrabItem(transform);
+            else
+                pocketItem.UngrabItem();
+        }
+       
+    }
+
+
+    private void OnTriggerStay(Collider other)
+    {
+       
+        if (other.gameObject.TryGetComponent<PocketItem>(out PocketItem pocketItem))
+        {
+           
+            if (isGrabbing)
+                pocketItem.GrabItem(transform);
+            else
+                pocketItem.UngrabItem();
+        }
+      
+    }
+
+   
 }
+
