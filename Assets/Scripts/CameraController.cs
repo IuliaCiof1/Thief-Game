@@ -87,12 +87,12 @@ public class CameraController : MonoBehaviour
     {
         stealMode = true;
         //if (!collisionMode)
-            RotateCamera(Quaternion.identity);
+            RotateCamera(Quaternion.Euler(30,0,0));
         //else
         //    vrCamComp.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.49f;
         //ToggleComponent<CinemachineFollowZoom>(true);
         vrCamCompZoom.enabled = true;
-        vrCamCompFrameTransposer.m_ScreenX = 0.45f;
+        vrCamCompFrameTransposer.m_ScreenX = 0.46f;
         vrCamCompFrameTransposer.m_ScreenY = 0.62f;
         vrCamCompPerlin.m_AmplitudeGain = 0.09f;
 

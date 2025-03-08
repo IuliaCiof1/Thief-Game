@@ -28,7 +28,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] TMP_Text keyboardHintText;
     GameObject keyboardHintPanel;
     bool showKeyboardHint;
-    bool actionInProgress;
+    public bool actionInProgress;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +86,10 @@ public class PlayerActions : MonoBehaviour
         //steal action
         if (Input.GetKeyDown(KeyCode.E))
         {
+            print(showKeyboardHint);
+            StopAllCoroutines();
+
+            actionInProgress = true;
 
             if (currentTarget && currentTarget.TryGetComponent(out NPC npc))
             {
@@ -93,8 +97,9 @@ public class PlayerActions : MonoBehaviour
 
                 if (!isStealing)
                 {
+                    print("showkeayboardhint");
                     showKeyboardHint = false;
-                    actionInProgress = true;
+                   
 
                     //cameraController.RotateCamera(Quaternion.identity);
                     cameraController.SetStealCamera();
@@ -102,11 +107,13 @@ public class PlayerActions : MonoBehaviour
                     stealCanvas.SetActive(true);
 
                     thirdPersonController.enabled = false;
+                    print("steal");
+                    animator.ResetTrigger("Idle");
                     animator.SetTrigger("Steal");
                 }
                 else if (isStealing)
                 {
-                    animator.SetTrigger("PutInBag");
+                    //animator.SetTrigger("PutInBag");
 
 
                     StartCoroutine(DisableStealUI());
@@ -120,16 +127,17 @@ public class PlayerActions : MonoBehaviour
 
         if (isStealing)
         {
+            //print(stealTImer.Value);
             if (stealTImer.Value <= 0)
             {
                 StartCoroutine(DisableStealUI());
-                thirdPersonController.enabled = true;
-                stealCanvas.SetActive(false);
-                cameraController.ResetCameraRotation();
-                animator.SetTrigger("Idle");
+                //thirdPersonController.enabled = true;
+                //stealCanvas.SetActive(false);
+                //cameraController.ResetCameraRotation();
+                //animator.SetTrigger("Idle");
                 isStealing = !isStealing;
                 stealTImer.Value = 2;
-                
+               
             }
         }
 
@@ -144,13 +152,14 @@ public class PlayerActions : MonoBehaviour
 
     IEnumerator DisableStealUI()
     {
-
-        yield return new WaitForSeconds(1.5f);
         actionInProgress = false;
+        yield return new WaitForSeconds(0);
+        
         stealCanvas.SetActive(false);
         cameraController.ResetCameraRotation();
         
         thirdPersonController.enabled = true;
+        animator.ResetTrigger("Idle");
     }
 
 

@@ -10,7 +10,7 @@ Material:
   m_Name: MAT_MainClothes2
   m_Shader: {fileID: 4800000, guid: be891319084e9d147b09d89e80ce60e0, type: 3}
   m_Parent: {fileID: 2100000, guid: dda230726aa9f4049b6ed1fd680925b3, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _EMISSIVE_SIMPLE
   - _IS_ANGELRING_OFF
@@ -32,7 +32,17 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _ClippingMode: 0
+    - _CullMode: 2
+    - _Is_BakedNormal: 0
+    - _Is_BlendBaseColor: 0
+    - _Is_NormalMapToHighColor: 0
+    - _Is_NormalMapToRimLight: 0
+    - _Is_OutlineTex: 0
+    - _OUTLINE: 0
     - _Outline_Width: 0.12
+    - _RimLight: 0
+    - _Unlit_Intensity: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.348, g: 0.18810812, b: 0.10345948, a: 1}
     - _BaseColor: {r: 0.4339623, g: 0.23364772, b: 0.12896049, a: 1}

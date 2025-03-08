@@ -9,7 +9,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] float movementSpeed = 2;
     [SerializeField] float rotationSpeed = 2;
     [SerializeField] Animator animator;
-
+    [SerializeField] PlayerActions playerActions;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +29,20 @@ public class ThirdPersonController : MonoBehaviour
 
         Vector3 move = new Vector3(xDir, 0, zDir);
 
-        if (move!=Vector3.zero)
+        if (move != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move.normalized);
-           
+
             //Rotate smoothly to this target:
             animator.gameObject.transform.rotation = Quaternion.Slerp(animator.gameObject.transform.rotation, targetRotation, rotationSpeed);
 
             animator.SetTrigger("RunForward");
         }
-        else
+        else if (!playerActions.actionInProgress)
+        {
+            //print(playerActions.actionInProgress);
             animator.SetTrigger("Idle");
+        }
 
        
 
