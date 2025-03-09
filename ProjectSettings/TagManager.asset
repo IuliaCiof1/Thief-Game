@@ -6,6 +6,7 @@ TagManager:
   tags:
   - goal
   - PocketWall
+  - inspection
   layers:
   - Default
   - TransparentFX
