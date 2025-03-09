@@ -5,64 +5,85 @@ using UnityEngine.AI;
 
 public class AIControl : MonoBehaviour
 {
-    public GameObject[] goalLocations; // Walking destinations
-    public List<GameObject> inspectionPoints; // Inspection locations (e.g., windows)
+   
     NavMeshAgent agent;
     Animator animator;
-    bool isInspecting = false;
+    public bool isInspecting { get; private set; }
 
     GameObject inspectionPoint;
 
-    [SerializeField] int inspectionCooldown;
+
+    CrowdManager crowdManager;
+    [SerializeField] List<GameObject> goalLocations = null; // Walking destinations
+    [SerializeField] List<GameObject> inspectionPoints = null; // Inspection locations (e.g., windows)
+    [SerializeField] List<GameObject> initialInspectionPoints = null;
+    Vector2 walkOffsetRange;
+    Vector2 speedMultiplier;
+
 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = transform.GetChild(0).GetComponent<Animator>();
+
+
+        //Get values from CrowdManager
+        crowdManager = FindAnyObjectByType<CrowdManager>();
+        if (crowdManager == null)
+        {
+            Debug.LogError("No CrowdManager found in the scene!");
+            return; // Exit the function early to avoid null reference errors
+        }
+
+        initialInspectionPoints = new List<GameObject>(crowdManager.InspectionPoints);
+        inspectionPoints.AddRange(initialInspectionPoints);
+
+        goalLocations = new List<GameObject>(crowdManager.GoalLocations);
+
+
+        if (!transform.GetChild(0).TryGetComponent<Animator>(out animator))
+        {
+            Debug.LogError("No Animator found on first child of crowd agent");
+        }
+
+        walkOffsetRange = crowdManager.WalkOffsetRange;
+        speedMultiplier = crowdManager.SpeedMultiplier;
+
+
 
         //Change walk offset parameter so the agents' steps varies
-            animator.SetFloat("walkOffset", Random.Range(0.0f, 2.0f));
+        animator.SetFloat("walkOffset", Random.Range(walkOffsetRange.x, walkOffsetRange.y));
 
         //Change the speed of the walking
-        float speedMult = Random.Range(0.5f, 2.0f);
-        animator.SetFloat("speedMultiplier", speedMult);
-        agent.speed *= speedMult;
+        float randomSpeedMult = Random.Range(speedMultiplier.x, speedMultiplier.y);
+        animator.SetFloat("speedMultiplier", randomSpeedMult);
+        agent.speed *= randomSpeedMult;
 
-        goalLocations = GameObject.FindGameObjectsWithTag("goal");
-        inspectionPoints.AddRange(GameObject.FindGameObjectsWithTag("inspection"));
+        
 
         SetNewDestination();
 
-        InvokeRepeating("InspectionPointSearch", 2.0f, inspectionCooldown);
+        InvokeRepeating("InspectionPointSearch", 2.0f, crowdManager.InspectionCooldown);
     }
 
     void Update()
     {
+        
 
-
-        //transform.Rotate(0, transform.rotation.y, 0);
         if (inspectionPoint != null)
         {
 
             agent.SetDestination(inspectionPoint.transform.position);
 
             if (agent.remainingDistance < 1.5f)
-            {
-
-                //transform.LookAt(new Vector3(inspectionPoint.transform.position.x, transform.position.y, inspectionPoint.transform.position.z));
-                //Vector3 lookDirection = new Vector3(inspectionPoint.transform.position.x, transform.position.y, inspectionPoint.transform.position.z);
-                //transform.LookAt(lookDirection);
-
+            { 
                 // Make NPC look in the same direction as the inspection point's Z-axis
                 transform.rotation = Quaternion.LookRotation(inspectionPoint.transform.forward, Vector3.up);
 
-                //transform.LookAt(inspectionPoint.transform);
-                //transform.Rotate(0, transform.rotation.y, transform.rotation.z);
-                print("start coroutin");
-
+                //Remove the visited Inspection Point from the list
                 inspectionPoints.Remove(inspectionPoint);
                 inspectionPoint = null;
+
                 StartCoroutine(InspectEnvironment());
             }
         }
@@ -73,7 +94,6 @@ public class AIControl : MonoBehaviour
         {
           
             SetNewDestination();
-            //StartCoroutine(InspectEnvironment());
         }
     }
 
@@ -81,13 +101,12 @@ public class AIControl : MonoBehaviour
     void InspectionPointSearch()
     {
         inspectionPoint = GetClosestInspectionPoint();
+
         if (inspectionPoint != null)
         {
             int stoppingChance = inspectionPoint.GetComponent<InspectionPoint>().StoppingChange;
 
             int value = Random.Range(0, stoppingChance);
-
-            print(value + " " + gameObject.name);
 
             if (value != 0)
             {
@@ -101,14 +120,11 @@ public class AIControl : MonoBehaviour
         isInspecting = true;
         agent.isStopped = true; // Stop walking
 
-        // Pick a random inspection point near the destination
+        CancelInvoke("InspectionPointSearch"); //cancel the invocation of the search while agent is inspecting
 
-
-        CancelInvoke("InspectionPointSearch");
-
-        animator.SetTrigger("Inspect"); // Play inspection animation
-        yield return new WaitForSeconds(Random.Range(5, 10)); // Inspect for 2-5 seconds
-
+        animator.SetBool("Inspect", true); // Play inspection animation
+        yield return new WaitForSeconds(Random.Range(crowdManager.TimeRangeAtInspectionPoint.x, crowdManager.TimeRangeAtInspectionPoint.y)); // Inspect the place for a random time
+        animator.SetBool("Inspect", false);
         agent.isStopped = false; // Resume movement
        
         SetNewDestination();
@@ -117,18 +133,23 @@ public class AIControl : MonoBehaviour
         
         inspectionPoint = null;
 
-        InvokeRepeating("InspectionPointSearch", 2.0f, inspectionCooldown);
+        if(inspectionPoints.Count == 0)
+        {
+            inspectionPoints.AddRange(initialInspectionPoints);
+        }
+
+        InvokeRepeating("InspectionPointSearch", 2.0f, crowdManager.InspectionCooldown);
     }
 
     void SetNewDestination()
     {
-        int i = Random.Range(0, goalLocations.Length);
+        int i = Random.Range(0, goalLocations.Count);
         agent.SetDestination(goalLocations[i].transform.position);
     }
 
     GameObject GetClosestInspectionPoint()
     {
-        float closestDistance = 15f;
+        float closestDistance = crowdManager.MinDistanceInspectionPoint;
         GameObject closestPoint = null;
 
         foreach (GameObject point in inspectionPoints)

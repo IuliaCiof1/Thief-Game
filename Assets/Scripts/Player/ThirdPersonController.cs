@@ -18,7 +18,7 @@ public class ThirdPersonController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
 
-        chController = GetComponent<CharacterController>();   
+        chController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class ThirdPersonController : MonoBehaviour
             animator.SetTrigger("Idle");
         }
 
-       
+
 
 
         //Vector3 rotation = new Vector3(0, Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime*180, 0);

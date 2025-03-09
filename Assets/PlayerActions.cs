@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -52,12 +53,21 @@ public class PlayerActions : MonoBehaviour
         {
             if (!actionInProgress)
             {
-                if (collider.TryGetComponent(out NPC npc))
+                if (collider.TryGetComponent(out AIControl npc) && npc.isInspecting)
                 {
                     currentTarget = collider.gameObject;
                    
                     showKeyboardHint = true;
                     keyboardHintText.text = "<size=26><sprite=64></size>  Pickpocket";
+
+                    break;
+                }
+                else if(collider.TryGetComponent(out HomeEntrance homeEntrance))
+                {
+                    currentTarget = collider.gameObject;
+
+                    showKeyboardHint = true;
+                    keyboardHintText.text = "<size=26><sprite=64></size>  Go Home";
 
                     break;
                 }
@@ -84,14 +94,14 @@ public class PlayerActions : MonoBehaviour
             keyboardHintPanel.SetActive(true);
 
         //steal action
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && currentTarget)
         {
             print(showKeyboardHint);
             StopAllCoroutines();
 
             actionInProgress = true;
 
-            if (currentTarget && currentTarget.TryGetComponent(out NPC npc))
+            if (currentTarget.TryGetComponent(out AIControl npc) && npc.isInspecting)
             {
 
 
@@ -122,6 +132,10 @@ public class PlayerActions : MonoBehaviour
                 }
 
                 isStealing = !isStealing;
+            }
+            if (currentTarget.TryGetComponent(out HomeEntrance homeEntrance))
+            {
+                SceneManager.LoadScene("Quarters");
             }
         }
 
