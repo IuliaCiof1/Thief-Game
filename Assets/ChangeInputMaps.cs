@@ -18,10 +18,10 @@ public class ChangeInputMaps : MonoBehaviour
       
         print("controls");
         controls = new PlayerControls();
-        controls.BaseGameplay.Enable();
+        //controls.BaseGameplay.Enable();
       
-        playerPlayerInput.SwitchCurrentActionMap("BaseGameplay");
-        controls.BaseGameplay.Enable();
+        //playerPlayerInput.SwitchCurrentActionMap("BaseGameplay");
+        //controls.BaseGameplay.Enable();
 
     }
 
@@ -41,15 +41,27 @@ public class ChangeInputMaps : MonoBehaviour
 
     //}
 
-        
+
     private void Start()
     {
 
+        //playerPlayerInput.SwitchCurrentActionMap("BaseGameplay");
+        //controls.BaseGameplay.Enable();
+
+
+        StartCoroutine(FixInputSystem());
+    }
+
+
+    IEnumerator FixInputSystem()
+    {
+        yield return new WaitForEndOfFrame(); // Wait until the end of the first frame
+        Debug.Log("FurnitureUI initialized with action map: " + playerPlayerInput.currentActionMap.name);
         playerPlayerInput.SwitchCurrentActionMap("BaseGameplay");
         controls.BaseGameplay.Enable();
     }
 
-    public void ChangeToFurnitureMap()
+public void ChangeToFurnitureMap()
     {
         controls.BaseGameplay.Disable();
         playerPlayerInput.SwitchCurrentActionMap("Furniture");

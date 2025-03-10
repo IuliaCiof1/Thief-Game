@@ -54,27 +54,27 @@ public class FurnitureUI : MonoBehaviour
             return;
         }
 
-        print("Current Action Map: " + playerInput.currentActionMap.name);
+        //print("Current Action Map: " + playerInput.currentActionMap.name);
 
         // Ensure event is only added once
 
-        controls.BaseGameplay.Enable();
-        playerInput.SwitchCurrentActionMap("BaseGameplay");
-        controls.BaseGameplay.Enable();
-        print("furniture start");
+        //controls.BaseGameplay.Enable();
+        //playerInput.SwitchCurrentActionMap("BaseGameplay");
+        //controls.BaseGameplay.Enable();
+        //print("furniture start");
 
-        //changeInputMaps = FindObjectOfType<ChangeInputMaps>();
-        print(changeInputMaps.gameObject.name);
-        // controls = changeInputMaps.controls;
-        print(playerInput.currentActionMap.name);
+        ////changeInputMaps = FindObjectOfType<ChangeInputMaps>();
+        //print(changeInputMaps.gameObject.name);
+        //// controls = changeInputMaps.controls;
+        //print(playerInput.currentActionMap.name);
         controls.BaseGameplay.Furniture.performed += ctx => OnFurniture();
 
         buildingManager = FindObjectOfType<BuildingManager>();
         UpdateFurnitureUI(buildingManager.GetOwnedObjects());
 
-        OpenFurnitureUI();
-        controls.Furniture.Disable();
-        CloseFurnitureUI();
+        //OpenFurnitureUI();
+        //controls.Furniture.Disable();
+        //CloseFurnitureUI();
 
         //StartCoroutine(FixInputSystem());
 
@@ -107,19 +107,19 @@ public class FurnitureUI : MonoBehaviour
         //    return;
         //}
         //Debug.Log("FurnitureUI initialized with action map: " + playerInput.currentActionMap.name);
-       
-       //Invoke("FixInputSystem", 0.01f);
-        StartCoroutine(FixInputSystem());
-    }
 
+        //Invoke("FixInputSystem", 0.01f);
+        //    StartCoroutine(FixInputSystem());
+        //}
 
-    IEnumerator FixInputSystem()
-    {
-        yield return new WaitForEndOfFrame(); // Wait until the end of the first frame
-        Debug.Log("FurnitureUI initialized with action map: " + playerInput.currentActionMap.name);
-        playerInput.SwitchCurrentActionMap("BaseGameplay");
-        controls.BaseGameplay.Enable();
     }
+    //IEnumerator FixInputSystem()
+    //{
+    //    yield return new WaitForEndOfFrame(); // Wait until the end of the first frame
+    //    Debug.Log("FurnitureUI initialized with action map: " + playerInput.currentActionMap.name);
+    //    playerInput.SwitchCurrentActionMap("BaseGameplay");
+    //    controls.BaseGameplay.Enable();
+    //}
 
     private void OnFurniture()
     {

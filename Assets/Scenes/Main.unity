@@ -13888,6 +13888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e486eb6464d8e2b48be8b6bde3236ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 3
+  fadeImage: {fileID: 1530919256}
 --- !u!65 &922717232
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20436,6 +20438,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64268b1c1a1928d42bb923c13a8a414f, type: 3}
+--- !u!114 &1530919256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2345298222717781836, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
+  m_PrefabInstance: {fileID: 1159646860719775420}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1531225391
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -135,7 +135,8 @@ public class PlayerActions : MonoBehaviour
             }
             if (currentTarget.TryGetComponent(out HomeEntrance homeEntrance))
             {
-                SceneManager.LoadScene("Quarters");
+                //SceneManager.LoadScene("Quarters");
+                homeEntrance.GoHome();
             }
         }
 

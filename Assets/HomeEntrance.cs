@@ -1,18 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HomeEntrance : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float fadeDuration;
+    [SerializeField] private Image fadeImage;
+    [SerializeField] bool fadeOut;
+
+    private void Start()
     {
         
+        if(fadeOut)
+            StartCoroutine(FadeOutImage());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GoHome()
     {
-        
+        if (!fadeOut)
+            StartCoroutine(FadeInImage());
+       
+    }
+
+    IEnumerator FadeInImage()
+    {
+        float timer = 0f;
+        Color color = fadeImage.color;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            color.a = Mathf.Clamp01(timer / fadeDuration);
+            fadeImage.color = color;
+            yield return null;
+        }
+
+        SceneManager.LoadScene("Quarters");
+    }
+
+
+
+    IEnumerator FadeOutImage()
+    {
+
+
+        print("fade out");
+        float timer = 0f;
+        Color color = fadeImage.color;
+
+        color.a = 1;
+        fadeImage.color = color;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            color.a = Mathf.Clamp01(1 - (timer / fadeDuration));
+            fadeImage.color = color;
+            yield return null;
+        }
     }
 }
