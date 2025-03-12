@@ -112,10 +112,14 @@ public class BuildingManager : MonoBehaviour
 
     public void SelectObject(int index)
     {
+        if (ownedObjects[index].value <= PlayerStats.money)
+        {
+            pendingObject = Instantiate(ownedObjects[index].objectPrefab, position, transform.rotation, gameObject.transform);
+            initialMaterial = pendingObject.GetComponent<MeshRenderer>().material;
+            pendingObject.SetActive(true);
 
-        pendingObject = Instantiate(ownedObjects[index].objectPrefab, position, transform.rotation, gameObject.transform);
-        initialMaterial = pendingObject.GetComponent<MeshRenderer>().material;
-        pendingObject.SetActive(true);
+            PlayerStats.RemoveMoiney(ownedObjects[index].value);
+        }
 
     }
 

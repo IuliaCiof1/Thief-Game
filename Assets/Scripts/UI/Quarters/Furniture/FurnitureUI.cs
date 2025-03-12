@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class FurnitureUI : MonoBehaviour
 {
@@ -54,72 +55,14 @@ public class FurnitureUI : MonoBehaviour
             return;
         }
 
-        //print("Current Action Map: " + playerInput.currentActionMap.name);
-
-        // Ensure event is only added once
-
-        //controls.BaseGameplay.Enable();
-        //playerInput.SwitchCurrentActionMap("BaseGameplay");
-        //controls.BaseGameplay.Enable();
-        //print("furniture start");
-
-        ////changeInputMaps = FindObjectOfType<ChangeInputMaps>();
-        //print(changeInputMaps.gameObject.name);
-        //// controls = changeInputMaps.controls;
-        //print(playerInput.currentActionMap.name);
+        
         controls.BaseGameplay.Furniture.performed += ctx => OnFurniture();
 
         buildingManager = FindObjectOfType<BuildingManager>();
         UpdateFurnitureUI(buildingManager.GetOwnedObjects());
 
-        //OpenFurnitureUI();
-        //controls.Furniture.Disable();
-        //CloseFurnitureUI();
-
-        //StartCoroutine(FixInputSystem());
-
-        //playerInput.SwitchCurrentActionMap("BaseGameplay");
-        //Debug.Log("Forced action map to: " + playerInput.currentActionMap.name);
-
-        //buildingManager = FindObjectOfType<BuildingManager>();
-        ////changeInputMaps = FindObjectOfType<ChangeInputMaps>();
-
-        //if (changeInputMaps == null)
-        //{
-        //    Debug.LogError("ChangeInputMaps not found!");
-        //    return;
-        //}
-
-        //controls = changeInputMaps.controls;
-
-        //if (controls == null)
-        //{
-        //    Debug.LogError("PlayerControls is null!");
-        //    return;
-        //}
-
-        //// Force the correct action map
-        //playerInput.SwitchCurrentActionMap("BaseGameplay");
-        //controls.BaseGameplay.Enable();
-        //if (playerInput == null)
-        //{
-        //    Debug.LogError("playerInput is not assigned before InvokeRepeating!");
-        //    return;
-        //}
-        //Debug.Log("FurnitureUI initialized with action map: " + playerInput.currentActionMap.name);
-
-        //Invoke("FixInputSystem", 0.01f);
-        //    StartCoroutine(FixInputSystem());
-        //}
-
     }
-    //IEnumerator FixInputSystem()
-    //{
-    //    yield return new WaitForEndOfFrame(); // Wait until the end of the first frame
-    //    Debug.Log("FurnitureUI initialized with action map: " + playerInput.currentActionMap.name);
-    //    playerInput.SwitchCurrentActionMap("BaseGameplay");
-    //    controls.BaseGameplay.Enable();
-    //}
+
 
     private void OnFurniture()
     {
@@ -148,6 +91,7 @@ public class FurnitureUI : MonoBehaviour
         {
             GameObject slot = Instantiate(furnitureSlotPrefab, furniturePanel.GetComponentInChildren<GridLayoutGroup>().transform);
             slot.transform.GetChild(0).GetComponent<Image>().sprite = ownedFurniture[i].previewImage;
+            slot.transform.GetChild(1).GetComponent<TMP_Text>().text = ownedFurniture[i].value+"$";
 
 
             int capturedIndex = i; // Capture the current value of i

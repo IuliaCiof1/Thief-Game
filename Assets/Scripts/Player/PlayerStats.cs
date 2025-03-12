@@ -21,6 +21,19 @@ public class PlayerStats : MonoBehaviour
     public void AddMoiney(int amount)
     {
         money += amount;
-        print("+1");
+    }
+
+    public static void RemoveMoiney(int amount)
+    {
+        money -= amount;
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Slash))
+        {
+            AddMoiney(100);
+        }
     }
 }

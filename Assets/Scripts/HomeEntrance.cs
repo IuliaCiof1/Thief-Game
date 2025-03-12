@@ -8,18 +8,19 @@ public class HomeEntrance : MonoBehaviour
 {
     [SerializeField] private float fadeDuration;
     [SerializeField] private Image fadeImage;
-    [SerializeField] bool fadeOut;
+    [SerializeField] bool toHome;
 
     private void Start()
     {
         
-        if(fadeOut)
+      
             StartCoroutine(FadeOutImage());
+       
     }
 
     public void GoHome()
     {
-        if (!fadeOut)
+       
             StartCoroutine(FadeInImage());
        
     }
@@ -37,7 +38,10 @@ public class HomeEntrance : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene("Quarters");
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Quarters"))
+            SceneManager.LoadScene("Main");
+        else
+            SceneManager.LoadScene("Quarters");
     }
 
 
