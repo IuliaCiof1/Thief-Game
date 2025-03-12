@@ -13,14 +13,18 @@ public class PocketItem : MonoBehaviour
     Vector3 velocity = Vector3.zero;
     [SerializeField] float gravity = -9.8f;
     [SerializeField] Animator animator;
-    
+
+    PlayerStats playerStats;
+
+    public int Value { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
         hand = FindObjectOfType<Hand>().transform;
         rb = GetComponent<Rigidbody>();
         initialParent = transform.parent;
-
+        playerStats = FindObjectOfType<PlayerStats>();
         //Physics.IgnoreCollision(FindObjectOfType<Hand>().GetComponent<Collider>(), GetComponent<Collider>());
 
     }
@@ -45,7 +49,7 @@ public class PocketItem : MonoBehaviour
         if(other.TryGetComponent<CoinCollectArea>(out CoinCollectArea coinCollect))
         {
             animator.SetTrigger("PutInBag");
-            PlayerStats.Instance.AddMoiney(5);
+            playerStats.AddMoiney(Value);
             Destroy(gameObject);
         }
     }

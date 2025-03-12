@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa7a82f455b33a49aa5dbeeadbcf2d5, type: 3}
-  m_Name: Outfit
+  m_Script: {fileID: 11500000, guid: f8248f1bb96178e4eb1bcff6d176935c, type: 3}
+  m_Name: New Pocket Item SO
   m_EditorClassIdentifier: 
-  outfitIndex: 000000000000000000000000
+  sprite: {fileID: -1428079781, guid: 069a00c4a21d8654bbe27600f3ba7103, type: 3}
+  value: 2

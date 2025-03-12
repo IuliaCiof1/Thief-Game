@@ -31,6 +31,11 @@ public class PlayerActions : MonoBehaviour
     bool showKeyboardHint;
     public bool actionInProgress;
 
+    [SerializeField] PocketItemsGeneraton pocketItemsGeneraton;
+
+
+    AIControl npc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +106,7 @@ public class PlayerActions : MonoBehaviour
 
             actionInProgress = true;
 
-            if (currentTarget.TryGetComponent(out AIControl npc) && npc.isInspecting)
+            if (currentTarget.TryGetComponent(out npc) && npc.isInspecting)
             {
 
 
@@ -109,9 +114,10 @@ public class PlayerActions : MonoBehaviour
                 {
                     print("showkeayboardhint");
                     showKeyboardHint = false;
-                   
+
 
                     //cameraController.RotateCamera(Quaternion.identity);
+                    pocketItemsGeneraton.CreateItems(npc);
                     cameraController.SetStealCamera();
                     //cameraController.ToggleComponent<CinemachineFollowZoom>(true);
                     stealCanvas.SetActive(true);
@@ -143,7 +149,7 @@ public class PlayerActions : MonoBehaviour
         if (isStealing)
         {
             //print(stealTImer.Value);
-            if (stealTImer.Value <= 0)
+            if (stealTImer.Value <= 0 || !npc.isInspecting)
             {
                 StartCoroutine(DisableStealUI());
                 //thirdPersonController.enabled = true;
@@ -155,6 +161,7 @@ public class PlayerActions : MonoBehaviour
                
             }
         }
+
 
         //if (stealTImer.Value <= 0)
         //{

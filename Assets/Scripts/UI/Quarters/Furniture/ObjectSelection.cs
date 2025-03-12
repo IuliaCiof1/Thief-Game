@@ -32,6 +32,7 @@ public class ObjectSelection : MonoBehaviour
 
     void OnLeftClick()
     {
+        print("left click");
         Vector2 screenPosition;
         //if (playerInput.currentControlScheme == "Gamepad")
         //{
@@ -46,7 +47,7 @@ public class ObjectSelection : MonoBehaviour
         Ray ray = topCamera.ScreenPointToRay(screenPosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 1000))
+        if (Physics.Raycast(ray, out hit, 1000000000000000))
         {
             if (hit.collider.gameObject.TryGetComponent<Furniture>(out Furniture furniture))
             {
@@ -83,9 +84,10 @@ public class ObjectSelection : MonoBehaviour
         if (furniture == selectedObject) return;
         if (selectedObject != null) Deselect();
 
-        Outline outline = furniture.GetComponent<Outline>();
+        //Outline outline 
+        //    = furniture.GetComponent<Outline>();
 
-        if (outline == null) furniture.AddComponent<Outline>();
+        if (!furniture.TryGetComponent<Outline>(out Outline outline)) furniture.AddComponent<Outline>();
         else outline.enabled = true;
 
         selectedObject = furniture;

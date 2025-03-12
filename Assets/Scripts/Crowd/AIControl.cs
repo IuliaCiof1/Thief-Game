@@ -21,6 +21,8 @@ public class AIControl : MonoBehaviour
     Vector2 speedMultiplier;
 
 
+    public List<PocketItemSO> ItemsInPocket;
+    //public List<Sprite> ItemsInPocket { get; set; }
 
     void Start()
     {

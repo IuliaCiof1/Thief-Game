@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce32be5e8844a50468d6452ef6ce23f1, type: 3}
-  m_Name: Screwdriver
+  m_Script: {fileID: 11500000, guid: f8248f1bb96178e4eb1bcff6d176935c, type: 3}
+  m_Name: New Pocket Item SO 2
   m_EditorClassIdentifier: 
-  id: 1
-  itemName: Scredriver
-  stockAmount: 56
-  bagAmount: 0
-  icon: {fileID: 21300000, guid: a9f650cf853dd2d4b8e24b29aa66e3fd, type: 3}
+  sprite: {fileID: 21300000, guid: d2934b15dbd397642a24f65e9d369f06, type: 3}
+  value: 0
