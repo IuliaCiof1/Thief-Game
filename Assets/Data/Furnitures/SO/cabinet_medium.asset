@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: cabinet_medium
   m_EditorClassIdentifier: 
   previewImage: {fileID: 21300000, guid: fc004122b06bf804f9dbe5280c5addf3, type: 3}
-  objectPrefab: {fileID: 4203681236087353618, guid: e2179b6dac766ae46b161ebb3f84a0d5,
-    type: 3}
+  objectPrefab: {fileID: 4203681236087353618, guid: e2179b6dac766ae46b161ebb3f84a0d5, type: 3}
+  value: 40

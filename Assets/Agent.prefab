@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3dab31d7c9bfc42b850365d763a756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   goalLocations:
   - {fileID: 0}
   - {fileID: 0}

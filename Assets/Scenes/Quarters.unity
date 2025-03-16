@@ -7914,7 +7914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.7171, y: -371.05664}
+  m_AnchoredPosition: {x: 3.717041, y: -371.05664}
   m_SizeDelta: {x: -53.7345, y: -833.8672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &992287969
@@ -11670,9 +11670,25 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2345298222717781836, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345298222717781836, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
+      propertyPath: m_Color.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345298222717781836, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
+      propertyPath: m_Color.r
+      value: 0.17254902
+      objectReference: {fileID: 0}
     - target: {fileID: 5593518139217795308, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
       propertyPath: m_Name
       value: Canvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337883725034208048, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

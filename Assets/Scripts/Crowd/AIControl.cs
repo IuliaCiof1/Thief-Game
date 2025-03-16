@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AIControl : MonoBehaviour
 {
    
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     Animator animator;
     public bool isInspecting { get; private set; }
 
@@ -24,11 +24,16 @@ public class AIControl : MonoBehaviour
     public List<PocketItemSO> ItemsInPocket;
     //public List<Sprite> ItemsInPocket { get; set; }
 
+    public bool deadzoneStarted { get; set; }
+
+    float defaultSpeed;
+
     void Start()
     {
+        
         agent = GetComponent<NavMeshAgent>();
 
-
+        defaultSpeed = agent.speed;
         //Get values from CrowdManager
         crowdManager = FindAnyObjectByType<CrowdManager>();
         if (crowdManager == null)
@@ -53,6 +58,26 @@ public class AIControl : MonoBehaviour
 
 
 
+        ////Change walk offset parameter so the agents' steps varies
+        //animator.SetFloat("walkOffset", Random.Range(walkOffsetRange.x, walkOffsetRange.y));
+
+        ////Change the speed of the walking
+        //float randomSpeedMult = Random.Range(speedMultiplier.x, speedMultiplier.y);
+        //animator.SetFloat("speedMultiplier", randomSpeedMult);
+        //agent.speed *= randomSpeedMult;
+
+        ResetAgentSpeed();
+        
+
+        SetNewDestination();
+
+        InvokeRepeating("InspectionPointSearch", 2.0f, Random.Range(crowdManager.InspectionCooldown, crowdManager.InspectionCooldown+2));
+    }
+
+    private void ResetAgentSpeed()
+    {
+        agent.speed = defaultSpeed;
+
         //Change walk offset parameter so the agents' steps varies
         animator.SetFloat("walkOffset", Random.Range(walkOffsetRange.x, walkOffsetRange.y));
 
@@ -60,13 +85,10 @@ public class AIControl : MonoBehaviour
         float randomSpeedMult = Random.Range(speedMultiplier.x, speedMultiplier.y);
         animator.SetFloat("speedMultiplier", randomSpeedMult);
         agent.speed *= randomSpeedMult;
+        InvokeRepeating("InspectionPointSearch", 2.0f, Random.Range(crowdManager.InspectionCooldown, crowdManager.InspectionCooldown + 2));
 
-        
-
-        SetNewDestination();
-
-        InvokeRepeating("InspectionPointSearch", 2.0f, crowdManager.InspectionCooldown);
     }
+
 
     void Update()
     {
@@ -74,11 +96,12 @@ public class AIControl : MonoBehaviour
 
         if (inspectionPoint != null)
         {
-
+            //ResetAgentSpeed();
             agent.SetDestination(inspectionPoint.transform.position);
 
             if (agent.remainingDistance < 1.5f)
-            { 
+            {
+                ResetAgentSpeed();
                 // Make NPC look in the same direction as the inspection point's Z-axis
                 transform.rotation = Quaternion.LookRotation(inspectionPoint.transform.forward, Vector3.up);
 
@@ -94,8 +117,20 @@ public class AIControl : MonoBehaviour
 
         if (!isInspecting && agent.remainingDistance < 0.7f && !agent.pathPending)
         {
-          
+            ResetAgentSpeed();
             SetNewDestination();
+        }
+
+
+        if (deadzoneStarted)
+        {
+            if (crowdManager.DeadzoneObject.transform.localScale.x >= 8)
+            {
+                deadzoneStarted = false;
+                crowdManager.DeadzoneObject.transform.localScale = Vector3.zero;
+            }
+            else
+                crowdManager.DeadzoneObject.transform.localScale += Vector3.one * Time.deltaTime * crowdManager.GrowingSpeed;
         }
     }
 
@@ -165,6 +200,66 @@ public class AIControl : MonoBehaviour
         }
 
         return closestPoint;
+    }
+
+
+    public void StartDeadzoe()
+    {
+        //crowdManager.DeadzoneObject.SetActive(true);
+        crowdManager.DeadzoneObject.transform.SetParent(transform);
+        crowdManager.DeadzoneObject.transform.localPosition = Vector3.zero;
+
+        deadzoneStarted = true;
+    }
+
+
+
+
+    public void FleeFromPosition(Vector3 position)
+    {
+
+        if (Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
+        {
+            //print(gameObject.name + " i detectio radius");
+            agent.ResetPath();
+
+            Vector3 fleeDirection = (transform.position - position).normalized;
+            Vector3 newGoal = transform.position + fleeDirection * crowdManager.FleeRadius;
+
+            // Ensure the goal is on NavMesh
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(newGoal, out hit, 2f, NavMesh.AllAreas))
+            {
+                newGoal = hit.position;
+            }
+            else
+            {
+                Debug.LogWarning(gameObject.name + " couldn't find a valid flee position!");
+                return;
+            }
+
+
+            NavMeshPath path = new NavMeshPath();
+            agent.CalculatePath(newGoal, path);
+
+            if (path.status != NavMeshPathStatus.PathInvalid) //checks if the goal is on navmesh surface
+            {
+                
+                //print(gameObject.name + " fleeeeeeeeeee");
+                CancelInvoke("InspectionPointSearch");
+
+                StopAllCoroutines();
+                inspectionPoint = null;
+                isInspecting = false;
+                animator.SetBool("Inspect", false);
+
+                agent.SetDestination(path.corners[path.corners.Length - 1]);
+                
+                //animator.SetTrigger("Walk");
+                agent.speed = 3.4f;
+                agent.angularSpeed = 500;
+            }
+        }
     }
 
 }

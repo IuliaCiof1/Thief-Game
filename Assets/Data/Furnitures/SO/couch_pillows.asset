@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: couch_pillows
   m_EditorClassIdentifier: 
   previewImage: {fileID: 21300000, guid: d371a1047346bbb478fdd92d2fd22104, type: 3}
-  objectPrefab: {fileID: 5942688876732487874, guid: 290e18014c8ac7e4bb25e98057239220,
-    type: 3}
+  objectPrefab: {fileID: 5942688876732487874, guid: 290e18014c8ac7e4bb25e98057239220, type: 3}
+  value: 100

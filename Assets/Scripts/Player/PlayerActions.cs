@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class PlayerActions : MonoBehaviour
 
 
     AIControl npc;
+
+    public static event Action OnStealUIDisable;
 
     // Start is called before the first frame update
     void Start()
@@ -149,9 +152,11 @@ public class PlayerActions : MonoBehaviour
         if (isStealing)
         {
             //print(stealTImer.Value);
-            if (stealTImer.Value <= 0 || !npc.isInspecting)
+            if (stealTImer.Value <= 0)
             {
                 StartCoroutine(DisableStealUI());
+
+                npc.StartDeadzoe();
                 //thirdPersonController.enabled = true;
                 //stealCanvas.SetActive(false);
                 //cameraController.ResetCameraRotation();
@@ -159,6 +164,14 @@ public class PlayerActions : MonoBehaviour
                 isStealing = !isStealing;
                 stealTImer.Value = 2;
                
+            }
+            else if (!npc.isInspecting)
+            {
+                StartCoroutine(DisableStealUI());
+
+               
+                isStealing = !isStealing;
+                stealTImer.Value = 2;
             }
         }
 
@@ -175,6 +188,8 @@ public class PlayerActions : MonoBehaviour
     IEnumerator DisableStealUI()
     {
         actionInProgress = false;
+        OnStealUIDisable?.Invoke();
+
         yield return new WaitForSeconds(0);
         
         stealCanvas.SetActive(false);

@@ -27,8 +27,16 @@ public class PocketItem : MonoBehaviour
         playerStats = FindObjectOfType<PlayerStats>();
         //Physics.IgnoreCollision(FindObjectOfType<Hand>().GetComponent<Collider>(), GetComponent<Collider>());
 
+        PlayerActions.OnStealUIDisable += HandleStealUIDisable;
     }
 
+    void HandleStealUIDisable()
+    {
+        transform.SetParent(initialParent);
+        transform.localPosition = Vector3.zero;
+        rb.isKinematic = false;
+        gameObject.SetActive(false);
+    }
 
     public void GrabItem(Transform parent)
     {
@@ -50,9 +58,23 @@ public class PocketItem : MonoBehaviour
         {
             animator.SetTrigger("PutInBag");
             playerStats.AddMoiney(Value);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            //transform.SetParent(initialParent);
+            //transform.localPosition = Vector3.zero;
+            rb.isKinematic = false;
+            gameObject.SetActive(false);
+
         }
     }
+
+    //private void OnDisable()
+    //{
+    //    print("item disabled");
+    //    //hand.gameObject.SetActive(true);
+    //    transform.SetParent(initialParent);
+    //    transform.localPosition = Vector3.zero;
+    //    //hand.gameObject.SetActive(false);
+    //}
 
 }
 

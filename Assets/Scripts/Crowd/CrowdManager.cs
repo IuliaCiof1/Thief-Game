@@ -19,6 +19,15 @@ public class CrowdManager : MonoBehaviour
     [Tooltip("The agent will go to any inspection point closer than this distance")]
     [SerializeField] private float minDistanceInspectionPoint = 15f;
 
+    [Header("Deadzone")]
+    [SerializeField] private GameObject deadzoneObject;
+    [SerializeField] private float growingSpeed;
+
+
+    [Header("Fleeing")]
+    [SerializeField] float detectionRadius;
+    [SerializeField] float fleeRadius;
+
     public List<GameObject> GoalLocations { get { return goalLocations; } private set { } }
     public List<GameObject> InspectionPoints { get { return inspectionPoints; } private set { } }
     public Vector2 WalkOffsetRange { get { return walkOffsetRange; } private set { } }
@@ -26,7 +35,10 @@ public class CrowdManager : MonoBehaviour
     public int InspectionCooldown { get { return inspectionCooldown; } private set { } }
     public Vector2 TimeRangeAtInspectionPoint { get { return timeRangeAtInspectionPoint; } private set { } }
     public float MinDistanceInspectionPoint { get { return minDistanceInspectionPoint; } private set { } }
-
+    public GameObject DeadzoneObject { get { return deadzoneObject; } private set { } }
+    public float GrowingSpeed { get { return growingSpeed; } private set { } }
+    public float DetectionRadius { get { return detectionRadius; } private set { } }
+    public float FleeRadius { get { return fleeRadius; } private set { } }
 
     //Awake runs before all start methods. We use this to make sure the goalLocations and inspectionPoints are all initialised first
     void Awake()
