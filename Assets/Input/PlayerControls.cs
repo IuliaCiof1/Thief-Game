@@ -37,6 +37,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""PaintWalls"",
+                    ""type"": ""Button"",
+                    ""id"": ""93065ce6-40ed-466f-be0a-b4f848213393"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""2bf60a7c-ab6c-42f2-a0c4-a623ebbc9d07"",
@@ -1217,6 +1226,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""RecorderMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f571bc89-27b7-4a3f-9601-6748cba61e62"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""PaintWalls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""007abe17-c9d6-43ad-8776-b1f2d19b7011"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""PaintWalls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1926,28 +1957,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e2e75ff3-9e93-4306-b6b1-18613aa61943"",
-                    ""path"": ""<Keyboard>/u"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Furniture"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6450ed98-e582-48d9-b079-5f4d0dd9c8a8"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Furniture"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""caa54e13-910e-4342-b5d9-e8614769e7f4"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
@@ -2086,6 +2095,266 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DeleteFurniture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2e75ff3-9e93-4306-b6b1-18613aa61943"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Furniture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6450ed98-e582-48d9-b079-5f4d0dd9c8a8"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Furniture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Paint"",
+            ""id"": ""4780267b-5a5c-47d1-8b5f-8c81c5ef0f73"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""acaf6aa1-b4ac-42af-a920-7311afed3eb3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""6712a555-4fcb-4802-8f8c-e51576b81293"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9c1081e2-db14-4064-b240-94b7a575f2c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveFurniture"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbac3587-1b95-4c6f-bfa9-f7d581434a62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Paint"",
+                    ""type"": ""Button"",
+                    ""id"": ""aedcb2f4-19a0-4c1d-afea-3861e232134e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DeleteFurniture"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5494b5c-8e22-45a7-a882-6600ed6b723d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""40c8754f-50f9-42a6-bc6b-ef4ba4e351ab"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4067bcd-1a53-430c-ab52-4c4ac65ade90"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveFurniture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0845eb9-9892-44fa-8817-f9d21eca91ad"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveFurniture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f92f2fe-9c62-4456-960e-71dd0669d02f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55e16021-1290-4072-9c33-8cedd124f917"",
+                    ""path"": ""<Pen>/tip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ba4a1a8-67e9-495b-a4d7-606c45fd8942"",
+                    ""path"": ""<Touchscreen>/touch*/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be3372a6-9c4f-416d-bfe5-5754cf801ec1"",
+                    ""path"": ""<XRController>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cec73492-ab2c-4739-826e-3f466e5c6152"",
+                    ""path"": ""<VirtualMouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e095ad6a-17a4-465b-9f91-09c3652ae0a9"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c080061-f61c-4e81-9415-c5c9a53507c8"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ccd93ef-6d54-44c5-bab5-08f1b13321d5"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90dcff74-e7c3-4d87-a6b4-d1e873ff6407"",
+                    ""path"": ""<VirtualMouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdc8f8e3-8db5-4313-9375-c946e7a95e80"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteFurniture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""335ec3b4-8c71-46cf-bc10-de3de0e807cb"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteFurniture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e91ec9cb-1514-45c4-88a2-2c3d62bb14b4"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Paint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df827d29-41d9-41df-afb6-6076185166fd"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Paint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -3279,6 +3548,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // BaseGameplay
         m_BaseGameplay = asset.FindActionMap("BaseGameplay", throwIfNotFound: true);
         m_BaseGameplay_Jump = m_BaseGameplay.FindAction("Jump", throwIfNotFound: true);
+        m_BaseGameplay_PaintWalls = m_BaseGameplay.FindAction("PaintWalls", throwIfNotFound: true);
         m_BaseGameplay_Move = m_BaseGameplay.FindAction("Move", throwIfNotFound: true);
         m_BaseGameplay_SprintStart = m_BaseGameplay.FindAction("SprintStart", throwIfNotFound: true);
         m_BaseGameplay_SprintFinish = m_BaseGameplay.FindAction("SprintFinish", throwIfNotFound: true);
@@ -3327,6 +3597,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Furniture_MoveFurniture = m_Furniture.FindAction("MoveFurniture", throwIfNotFound: true);
         m_Furniture_Furniture = m_Furniture.FindAction("Furniture", throwIfNotFound: true);
         m_Furniture_DeleteFurniture = m_Furniture.FindAction("DeleteFurniture", throwIfNotFound: true);
+        // Paint
+        m_Paint = asset.FindActionMap("Paint", throwIfNotFound: true);
+        m_Paint_Newaction = m_Paint.FindAction("New action", throwIfNotFound: true);
+        m_Paint_RightClick = m_Paint.FindAction("RightClick", throwIfNotFound: true);
+        m_Paint_Click = m_Paint.FindAction("Click", throwIfNotFound: true);
+        m_Paint_MoveFurniture = m_Paint.FindAction("MoveFurniture", throwIfNotFound: true);
+        m_Paint_Paint = m_Paint.FindAction("Paint", throwIfNotFound: true);
+        m_Paint_DeleteFurniture = m_Paint.FindAction("DeleteFurniture", throwIfNotFound: true);
         // Bag
         m_Bag = asset.FindActionMap("Bag", throwIfNotFound: true);
         m_Bag_Newaction = m_Bag.FindAction("New action", throwIfNotFound: true);
@@ -3416,6 +3694,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_BaseGameplay;
     private List<IBaseGameplayActions> m_BaseGameplayActionsCallbackInterfaces = new List<IBaseGameplayActions>();
     private readonly InputAction m_BaseGameplay_Jump;
+    private readonly InputAction m_BaseGameplay_PaintWalls;
     private readonly InputAction m_BaseGameplay_Move;
     private readonly InputAction m_BaseGameplay_SprintStart;
     private readonly InputAction m_BaseGameplay_SprintFinish;
@@ -3447,6 +3726,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public BaseGameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_BaseGameplay_Jump;
+        public InputAction @PaintWalls => m_Wrapper.m_BaseGameplay_PaintWalls;
         public InputAction @Move => m_Wrapper.m_BaseGameplay_Move;
         public InputAction @SprintStart => m_Wrapper.m_BaseGameplay_SprintStart;
         public InputAction @SprintFinish => m_Wrapper.m_BaseGameplay_SprintFinish;
@@ -3485,6 +3765,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @PaintWalls.started += instance.OnPaintWalls;
+            @PaintWalls.performed += instance.OnPaintWalls;
+            @PaintWalls.canceled += instance.OnPaintWalls;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -3570,6 +3853,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @PaintWalls.started -= instance.OnPaintWalls;
+            @PaintWalls.performed -= instance.OnPaintWalls;
+            @PaintWalls.canceled -= instance.OnPaintWalls;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
@@ -3885,6 +4171,92 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public FurnitureActions @Furniture => new FurnitureActions(this);
+
+    // Paint
+    private readonly InputActionMap m_Paint;
+    private List<IPaintActions> m_PaintActionsCallbackInterfaces = new List<IPaintActions>();
+    private readonly InputAction m_Paint_Newaction;
+    private readonly InputAction m_Paint_RightClick;
+    private readonly InputAction m_Paint_Click;
+    private readonly InputAction m_Paint_MoveFurniture;
+    private readonly InputAction m_Paint_Paint;
+    private readonly InputAction m_Paint_DeleteFurniture;
+    public struct PaintActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PaintActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Paint_Newaction;
+        public InputAction @RightClick => m_Wrapper.m_Paint_RightClick;
+        public InputAction @Click => m_Wrapper.m_Paint_Click;
+        public InputAction @MoveFurniture => m_Wrapper.m_Paint_MoveFurniture;
+        public InputAction @Paint => m_Wrapper.m_Paint_Paint;
+        public InputAction @DeleteFurniture => m_Wrapper.m_Paint_DeleteFurniture;
+        public InputActionMap Get() { return m_Wrapper.m_Paint; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PaintActions set) { return set.Get(); }
+        public void AddCallbacks(IPaintActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PaintActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PaintActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
+            @MoveFurniture.started += instance.OnMoveFurniture;
+            @MoveFurniture.performed += instance.OnMoveFurniture;
+            @MoveFurniture.canceled += instance.OnMoveFurniture;
+            @Paint.started += instance.OnPaint;
+            @Paint.performed += instance.OnPaint;
+            @Paint.canceled += instance.OnPaint;
+            @DeleteFurniture.started += instance.OnDeleteFurniture;
+            @DeleteFurniture.performed += instance.OnDeleteFurniture;
+            @DeleteFurniture.canceled += instance.OnDeleteFurniture;
+        }
+
+        private void UnregisterCallbacks(IPaintActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
+            @MoveFurniture.started -= instance.OnMoveFurniture;
+            @MoveFurniture.performed -= instance.OnMoveFurniture;
+            @MoveFurniture.canceled -= instance.OnMoveFurniture;
+            @Paint.started -= instance.OnPaint;
+            @Paint.performed -= instance.OnPaint;
+            @Paint.canceled -= instance.OnPaint;
+            @DeleteFurniture.started -= instance.OnDeleteFurniture;
+            @DeleteFurniture.performed -= instance.OnDeleteFurniture;
+            @DeleteFurniture.canceled -= instance.OnDeleteFurniture;
+        }
+
+        public void RemoveCallbacks(IPaintActions instance)
+        {
+            if (m_Wrapper.m_PaintActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPaintActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PaintActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PaintActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PaintActions @Paint => new PaintActions(this);
 
     // Bag
     private readonly InputActionMap m_Bag;
@@ -4210,6 +4582,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IBaseGameplayActions
     {
         void OnJump(InputAction.CallbackContext context);
+        void OnPaintWalls(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnSprintStart(InputAction.CallbackContext context);
         void OnSprintFinish(InputAction.CallbackContext context);
@@ -4259,6 +4632,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnClick(InputAction.CallbackContext context);
         void OnMoveFurniture(InputAction.CallbackContext context);
         void OnFurniture(InputAction.CallbackContext context);
+        void OnDeleteFurniture(InputAction.CallbackContext context);
+    }
+    public interface IPaintActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
+        void OnMoveFurniture(InputAction.CallbackContext context);
+        void OnPaint(InputAction.CallbackContext context);
         void OnDeleteFurniture(InputAction.CallbackContext context);
     }
     public interface IBagActions

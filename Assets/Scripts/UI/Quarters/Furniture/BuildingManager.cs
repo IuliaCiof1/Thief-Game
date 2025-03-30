@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.UI;
 public class BuildingManager : MonoBehaviour
 {
     [SerializeField] FurnitureSO[] ownedObjects;
+    [SerializeField] Material[] ownedWallMaterials;
+    [SerializeField] Material[] ownedFloorMaterials;
     public GameObject pendingObject { get; set; }
     private Vector3 position;
     private RaycastHit hit;
@@ -72,6 +74,16 @@ public class BuildingManager : MonoBehaviour
     public FurnitureSO[] GetOwnedObjects()
     {
         return ownedObjects;
+    }
+
+    public Material[] GetOwnedFloorMaterials()
+    {
+        return ownedFloorMaterials;
+    }
+
+    public Material[] GetOwnedWallMaterials()
+    {
+        return ownedWallMaterials;
     }
 
     private void Update()

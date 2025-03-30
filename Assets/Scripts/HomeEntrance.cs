@@ -64,5 +64,7 @@ public class HomeEntrance : MonoBehaviour
             fadeImage.color = color;
             yield return null;
         }
+
+        fadeImage.gameObject.SetActive(false);
     }
 }

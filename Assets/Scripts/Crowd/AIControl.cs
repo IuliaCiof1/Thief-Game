@@ -7,14 +7,14 @@ public class AIControl : MonoBehaviour
 {
    
     public NavMeshAgent agent;
-    Animator animator;
-    public bool isInspecting { get; private set; }
+    protected Animator animator;
+    public bool isInspecting;/*{ get; protected set; }*/
 
-    GameObject inspectionPoint;
+protected GameObject inspectionPoint;
 
 
-    CrowdManager crowdManager;
-    [SerializeField] List<GameObject> goalLocations = null; // Walking destinations
+    public CrowdManager crowdManager;
+    public List<GameObject> goalLocations = null; // Walking destinations
     [SerializeField] List<GameObject> inspectionPoints = null; // Inspection locations (e.g., windows)
     [SerializeField] List<GameObject> initialInspectionPoints = null;
     Vector2 walkOffsetRange;
@@ -28,7 +28,15 @@ public class AIControl : MonoBehaviour
 
     float defaultSpeed;
 
-    void Start()
+    GameObject player;
+
+    public bool GetIsInspecting()
+    {
+        
+        return isInspecting;
+    }
+
+    protected void Start()
     {
         
         agent = GetComponent<NavMeshAgent>();
@@ -90,12 +98,13 @@ public class AIControl : MonoBehaviour
     }
 
 
-    void Update()
+    protected void Update()
     {
         
 
         if (inspectionPoint != null)
         {
+           
             //ResetAgentSpeed();
             agent.SetDestination(inspectionPoint.transform.position);
 
@@ -108,7 +117,7 @@ public class AIControl : MonoBehaviour
                 //Remove the visited Inspection Point from the list
                 inspectionPoints.Remove(inspectionPoint);
                 inspectionPoint = null;
-
+                //isInspecting = true;
                 StartCoroutine(InspectEnvironment());
             }
         }
@@ -117,21 +126,22 @@ public class AIControl : MonoBehaviour
 
         if (!isInspecting && agent.remainingDistance < 0.7f && !agent.pathPending)
         {
+            
             ResetAgentSpeed();
             SetNewDestination();
         }
 
 
-        if (deadzoneStarted)
-        {
-            if (crowdManager.DeadzoneObject.transform.localScale.x >= 8)
-            {
-                deadzoneStarted = false;
-                crowdManager.DeadzoneObject.transform.localScale = Vector3.zero;
-            }
-            else
-                crowdManager.DeadzoneObject.transform.localScale += Vector3.one * Time.deltaTime * crowdManager.GrowingSpeed;
-        }
+        //if (deadzoneStarted)
+        //{
+        //    if (crowdManager.DeadzoneObject.transform.localScale.x >= 8)
+        //    {
+        //        deadzoneStarted = false;
+        //        crowdManager.DeadzoneObject.transform.localScale = Vector3.zero;
+        //    }
+        //    else
+        //        crowdManager.DeadzoneObject.transform.localScale += Vector3.one * Time.deltaTime * crowdManager.GrowingSpeed;
+        //}
     }
 
 
@@ -143,20 +153,24 @@ public class AIControl : MonoBehaviour
         {
             int stoppingChance = inspectionPoint.GetComponent<InspectionPoint>().StoppingChange;
 
+
+            //to do: random.range(0, 100). daca value e mai mic decat stoppingChance, obtin sansa de a se opri
             int value = Random.Range(0, stoppingChance);
 
             if (value != 0)
             {
                 inspectionPoint = null;
             }
+
+
         }
     }
 
     IEnumerator InspectEnvironment()
     {
-        isInspecting = true;
+       
         agent.isStopped = true; // Stop walking
-
+        isInspecting = true;
         CancelInvoke("InspectionPointSearch"); //cancel the invocation of the search while agent is inspecting
 
         animator.SetBool("Inspect", true); // Play inspection animation
@@ -165,9 +179,8 @@ public class AIControl : MonoBehaviour
         agent.isStopped = false; // Resume movement
        
         SetNewDestination();
+        
         isInspecting = false;
-        
-        
         inspectionPoint = null;
 
         if(inspectionPoints.Count == 0)
@@ -180,6 +193,7 @@ public class AIControl : MonoBehaviour
 
     void SetNewDestination()
     {
+        //isInspecting = false;
         int i = Random.Range(0, goalLocations.Count);
         agent.SetDestination(goalLocations[i].transform.position);
     }
@@ -203,63 +217,64 @@ public class AIControl : MonoBehaviour
     }
 
 
-    public void StartDeadzoe()
-    {
-        //crowdManager.DeadzoneObject.SetActive(true);
-        crowdManager.DeadzoneObject.transform.SetParent(transform);
-        crowdManager.DeadzoneObject.transform.localPosition = Vector3.zero;
+    //public void StartDeadzoe()
+    //{
+    //    //crowdManager.DeadzoneObject.SetActive(true);
+    //    crowdManager.DeadzoneObject.transform.SetParent(transform);
+    //    crowdManager.DeadzoneObject.transform.localPosition = Vector3.zero;
 
-        deadzoneStarted = true;
-    }
-
-
+    //    deadzoneStarted = true;
+    //}
 
 
-    public void FleeFromPosition(Vector3 position)
-    {
-
-        if (Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
-        {
-            //print(gameObject.name + " i detectio radius");
-            agent.ResetPath();
-
-            Vector3 fleeDirection = (transform.position - position).normalized;
-            Vector3 newGoal = transform.position + fleeDirection * crowdManager.FleeRadius;
-
-            // Ensure the goal is on NavMesh
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(newGoal, out hit, 2f, NavMesh.AllAreas))
-            {
-                newGoal = hit.position;
-            }
-            else
-            {
-                Debug.LogWarning(gameObject.name + " couldn't find a valid flee position!");
-                return;
-            }
 
 
-            NavMeshPath path = new NavMeshPath();
-            agent.CalculatePath(newGoal, path);
+    //public void FleeFromPosition(Vector3 position)
+    //{
 
-            if (path.status != NavMeshPathStatus.PathInvalid) //checks if the goal is on navmesh surface
-            {
+    //    if (Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
+    //    {
+    //        //print(gameObject.name + " i detectio radius");
+    //        agent.ResetPath();
+
+    //        Vector3 fleeDirection = (transform.position - position).normalized;
+    //        Vector3 newGoal = transform.position + fleeDirection * crowdManager.FleeRadius;
+
+    //        // Ensure the goal is on NavMesh
+    //        NavMeshHit hit;
+    //        if (NavMesh.SamplePosition(newGoal, out hit, 2f, NavMesh.AllAreas))
+    //        {
+    //            newGoal = hit.position;
+    //        }
+    //        else
+    //        {
+    //            Debug.LogWarning(gameObject.name + " couldn't find a valid flee position!");
+    //            return;
+    //        }
+
+
+    //        NavMeshPath path = new NavMeshPath();
+    //        agent.CalculatePath(newGoal, path);
+
+    //        if (path.status != NavMeshPathStatus.PathInvalid) //checks if the goal is on navmesh surface
+    //        {
                 
-                //print(gameObject.name + " fleeeeeeeeeee");
-                CancelInvoke("InspectionPointSearch");
+    //            //print(gameObject.name + " fleeeeeeeeeee");
+    //            CancelInvoke("InspectionPointSearch");
 
-                StopAllCoroutines();
-                inspectionPoint = null;
-                isInspecting = false;
-                animator.SetBool("Inspect", false);
+    //            StopAllCoroutines();
+    //            inspectionPoint = null;
+    //            isInspecting = false;
+    //            animator.SetBool("Inspect", false);
 
-                agent.SetDestination(path.corners[path.corners.Length - 1]);
+    //            agent.SetDestination(path.corners[path.corners.Length - 1]);
                 
-                //animator.SetTrigger("Walk");
-                agent.speed = 3.4f;
-                agent.angularSpeed = 500;
-            }
-        }
-    }
+    //            //animator.SetTrigger("Walk");
+    //            agent.speed = 3.4f;
+    //            agent.angularSpeed = 500;
+    //        }
+    //    }
+    //}
+
 
 }

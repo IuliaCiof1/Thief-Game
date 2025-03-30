@@ -26,13 +26,13 @@ public class PocketItemsGeneraton : MonoBehaviour
                 randomSprites.Add(pocketItemSOs[spriteIndex]);
             }
 
-            agent.GetComponent<AIControl>().ItemsInPocket = randomSprites;
+            agent.GetComponent<NPC>().ItemsInPocket = randomSprites;
 
         }
     }
 
 
-    public void CreateItems(AIControl agent)
+    public void CreateItems(NPC agent)
     {
         int itemIndex = 0;
 

@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
-    List<AIControl> collidingAgents;
+    List<NPC> collidingAgents;
     [SerializeField] Transform agentsContainer;
     [SerializeField] CrowdManager crowdManager;
+    [SerializeField] Police policeAgent;
 
     private void Start()
     {
-        collidingAgents = new List<AIControl>();
+        collidingAgents = new List<NPC>();
 
         foreach (Transform agent in agentsContainer)
         {
-            collidingAgents.Add(agent.GetComponent<AIControl>());
+            collidingAgents.Add(agent.GetComponent<NPC>());
 
         }
     }
@@ -41,16 +42,20 @@ public class DeadZone : MonoBehaviour
             //collidingAgents.Add(transform.parent.GetComponent<AIControl>());
 
             print("deadzone hit player");
-            foreach (AIControl agent in collidingAgents)
+            foreach (NPC agent in collidingAgents)
             {
                 agent.FleeFromPosition(player.transform.position);
                 agent.deadzoneStarted = false;
             }
 
            transform.localScale = Vector3.zero;
-            
+
+            policeAgent.CallPolice();
         }
     }
+
+
+    
 
     void OnDrawGizmos()
     {

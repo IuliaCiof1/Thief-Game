@@ -49,6 +49,8 @@ public class ObjectSelection : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 1000000000000000))
         {
+            print("place furniture");
+
             if (hit.collider.gameObject.TryGetComponent<Furniture>(out Furniture furniture))
             {
 

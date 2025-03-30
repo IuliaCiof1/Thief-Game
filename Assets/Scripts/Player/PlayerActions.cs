@@ -35,9 +35,11 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] PocketItemsGeneraton pocketItemsGeneraton;
 
 
-    AIControl npc;
+    NPC npc;
 
     public static event Action OnStealUIDisable;
+
+    [SerializeField] GameObject playerInventory;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +63,11 @@ public class PlayerActions : MonoBehaviour
         {
             if (!actionInProgress)
             {
-                if (collider.TryGetComponent(out AIControl npc) && npc.isInspecting)
+                //showKeyboardHint = false;
+
+                
+
+                if (collider.TryGetComponent(out NPC npc) && npc.isInspecting)
                 {
                     currentTarget = collider.gameObject;
                    
@@ -78,6 +84,31 @@ public class PlayerActions : MonoBehaviour
                     keyboardHintText.text = "<size=26><sprite=64></size>  Go Home";
 
                     break;
+                }
+                else if(collider.TryGetComponent(out FamilyMember familyMember))
+                {
+                    
+                    if (familyMember.currentObjective)
+                    {
+                        bool itemFound = false;
+                        foreach (Transform item in playerInventory.transform)
+                        {
+                            if (item.name.Contains(familyMember.currentObjective.objectNeeded.name))
+                            {
+                                itemFound = true;
+                              
+
+                                currentTarget = collider.gameObject;
+
+                                showKeyboardHint = true;
+                                keyboardHintText.text = "<size=26><sprite=64> Give " + familyMember.currentObjective.objectNeeded.name;
+
+                                break;
+                            }
+                        }
+                        if (itemFound)
+                            break;
+                    }
                 }
                 else
                     showKeyboardHint = false;
@@ -107,7 +138,7 @@ public class PlayerActions : MonoBehaviour
             print(showKeyboardHint);
             StopAllCoroutines();
 
-            actionInProgress = true;
+            //actionInProgress = true;
 
             if (currentTarget.TryGetComponent(out npc) && npc.isInspecting)
             {
@@ -115,6 +146,7 @@ public class PlayerActions : MonoBehaviour
 
                 if (!isStealing)
                 {
+                    actionInProgress = true;
                     print("showkeayboardhint");
                     showKeyboardHint = false;
 
@@ -144,9 +176,32 @@ public class PlayerActions : MonoBehaviour
             }
             if (currentTarget.TryGetComponent(out HomeEntrance homeEntrance))
             {
-                //SceneManager.LoadScene("Quarters");
+                
                 homeEntrance.GoHome();
             }
+            if (currentTarget.TryGetComponent(out FamilyMember familyMember))
+            {
+                if (familyMember.currentObjective)
+                {
+                    //If player has the required item of the familyMember currentObjective
+                    //then destroy the item, complete the currentObjective and make currentObjective null
+                    foreach (Transform item in playerInventory.transform)
+                    {
+                        if(item.name.Contains(familyMember.currentObjective.objectNeeded.name))
+                        {
+                            familyMember.currentObjective.Complete();
+                            familyMember.currentObjective = null;
+                            showKeyboardHint = false;
+
+                            actionInProgress = false;
+                            print(item.name);
+                            Destroy(item.gameObject);
+                        }
+                    }
+                   
+                }
+            }
+            
         }
 
         if (isStealing)
