@@ -8,6 +8,7 @@ TagManager:
   - PocketWall
   - inspection
   - RecorderCamera
+  - Inventory
   layers:
   - Default
   - TransparentFX

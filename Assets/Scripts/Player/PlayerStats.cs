@@ -23,9 +23,17 @@ public class PlayerStats : MonoBehaviour
         money += amount;
     }
 
-    public static void RemoveMoiney(int amount)
+    //Return true if player has enough money or false otherwise
+    public static bool RemoveMoney(int amount)
     {
-        money -= amount;
+        if (money - amount > 0)
+        {
+            money -= amount;
+            return true;
+        }
+
+        return false;
+
     }
 
 

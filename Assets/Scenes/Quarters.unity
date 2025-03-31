@@ -562,13 +562,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 27551386}
+  - component: {fileID: 27551387}
   m_Layer: 8
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &27551386
 Transform:
   m_ObjectHideFlags: 0
@@ -577,13 +578,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27551385}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.4, y: 0.322, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 873787433}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &27551387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27551385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d9934fccaa60543a77599ae905e76c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &30797523 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1158119330780366777, guid: a049397ab12d19c4990cca0923862aab, type: 3}
@@ -9077,7 +9090,6 @@ Transform:
   - {fileID: 65274909}
   - {fileID: 1618086427}
   - {fileID: 604407083}
-  - {fileID: 27551386}
   m_Father: {fileID: 1069525941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &873787434
@@ -22903,6 +22915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   isInspecting: 0
+  crowdManager: {fileID: 0}
   goalLocations: []
   inspectionPoints: []
   initialInspectionPoints: []
@@ -23033,6 +23046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   isInspecting: 0
+  crowdManager: {fileID: 0}
   goalLocations: []
   inspectionPoints: []
   initialInspectionPoints: []
@@ -27686,13 +27700,14 @@ SceneRoots:
   - {fileID: 2126377948}
   - {fileID: 717812520}
   - {fileID: 1069525941}
+  - {fileID: 27551386}
   - {fileID: 414382772}
   - {fileID: 1456815293}
   - {fileID: 379343943}
   - {fileID: 2067495335}
   - {fileID: 1887579773}
-  - {fileID: 1062512578}
   - {fileID: 6506854828948059635}
+  - {fileID: 1062512578}
   - {fileID: 1223469943232561947}
   - {fileID: 750052493143317579}
   - {fileID: 732193778}

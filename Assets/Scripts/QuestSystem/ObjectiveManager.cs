@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ObjectiveManager : MonoBehaviour
     [SerializeField] Transform objectiveContainer;
     TMP_Text description;
 
+    string currentObjectiveKey = "currentObjective";
 
     private void OnEnable()
     {
@@ -28,8 +30,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Start()
     {
-        //int objectiveIndex = Random.Range(0, objectives.Count);
-
+        
         StartNextObjective();
 
     }
@@ -40,20 +41,45 @@ public class ObjectiveManager : MonoBehaviour
         completedObjective.DeactivateObjective(); // Clean up
         //Invoke("DeleteObjectiveFromUIList", 0.5f);
         StartCoroutine(UndisplayObjective(description.transform.parent.gameObject));
-        currentObjectiveIndex++;
+        //currentObjectiveIndex++;
         print("completed quest");
-        StartNextObjective();
+        
+        //StartNextObjective();
     }
 
     IEnumerator UndisplayObjective(GameObject listedObjective)
     {
         yield return new WaitForSeconds(0.5f);
         listedObjective.SetActive(false);
+        print(currentObjectiveIndex);
+        objectives[currentObjectiveIndex].isCompleted = false;
+        PlayerPrefs.SetInt(currentObjectiveKey, -1);
     }
 
     private void StartNextObjective()
     {
-        if (currentObjectiveIndex < objectives.Count)
+        //Check if there is a completed objective saved in PlayerPrefs. If it is, start a new random objective
+        int lastSavedCurrentObjective = PlayerPrefs.GetInt(currentObjectiveKey,-1);
+        print("lastSavedCurrentObjective " + lastSavedCurrentObjective);
+
+
+       
+
+        if (lastSavedCurrentObjective < 0 && SceneManager.GetActiveScene().buildIndex == 1)
+        {
+
+            int objectiveIndex = Random.Range(0, objectives.Count);
+
+            print("start new objective " + objectiveIndex);
+            currentObjectiveIndex = objectiveIndex;
+            PlayerPrefs.SetInt(currentObjectiveKey, currentObjectiveIndex);
+        }
+        else 
+            currentObjectiveIndex = lastSavedCurrentObjective;
+
+        print(currentObjectiveIndex + " " + lastSavedCurrentObjective);
+
+        if (currentObjectiveIndex > -1 && currentObjectiveIndex < objectives.Count)
         {
            
             Objective nextObjective = objectives[currentObjectiveIndex];

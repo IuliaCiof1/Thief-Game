@@ -46,6 +46,8 @@ public class PocketItemsGeneraton : MonoBehaviour
                 item.gameObject.SetActive(true);
                 item.GetComponent<Image>().sprite = agent.ItemsInPocket[itemIndex].sprite;
                 item.GetComponent<PocketItem>().Value = agent.ItemsInPocket[itemIndex].value;
+                item.GetComponent<PocketItem>().pocketItemSO = agent.ItemsInPocket[itemIndex];
+
                 itemIndex++;
             }
         }

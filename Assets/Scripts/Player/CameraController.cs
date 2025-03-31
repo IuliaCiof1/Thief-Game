@@ -96,8 +96,8 @@ public class CameraController : MonoBehaviour
         vrCamCompFrameTransposer.m_ScreenY = 0.62f;
         vrCamCompPerlin.m_AmplitudeGain = 0.09f;
 
-        foreach (GameObject objectColliding in objectsColliding)
-            objectColliding.SetActive(false);
+        //foreach (GameObject objectColliding in objectsColliding)
+        //    objectColliding.SetActive(false);
 
         
     }

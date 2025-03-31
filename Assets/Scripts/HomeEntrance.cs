@@ -27,6 +27,7 @@ public class HomeEntrance : MonoBehaviour
 
     IEnumerator FadeInImage()
     {
+        fadeImage.gameObject.SetActive(true);
         float timer = 0f;
         Color color = fadeImage.color;
 

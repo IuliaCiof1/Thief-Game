@@ -39,13 +39,14 @@ public class PlayerActions : MonoBehaviour
 
     public static event Action OnStealUIDisable;
 
-    [SerializeField] GameObject playerInventory;
+     GameObject playerInventory;
 
     // Start is called before the first frame update
     void Start()
     {
         thirdPersonController = GetComponent<ThirdPersonController>();
         keyboardHintPanel = keyboardHintText.transform.parent.gameObject;
+        playerInventory = FindAnyObjectByType<Inventory>().gameObject;
     }
 
 
@@ -109,6 +110,15 @@ public class PlayerActions : MonoBehaviour
                         if (itemFound)
                             break;
                     }
+                }
+                else if (collider.TryGetComponent(out Shop shop))
+                {
+                    currentTarget = collider.gameObject;
+
+                    showKeyboardHint = true;
+                    keyboardHintText.text = "<size=26><sprite=64></size>  Buy "+ shop.GetGoodsName();
+
+                    break;
                 }
                 else
                     showKeyboardHint = false;
@@ -196,12 +206,19 @@ public class PlayerActions : MonoBehaviour
                             actionInProgress = false;
                             print(item.name);
                             Destroy(item.gameObject);
+
+                            break;
                         }
                     }
                    
                 }
             }
-            
+            if (currentTarget.TryGetComponent(out Shop shop))
+            {
+
+                shop.BuyGoods();
+            }
+
         }
 
         if (isStealing)

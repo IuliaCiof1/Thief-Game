@@ -7,4 +7,7 @@ public class PocketItemSO : ScriptableObject
 {
     public Sprite sprite;
     public int value;
+
+    public bool canBeOwned;
+    public GameObject ownedObjectPrefab;
 }

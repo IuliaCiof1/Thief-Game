@@ -18,6 +18,9 @@ public class PocketItem : MonoBehaviour
 
     public int Value { get; set; }
 
+    public PocketItemSO pocketItemSO { get; set; }
+    Inventory inventory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +30,11 @@ public class PocketItem : MonoBehaviour
         playerStats = FindObjectOfType<PlayerStats>();
         //Physics.IgnoreCollision(FindObjectOfType<Hand>().GetComponent<Collider>(), GetComponent<Collider>());
 
+        inventory = FindAnyObjectByType<Inventory>();
+
         PlayerActions.OnStealUIDisable += HandleStealUIDisable;
+
+
     }
 
     void HandleStealUIDisable()
@@ -51,6 +58,10 @@ public class PocketItem : MonoBehaviour
         transform.SetParent(initialParent);
     }
 
+    private void AddToInventory()
+    {
+        Instantiate(pocketItemSO.ownedObjectPrefab, inventory.transform);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -58,6 +69,11 @@ public class PocketItem : MonoBehaviour
         {
             animator.SetTrigger("PutInBag");
             playerStats.AddMoiney(Value);
+
+            if (pocketItemSO.canBeOwned)
+            {
+                AddToInventory();
+            }
             //Destroy(gameObject);
             //transform.SetParent(initialParent);
             //transform.localPosition = Vector3.zero;
