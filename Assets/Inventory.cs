@@ -12,9 +12,17 @@ public class Inventory : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         if (instance is null)
+        {
+            print("inventory instance is null");
             instance = this;
+        }
         else
+        {
+
+            print("inventory instance is NOT null");
+
             Destroy(gameObject);
+        }
     }
 
 }

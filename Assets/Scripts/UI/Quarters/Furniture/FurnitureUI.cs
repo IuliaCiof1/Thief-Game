@@ -92,7 +92,7 @@ public class FurnitureUI : MonoBehaviour
             GameObject slot = Instantiate(furnitureSlotPrefab, furniturePanel.GetComponentInChildren<GridLayoutGroup>().transform);
             slot.transform.GetChild(0).GetComponent<Image>().sprite = ownedFurniture[i].previewImage;
             slot.transform.GetChild(1).GetComponent<TMP_Text>().text = ownedFurniture[i].value+"$";
-            print("add listener");
+          
 
             int capturedIndex = i; // Capture the current value of i
             slot.GetComponent<Button>().onClick.AddListener(() => buildingManager.SelectObject(capturedIndex));

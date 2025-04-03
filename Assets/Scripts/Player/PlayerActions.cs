@@ -40,6 +40,7 @@ public class PlayerActions : MonoBehaviour
     public static event Action OnStealUIDisable;
 
      GameObject playerInventory;
+    ObjectiveManager objectiveManager;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class PlayerActions : MonoBehaviour
         thirdPersonController = GetComponent<ThirdPersonController>();
         keyboardHintPanel = keyboardHintText.transform.parent.gameObject;
         playerInventory = FindAnyObjectByType<Inventory>().gameObject;
+        objectiveManager = FindAnyObjectByType<ObjectiveManager>();
     }
 
 
@@ -89,27 +91,31 @@ public class PlayerActions : MonoBehaviour
                 else if(collider.TryGetComponent(out FamilyMember familyMember))
                 {
                     
-                    if (familyMember.currentObjective)
-                    {
+                   
                         bool itemFound = false;
                         foreach (Transform item in playerInventory.transform)
                         {
-                            if (item.name.Contains(familyMember.currentObjective.objectNeeded.name))
+                            
+                            foreach (Objective objective in familyMember.possibleObjectives)
                             {
-                                itemFound = true;
-                              
+                               
+                                if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
+                                {
+                                    itemFound = true;
 
-                                currentTarget = collider.gameObject;
 
-                                showKeyboardHint = true;
-                                keyboardHintText.text = "<size=26><sprite=64> Give " + familyMember.currentObjective.objectNeeded.name;
+                                    currentTarget = collider.gameObject;
 
-                                break;
+                                    showKeyboardHint = true;
+                                    keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
+
+                                    return;
+                                }
                             }
                         }
                         if (itemFound)
                             break;
-                    }
+                    
                 }
                 else if (collider.TryGetComponent(out Shop shop))
                 {
@@ -145,7 +151,7 @@ public class PlayerActions : MonoBehaviour
         //steal action
         if (Input.GetKeyDown(KeyCode.E) && currentTarget)
         {
-            print(showKeyboardHint);
+            
             StopAllCoroutines();
 
             //actionInProgress = true;
@@ -157,7 +163,7 @@ public class PlayerActions : MonoBehaviour
                 if (!isStealing)
                 {
                     actionInProgress = true;
-                    print("showkeayboardhint");
+                  
                     showKeyboardHint = false;
 
 
@@ -168,7 +174,7 @@ public class PlayerActions : MonoBehaviour
                     stealCanvas.SetActive(true);
 
                     thirdPersonController.enabled = false;
-                    print("steal");
+                   
                     animator.ResetTrigger("Idle");
                     animator.SetTrigger("Steal");
                 }
@@ -191,27 +197,37 @@ public class PlayerActions : MonoBehaviour
             }
             if (currentTarget.TryGetComponent(out FamilyMember familyMember))
             {
-                if (familyMember.currentObjective)
+
+                print("Pressed E to give to");
+                foreach (Transform item in playerInventory.transform)
                 {
-                    //If player has the required item of the familyMember currentObjective
-                    //then destroy the item, complete the currentObjective and make currentObjective null
-                    foreach (Transform item in playerInventory.transform)
+                    print(familyMember.name + " some " + item.name);
+
+                    for(int i =0; i< familyMember.possibleObjectives.Count; i++)
                     {
-                        if(item.name.Contains(familyMember.currentObjective.objectNeeded.name))
+                        Objective objective = familyMember.possibleObjectives[i];
+                        print(" for objective " + objective.title);
+                        if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
                         {
-                            familyMember.currentObjective.Complete();
-                            familyMember.currentObjective = null;
+                            print("you gave to" + familyMember.name + " some " + item.name);
+                            //print("complete " + objective.title);
+                            //objective.Complete();
+                            familyMember.GiveHealth(objective.healthTaken*2);
+                            objectiveManager.HandleObjectiveCompleted(objective, i);
+                            //familyMember.currentObjective = null;
                             showKeyboardHint = false;
 
                             actionInProgress = false;
                             print(item.name);
                             Destroy(item.gameObject);
-
-                            break;
+                            print(item.name + "destroyed");
+                            return;
                         }
                     }
-                   
+
+                  
                 }
+               
             }
             if (currentTarget.TryGetComponent(out Shop shop))
             {
