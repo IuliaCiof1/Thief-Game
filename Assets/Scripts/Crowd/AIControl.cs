@@ -28,7 +28,7 @@ protected GameObject inspectionPoint;
 
     float defaultSpeed;
 
-    GameObject player;
+    protected GameObject player;
 
     public bool GetIsInspecting()
     {
@@ -82,7 +82,7 @@ protected GameObject inspectionPoint;
         InvokeRepeating("InspectionPointSearch", 2.0f, Random.Range(crowdManager.InspectionCooldown, crowdManager.InspectionCooldown+2));
     }
 
-    private void ResetAgentSpeed()
+    protected void ResetAgentSpeed()
     {
         agent.speed = defaultSpeed;
 
@@ -104,7 +104,7 @@ protected GameObject inspectionPoint;
 
         if (inspectionPoint != null)
         {
-           
+            print("inspection point not null");
             //ResetAgentSpeed();
             agent.SetDestination(inspectionPoint.transform.position);
 
@@ -121,15 +121,10 @@ protected GameObject inspectionPoint;
                 StartCoroutine(InspectEnvironment());
             }
         }
-    
 
 
-        if (!isInspecting && agent.remainingDistance < 0.7f && !agent.pathPending)
-        {
-            
-            ResetAgentSpeed();
-            SetNewDestination();
-        }
+
+        Walk();
 
 
         //if (deadzoneStarted)
@@ -144,6 +139,18 @@ protected GameObject inspectionPoint;
         //}
     }
 
+
+    protected virtual void Walk()
+    {
+        
+        if (!isInspecting && agent.remainingDistance < 0.7f && !agent.pathPending)
+        {
+
+            ResetAgentSpeed();
+            SetNewDestination();
+        }
+
+    }
 
     void InspectionPointSearch()
     {
@@ -191,7 +198,7 @@ protected GameObject inspectionPoint;
         InvokeRepeating("InspectionPointSearch", 2.0f, crowdManager.InspectionCooldown);
     }
 
-    void SetNewDestination()
+    protected void SetNewDestination()
     {
         //isInspecting = false;
         int i = Random.Range(0, goalLocations.Count);

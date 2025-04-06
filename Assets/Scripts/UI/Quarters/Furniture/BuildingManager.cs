@@ -130,7 +130,8 @@ public class BuildingManager : MonoBehaviour
             initialMaterial = pendingObject.GetComponent<MeshRenderer>().material;
             pendingObject.SetActive(true);
 
-            PlayerStats.RemoveMoney(ownedObjects[index].value);
+            PlayerStats.BuyWithMoney(ownedObjects[index].value);
+            PlayerStats.AddReputation(ownedObjects[index].reputation);
         }
 
     }

@@ -14,6 +14,7 @@ public class FurnitureUI : MonoBehaviour
     [SerializeField] private GameObject topCamera;
     [SerializeField] private GameObject furnitureSlotPrefab;
     [SerializeField] private GameObject uiButtons;
+    [SerializeField] private GameObject objectivesUI;
 
     BuildingManager buildingManager;
     public ChangeInputMaps changeInputMaps;
@@ -91,7 +92,8 @@ public class FurnitureUI : MonoBehaviour
         {
             GameObject slot = Instantiate(furnitureSlotPrefab, furniturePanel.GetComponentInChildren<GridLayoutGroup>().transform);
             slot.transform.GetChild(0).GetComponent<Image>().sprite = ownedFurniture[i].previewImage;
-            slot.transform.GetChild(1).GetComponent<TMP_Text>().text = ownedFurniture[i].value+"$";
+            slot.transform.GetChild(1).GetComponent<TMP_Text>().text = "- "+ownedFurniture[i].value+"$";
+            slot.transform.GetChild(2).GetComponent<TMP_Text>().text = "+ "+ownedFurniture[i].reputation;
           
 
             int capturedIndex = i; // Capture the current value of i
@@ -106,6 +108,7 @@ public class FurnitureUI : MonoBehaviour
 
         changeInputMaps.ChangeToFurnitureMap();
         uiButtons.SetActive(false);
+        objectivesUI.SetActive(false);
 
         furniturePanel.SetActive(true);
 
@@ -122,6 +125,7 @@ public class FurnitureUI : MonoBehaviour
         changeInputMaps.ChangeToGameplayMap();
 
         uiButtons.SetActive(true);
+        objectivesUI.SetActive(true);
         DeselectObjects();
 
         furniturePanel.SetActive(false);
@@ -133,9 +137,9 @@ public class FurnitureUI : MonoBehaviour
 
     public void DeselectObjects()
     {
-        //foreach (Transform child in buildingManager.transform)
-        //{
-        //    child.GetComponent<Outline>().enabled = false;
-        //}
+        foreach (Transform child in buildingManager.transform)
+        {
+            child.GetComponent<Outline>().enabled = false;
+        }
     }
 }

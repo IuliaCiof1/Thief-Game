@@ -15,3 +15,4 @@ MonoBehaviour:
   previewImage: {fileID: 21300000, guid: ae48b7d8c9f634b46b88d02f95217264, type: 3}
   objectPrefab: {fileID: 2665944104513234634, guid: b976f683584ba9c428045a7e80ebd5c1, type: 3}
   value: 20
+  reputation: 30

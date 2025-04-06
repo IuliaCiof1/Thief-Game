@@ -10,6 +10,16 @@ public class HomeEntrance : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] bool toHome;
 
+    private void OnEnable()
+    {
+        TimeManager.OnDayEnded += GoHome;
+    }
+
+    private void OnDisable()
+    {
+        TimeManager.OnDayEnded -= GoHome;
+    }
+
     private void Start()
     {
         

@@ -15,15 +15,25 @@ public class Police : MonoBehaviour
     GameObject policeModel;
     [SerializeField] GameObject gotCaughtUI;
 
+    Vector3 initialPolicePosition;
+
     // Start is called before the first frame update
     void Start()
     {
+        initialPolicePosition = transform.position;
+        ResetPolice();
+    }
+
+    void ResetPolice()
+    {
+        transform.position = initialPolicePosition;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 0;
 
         policeModel = transform.GetChild(0).gameObject;
         policeModel.SetActive(false);
-
+        agent.enabled = false;
+        catchPlayer = false;
     }
 
     // Update is called once per frame
@@ -75,5 +85,15 @@ public class Police : MonoBehaviour
         }
         else
             Debug.LogWarning("Police.cs: CallPolice: Couldn't find closest goal to the player");
+    }
+
+    public void PayFines()
+    {
+        print("fines paid");
+        ResetPolice();
+        PlayerStats.RemoveMoney(PlayerStats.money);
+        PlayerStats.RemoveReputation(PlayerStats.reputation);
+
+        gotCaughtUI.SetActive(false);
     }
 }

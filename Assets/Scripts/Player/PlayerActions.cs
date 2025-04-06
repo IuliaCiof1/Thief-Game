@@ -88,7 +88,7 @@ public class PlayerActions : MonoBehaviour
 
                     break;
                 }
-                else if(collider.TryGetComponent(out FamilyMember familyMember))
+                else if(collider.TryGetComponent(out MemberObjectives familyMember))
                 {
                     
                    
@@ -195,7 +195,7 @@ public class PlayerActions : MonoBehaviour
                 
                 homeEntrance.GoHome();
             }
-            if (currentTarget.TryGetComponent(out FamilyMember familyMember))
+            if (currentTarget.TryGetComponent(out MemberObjectives familyMember))
             {
 
                 print("Pressed E to give to");
@@ -239,9 +239,14 @@ public class PlayerActions : MonoBehaviour
 
         if (isStealing)
         {
+            print("Player is stealing");
             //print(stealTImer.Value);
             if (stealTImer.Value <= 0)
             {
+                print("Steal timer reached 0");
+                print(npc.name + " starts deadzone");
+               
+
                 StartCoroutine(DisableStealUI());
 
                 npc.StartDeadzoe();

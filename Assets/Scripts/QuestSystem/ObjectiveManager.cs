@@ -9,7 +9,7 @@ public class ObjectiveManager : MonoBehaviour
     public List<Objective> objectives;
     public List<Objective> activeobjectives;
 
-    public List<FamilyMember> familyMembers;
+    public List<MemberObjectives> familyMembers;
     //public ObjectiveUI objectiveUI;
     private int currentObjectiveIndex;
 
@@ -33,7 +33,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Start()
     {
-        foreach(FamilyMember familyMember in familyMembers)
+        foreach(MemberObjectives familyMember in familyMembers)
         {
             print(familyMember.name);
             if(familyMember.possibleObjectives is null)

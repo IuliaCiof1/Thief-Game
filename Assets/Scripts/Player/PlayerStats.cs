@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; } //singleton lazy instantion
     public static int money { get; private set; }
+    public static int reputation { get; private set; }
 
     //private void Awake()
     //{
@@ -24,7 +25,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     //Return true if player has enough money or false otherwise
-    public static bool RemoveMoney(int amount)
+    public static bool BuyWithMoney(int amount)
     {
         if (money - amount > 0)
         {
@@ -36,12 +37,41 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    public static void AddReputation(int amount)
+    {
+        reputation += amount;
+    }
 
+    //Return true if player has enough money or false otherwise
+    public static void RemoveReputation(int amount)
+    {
+        reputation -= amount;
+
+       
+    }
+    public static void RemoveMoney(int amount)
+    {
+        money -= amount;
+
+
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Slash))
         {
             AddMoiney(100);
         }
+    }
+
+    private void OnEnable()
+    {
+        money = PlayerPrefs.GetInt("money", money);
+        reputation = PlayerPrefs.GetInt("reputation", reputation);
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetInt("money", money);
+        PlayerPrefs.SetInt("reputation", reputation);
     }
 }

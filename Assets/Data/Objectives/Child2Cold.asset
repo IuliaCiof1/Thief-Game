@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b58ecfda3d63bfe4d9796d552319ff59, type: 3}
-  m_Name: WifeHungry
+  m_Name: Child2Cold
   m_EditorClassIdentifier: 
-  title: Someone is Hungry
-  description: Your wife is hungry. Get her some food or she might die of starvation.
+  title: Weather is cold
+  description: Your youngest child caught a cold. Buy medicine or it might get worse.
   isCompleted: 0
   isActive: 0
-  objectNeeded: {fileID: 5488972324912657813, guid: ebc57b4db2acf4d48a1f13cf2dc5dac7, type: 3}
+  objectNeeded: {fileID: 8591146905022585274, guid: 03485018700c50046a9226e1ad1cbb69, type: 3}
   moneyNeeded: 0
-  healthTaken: 3
+  healthTaken: 0
   objectiveEventName: 

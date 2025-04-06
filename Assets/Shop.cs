@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
     {
         
 
-        if (PlayerStats.RemoveMoney(goodsPrice))
+        if (PlayerStats.BuyWithMoney(goodsPrice))
         {
             Transform inventory = FindAnyObjectByType<Inventory>().transform;
             GameObject goods = Instantiate(goodsPrefab,inventory);

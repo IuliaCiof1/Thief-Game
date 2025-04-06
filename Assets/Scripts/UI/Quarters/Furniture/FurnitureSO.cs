@@ -9,6 +9,7 @@ public class FurnitureSO : ScriptableObject
     public Sprite previewImage;
     public GameObject objectPrefab;
     public int value;
+    public int reputation;
     //public string previewsFolder = "Assets/Data/ObjectPreviews/";
     
 }

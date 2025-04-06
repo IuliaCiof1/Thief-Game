@@ -6,10 +6,13 @@ using UnityEngine.AI;
 public class NPC : AIControl
 {
     CrowdManager crowdManager_;
+    DeadZone deadzone;
     //// Start is called before the first frame update
     void Start()
     {
         base.Start();
+        deadzone = FindObjectOfType<DeadZone>();
+
         //crowdManager_ = FindAnyObjectByType<CrowdManager>();
         //if (crowdManager_ is null)
         //{
@@ -27,13 +30,18 @@ public class NPC : AIControl
       
         if (deadzoneStarted)
         {
-            if (crowdManager.DeadzoneObject.transform.localScale.x >= 8)
+            
+            if (deadzone.transform.localScale.x >= 8)
             {
+                print("deadzone reached max size");
                 deadzoneStarted = false;
-                crowdManager.DeadzoneObject.transform.localScale = Vector3.zero;
+                deadzone.transform.localScale = Vector3.zero;
             }
             else
-                crowdManager.DeadzoneObject.transform.localScale += Vector3.one * Time.deltaTime * crowdManager.GrowingSpeed;
+            {
+                print("deadzon change local scale");
+                deadzone.transform.localScale += Vector3.one * Time.deltaTime * crowdManager.GrowingSpeed;
+            }
         }
     }
 
@@ -41,10 +49,24 @@ public class NPC : AIControl
     public void StartDeadzoe()
     {
         //crowdManager.DeadzoneObject.SetActive(true);
-        crowdManager.DeadzoneObject.transform.SetParent(transform);
-        crowdManager.DeadzoneObject.transform.localPosition = Vector3.zero;
+        if (crowdManager is null)
+        {
+            print("crowd manager is null");
+
+        }
+
+        if (deadzone is null)
+        {
+            print("deadzone is ull is null");
+
+        }
+
+        deadzone.transform.SetParent(transform);
+        deadzone.gameObject.SetActive(true);
+        deadzone.transform.localPosition = Vector3.zero;
 
         deadzoneStarted = true;
+        print("deadzone started");
     }
 
 

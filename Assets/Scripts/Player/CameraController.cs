@@ -138,13 +138,13 @@ public class CameraController : MonoBehaviour
         if (other.TryGetComponent<Building>(out Building building))
         {
             print(other.gameObject.name + " building enter");
-            AddObjectCollidingWithCamera(other.gameObject);
+            //AddObjectCollidingWithCamera(other.gameObject);
 
 
         }
-        if (stealMode)
-            foreach (GameObject objectColl in objectsColliding)
-                objectColl.SetActive(false);
+        //if (stealMode)
+        //    foreach (GameObject objectColl in objectsColliding)
+        //        objectColl.SetActive(false);
     }
 
     private void OnTriggerExit(Collider other)

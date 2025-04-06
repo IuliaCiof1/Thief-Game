@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58ecfda3d63bfe4d9796d552319ff59, type: 3}
   m_Name: WifeCold
   m_EditorClassIdentifier: 
-  title: Wife is cold
+  title: Weather is cold
   description: Your wife caught a cold. Buy medicine or it might get worse.
   isCompleted: 0
-  isActive: 1
+  isActive: 0
   objectNeeded: {fileID: 8591146905022585274, guid: 03485018700c50046a9226e1ad1cbb69, type: 3}
   moneyNeeded: 0
   healthTaken: 7

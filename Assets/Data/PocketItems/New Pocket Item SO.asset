@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8248f1bb96178e4eb1bcff6d176935c, type: 3}
   m_Name: New Pocket Item SO
   m_EditorClassIdentifier: 
-  sprite: {fileID: -1428079781, guid: 069a00c4a21d8654bbe27600f3ba7103, type: 3}
+  sprite: {fileID: 21300000, guid: 61585e8f2b37b84439d92f03661e66f6, type: 3}
   value: 2
   canBeOwned: 1
   ownedObjectPrefab: {fileID: 8591146905022585274, guid: 03485018700c50046a9226e1ad1cbb69, type: 3}

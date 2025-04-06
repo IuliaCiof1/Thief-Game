@@ -37,8 +37,16 @@ public class PocketItem : MonoBehaviour
 
     }
 
+
+    private void OnDisable()
+    {
+        PlayerActions.OnStealUIDisable -= HandleStealUIDisable;
+    }
+
     void HandleStealUIDisable()
     {
+        print(gameObject.name + " handle steal ui disable");
+
         transform.SetParent(initialParent);
         transform.localPosition = Vector3.zero;
         rb.isKinematic = false;

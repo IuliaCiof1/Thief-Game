@@ -20,7 +20,7 @@ public class CrowdManager : MonoBehaviour
     [SerializeField] private float minDistanceInspectionPoint = 15f;
 
     [Header("Deadzone")]
-    [SerializeField] private GameObject deadzoneObject;
+    //[SerializeField] private GameObject deadzoneObject;
     [SerializeField] private float growingSpeed;
 
 
@@ -35,7 +35,7 @@ public class CrowdManager : MonoBehaviour
     public int InspectionCooldown { get { return inspectionCooldown; } private set { } }
     public Vector2 TimeRangeAtInspectionPoint { get { return timeRangeAtInspectionPoint; } private set { } }
     public float MinDistanceInspectionPoint { get { return minDistanceInspectionPoint; } private set { } }
-    public GameObject DeadzoneObject { get { return deadzoneObject; } private set { } }
+    //public GameObject DeadzoneObject { get { return deadzoneObject; } private set { } }
     public float GrowingSpeed { get { return growingSpeed; } private set { } }
     public float DetectionRadius { get { return detectionRadius; } private set { } }
     public float FleeRadius { get { return fleeRadius; } private set { } }
