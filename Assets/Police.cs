@@ -46,6 +46,7 @@ public class Police : MonoBehaviour
 
             if (Vector3.Distance(agent.transform.position, player.transform.position) < 0.5f)
             {
+                player.enabled = false;
                 gotCaughtUI.SetActive(true);
             }
         }
@@ -92,8 +93,9 @@ public class Police : MonoBehaviour
         print("fines paid");
         ResetPolice();
         PlayerStats.RemoveMoney(PlayerStats.money);
-        PlayerStats.RemoveReputation(PlayerStats.reputation);
+        PlayerStats.RemoveReputation(20);
 
         gotCaughtUI.SetActive(false);
+        player.enabled = true;
     }
 }

@@ -28,7 +28,7 @@ protected GameObject inspectionPoint;
 
     float defaultSpeed;
 
-    protected GameObject player;
+    //[SerializeField]protected GameObject player;
 
     public bool GetIsInspecting()
     {

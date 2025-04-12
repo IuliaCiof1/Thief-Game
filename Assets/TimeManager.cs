@@ -46,7 +46,7 @@ public class TimeManager : MonoBehaviour
                 Minute = 0;
             }
 
-            if(Hour==1 && Period == PeriodEnum.AM)
+            if(Hour==13 && Period == PeriodEnum.AM)
             {
                 Period = PeriodEnum.PM;
             }

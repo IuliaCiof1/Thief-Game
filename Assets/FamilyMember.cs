@@ -14,7 +14,7 @@ public class FamilyMember : AIControl
     //[SerializeField]FamilyMemberHealthUI healthUI;
 
     //[SerializeField] GameObject tombStone;
-    //ThirdPersonController player;
+    ThirdPersonController player;
     [SerializeField] float lookAtPlayerSpeed = 5f;
     [SerializeField] float lookAtPlayerDistance = 5f;
 
@@ -27,7 +27,7 @@ public class FamilyMember : AIControl
         //Health = PlayerPrefs.GetFloat(gameObject.name, maxHealth);
         //TakeHealth(0);
 
-        //player = FindObjectOfType<ThirdPersonController>();
+        player = FindObjectOfType<ThirdPersonController>();
         //Health = maxHealth;
     }
 

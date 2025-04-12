@@ -21,6 +21,8 @@ public class Hand : MonoBehaviour
 
     Vector3 initialHandPos;
 
+    [SerializeField]Transform pocketItemsContainer;
+
    IEnumerator Wait()
     {
         print("wait");
@@ -44,6 +46,7 @@ public class Hand : MonoBehaviour
       
         StartCoroutine(Wait());
         
+        
     }
 
     private void OnDisable()
@@ -51,6 +54,12 @@ public class Hand : MonoBehaviour
         print("disable");
         canMove = false;
         rectTransform.localPosition = initialHandPos;
+
+        foreach(Transform item in pocketItemsContainer)
+        {
+            item.transform.localPosition = Vector3.zero;
+            item.gameObject.SetActive(false);
+        }
     }
 
     void Update()
