@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Furniture : MonoBehaviour
 {
+    public string idSO;
     // Start is called before the first frame update
     void Start()
     {

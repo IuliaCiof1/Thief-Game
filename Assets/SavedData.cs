@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class FurnitureData
+{
+    [System.Serializable]
+    public struct FurnitureTransformData
+    {
+        public string id;
+        public float[] furniturePosition;
+        public float[] furnitureRotation;
+    }
+
+    public List<FurnitureTransformData> furnitureDatasList { get; private set; }
+
+    public FurnitureData(BuildingManager buildingManager)
+    {
+        furnitureDatasList = new List<FurnitureTransformData>();
+
+        foreach(Transform furniture in buildingManager.transform)
+        {
+            FurnitureTransformData furnitureData;
+        
+            furnitureData.furniturePosition = new float[] {furniture.position.x,  furniture.position.y, furniture.position.z};
+            furnitureData.furnitureRotation = new float[] {furniture.rotation.x,  furniture.rotation.y, furniture.rotation.z};
+            furnitureData.id = furniture.GetComponent<Furniture>().idSO;
+
+            furnitureDatasList.Add(furnitureData);
+        }
+    }
+
+  
+}

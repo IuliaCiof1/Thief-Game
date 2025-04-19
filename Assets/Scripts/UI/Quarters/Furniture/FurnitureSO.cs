@@ -6,6 +6,7 @@ using System.IO;
 [CreateAssetMenu (menuName = "Furniture")]
 public class FurnitureSO : ScriptableObject
 {
+    //public string id;
     public Sprite previewImage;
     public GameObject objectPrefab;
     public int value;

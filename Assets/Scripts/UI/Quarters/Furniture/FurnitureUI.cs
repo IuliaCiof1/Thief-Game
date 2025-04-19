@@ -122,7 +122,7 @@ public class FurnitureUI : MonoBehaviour
     public void CloseFurnitureUI()
     {
 
-        changeInputMaps.ChangeToGameplayMap();
+        //changeInputMaps.ChangeToGameplayMap();
 
         uiButtons.SetActive(true);
         objectivesUI.SetActive(true);
@@ -130,6 +130,8 @@ public class FurnitureUI : MonoBehaviour
 
         furniturePanel.SetActive(false);
         topCamera.SetActive(false);
+
+        changeInputMaps.ChangeToGameplayMap();
         //Camera.main.GetComponent<CinemachineBrain>().enabled = true;
 
     }

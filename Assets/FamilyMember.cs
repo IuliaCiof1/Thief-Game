@@ -46,7 +46,7 @@ public class FamilyMember : AIControl
 
         if (isInspecting && Vector3.Distance(player.transform.position, transform.position) < lookAtPlayerDistance)
         {
-            print("rotate");
+            
             Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
             targetRotation.x = 0f; // Ignore vertical difference
             targetRotation.z = 0f;

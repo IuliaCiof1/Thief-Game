@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.UI;
+using System;
+
 
 public class BuildingManager : MonoBehaviour
 {
@@ -128,6 +130,7 @@ public class BuildingManager : MonoBehaviour
         {
             pendingObject = Instantiate(ownedObjects[index].objectPrefab, position, transform.rotation, gameObject.transform);
             initialMaterial = pendingObject.GetComponent<MeshRenderer>().material;
+            pendingObject.GetComponent<Furniture>().idSO = index.ToString();
             pendingObject.SetActive(true);
 
             PlayerStats.BuyWithMoney(ownedObjects[index].value);
@@ -149,5 +152,30 @@ public class BuildingManager : MonoBehaviour
     public void RotateObject()
     {
         pendingObject.transform.Rotate(Vector3.up, rotateAmount);
+    }
+
+    private void OnDisable()
+    {
+        SaveSystem.SaveFurniture(this);
+    }
+
+    private void OnEnable()
+    {
+        FurnitureData data = SaveSystem.LoadFurniture();
+
+        foreach (FurnitureData.FurnitureTransformData transformData in data.furnitureDatasList)
+        {
+            GameObject furniture = Instantiate(
+                ownedObjects[Int32.Parse(transformData.id)].objectPrefab,
+                new Vector3(transformData.furniturePosition[0], transformData.furniturePosition[1], transformData.furniturePosition[2]),
+                Quaternion.Euler(transformData.furnitureRotation[0], transformData.furnitureRotation[1], transformData.furnitureRotation[2]),
+                gameObject.transform
+                );
+
+
+            furniture.GetComponent<Furniture>().idSO = transformData.id.ToString();
+            furniture.SetActive(true);
+        }
+
     }
 }
