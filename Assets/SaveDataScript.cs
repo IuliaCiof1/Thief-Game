@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SaveDataScript : MonoBehaviour
+{
+    BuildingManager buildingManager;
+    ObjectiveManager objectiveManager;
+
+    public static SaveDataScript Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+           
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        print("load");
+        buildingManager = FindAnyObjectByType<BuildingManager>();
+        objectiveManager = FindAnyObjectByType<ObjectiveManager>();
+        //SaveSystem.Load();
+
+        GameData loadedData = SaveSystem.Load();
+        if (loadedData != null)
+        {
+            FurnitureDataToSave furnitureData = loadedData.furnitureData;
+            ObjectiveDataToSave objectiveData = loadedData.objectiveData;
+
+            if(buildingManager != null)
+                buildingManager.LoadFurniture(furnitureData);
+            if (objectiveManager != null)
+                objectiveManager.LoadData(objectiveData);
+        }
+    }
+
+    //private void OnDisable()
+    //{
+    //    Save();
+
+    //}
+
+    private void OnApplicationQuit()
+    {
+        StartCoroutine(Save());
+    }
+
+    public IEnumerator Save()
+    {
+        print("save");
+
+        SaveSystem.Save(buildingManager, objectiveManager);
+        yield return new WaitForSeconds(1.5f); //wait until file is written
+        
+        //foreach(Objective obj in objectiveManager.objectives)
+        //    obj.isActive = false;
+    }
+}

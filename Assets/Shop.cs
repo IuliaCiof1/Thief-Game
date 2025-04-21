@@ -33,4 +33,16 @@ public class Shop : MonoBehaviour
         return goodsPrefab.name;
 
     }
+
+    public int GetGoodsPrice()
+    {
+        if (!goodsPrefab)
+        {
+            Debug.LogError("No goodsPrefab assigned to " + gameObject.name);
+            return 0;
+        }
+
+        return goodsPrice;
+
+    }
 }

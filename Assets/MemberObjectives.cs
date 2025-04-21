@@ -47,7 +47,6 @@ public class MemberObjectives : MonoBehaviour
 
             Health -= amount;
 
-            print("health " + Health);
             healthUI.SetSliderValueUI(Health);
         }
 

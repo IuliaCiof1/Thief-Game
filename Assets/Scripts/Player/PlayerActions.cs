@@ -68,18 +68,18 @@ public class PlayerActions : MonoBehaviour
             {
                 //showKeyboardHint = false;
 
-                
+
 
                 if (collider.TryGetComponent(out NPC npc) && npc.isInspecting)
                 {
                     currentTarget = collider.gameObject;
-                   
+
                     showKeyboardHint = true;
                     keyboardHintText.text = "<size=26><sprite=64></size>  Pickpocket";
 
                     break;
                 }
-                else if(collider.TryGetComponent(out HomeEntrance homeEntrance))
+                else if (collider.TryGetComponent(out HomeEntrance homeEntrance))
                 {
                     currentTarget = collider.gameObject;
 
@@ -88,33 +88,65 @@ public class PlayerActions : MonoBehaviour
 
                     break;
                 }
-                else if(collider.TryGetComponent(out MemberObjectives familyMember))
+                else if (collider.TryGetComponent(out LandLord landlord))
                 {
-                    
-                   
-                        bool itemFound = false;
+
+                    foreach (Objective objective in landlord.GetComponent<MemberObjectives>().possibleObjectives)
+                    {
+                        if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                        {
+
+                            currentTarget = collider.gameObject;
+
+                            showKeyboardHint = true;
+                            keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
+
+                            return;
+                        }
+                    }
+                }
+                else if (collider.TryGetComponent(out MemberObjectives familyMember))
+                {
+
+
+                    bool itemFound = false;
+
+
+                    foreach (Objective objective in familyMember.possibleObjectives)
+                    {
+                        if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                        {
+                            itemFound = true;
+
+
+                            currentTarget = collider.gameObject;
+
+                            showKeyboardHint = true;
+                            keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
+
+                            return;
+                        }
                         foreach (Transform item in playerInventory.transform)
                         {
-                            
-                            foreach (Objective objective in familyMember.possibleObjectives)
+                            if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
                             {
-                               
-                                if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
-                                {
-                                    itemFound = true;
+                                itemFound = true;
 
 
-                                    currentTarget = collider.gameObject;
+                                currentTarget = collider.gameObject;
 
-                                    showKeyboardHint = true;
-                                    keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
+                                showKeyboardHint = true;
+                                keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
 
-                                    return;
-                                }
+                                return;
                             }
+                            
+
                         }
-                        if (itemFound)
-                            break;
+                    }
+                    if (itemFound)
+                        break;
+
                     
                 }
                 else if (collider.TryGetComponent(out Shop shop))
@@ -122,7 +154,7 @@ public class PlayerActions : MonoBehaviour
                     currentTarget = collider.gameObject;
 
                     showKeyboardHint = true;
-                    keyboardHintText.text = "<size=26><sprite=64></size>  Buy "+ shop.GetGoodsName();
+                    keyboardHintText.text = "<size=26><sprite=64></size>  Buy " + shop.GetGoodsName() + " for " + shop.GetGoodsPrice() + "$";
 
                     break;
                 }
@@ -195,25 +227,50 @@ public class PlayerActions : MonoBehaviour
                 
                 homeEntrance.GoHome();
             }
+            if (currentTarget.TryGetComponent(out LandLord landlord))
+            {
+
+
+                Objective objective = landlord.GetComponent<MemberObjectives>().possibleObjectives[0];
+                if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                {
+                    PlayerStats.BuyWithMoney(objective.moneyNeeded);
+                    landlord.GetComponent<MemberObjectives>().GiveHealth(objective.healthTaken * 2);
+                    landlord.Leave();
+                    objectiveManager.HandleObjectiveCompleted(objective);
+                    showKeyboardHint = false;
+
+                    actionInProgress = false;
+                    return;
+                }
+            }
             if (currentTarget.TryGetComponent(out MemberObjectives familyMember))
             {
 
-                print("Pressed E to give to");
-                foreach (Transform item in playerInventory.transform)
+                for (int i = 0; i < familyMember.possibleObjectives.Count; i++)
                 {
-                    print(familyMember.name + " some " + item.name);
-
-                    for(int i =0; i< familyMember.possibleObjectives.Count; i++)
+                    Objective objective = familyMember.possibleObjectives[i];
+                    if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
                     {
-                        Objective objective = familyMember.possibleObjectives[i];
+                        PlayerStats.BuyWithMoney(objective.moneyNeeded);
+                        familyMember.GiveHealth(objective.healthTaken * 2);
+                        objectiveManager.HandleObjectiveCompleted(objective);
+                        showKeyboardHint = false;
+
+                        actionInProgress = false;
+                        return;
+                    }
+                    foreach (Transform item in playerInventory.transform)
+                    {
+
                         print(" for objective " + objective.title);
                         if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
                         {
                             print("you gave to" + familyMember.name + " some " + item.name);
                             //print("complete " + objective.title);
                             //objective.Complete();
-                            familyMember.GiveHealth(objective.healthTaken*2);
-                            objectiveManager.HandleObjectiveCompleted(objective, i);
+                            familyMember.GiveHealth(objective.healthTaken * 2);
+                            objectiveManager.HandleObjectiveCompleted(objective);
                             //familyMember.currentObjective = null;
                             showKeyboardHint = false;
 
@@ -225,7 +282,8 @@ public class PlayerActions : MonoBehaviour
                         }
                     }
 
-                  
+
+
                 }
                
             }

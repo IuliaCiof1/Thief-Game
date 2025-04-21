@@ -13,14 +13,13 @@ public class Inventory : MonoBehaviour
 
         if (instance is null)
         {
-            print("inventory instance is null");
+          
             instance = this;
         }
         else
         {
 
-            print("inventory instance is NOT null");
-
+            
             Destroy(gameObject);
         }
     }

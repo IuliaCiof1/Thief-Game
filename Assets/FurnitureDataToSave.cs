@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class FurnitureData
+public class FurnitureDataToSave
 {
     [System.Serializable]
     public struct FurnitureTransformData
@@ -15,8 +15,9 @@ public class FurnitureData
 
     public List<FurnitureTransformData> furnitureDatasList { get; private set; }
 
-    public FurnitureData(BuildingManager buildingManager)
+    public FurnitureDataToSave(BuildingManager buildingManager)
     {
+        Debug.Log("in furnitureedatatosave ");
         furnitureDatasList = new List<FurnitureTransformData>();
 
         foreach(Transform furniture in buildingManager.transform)

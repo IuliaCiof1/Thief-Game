@@ -26,7 +26,7 @@ public class NPC : AIControl
     {
         base.Update();
 
-        isInspecting = GetIsInspecting();
+        //isInspecting = GetIsInspecting();
       
         if (deadzoneStarted)
         {

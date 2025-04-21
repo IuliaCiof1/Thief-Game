@@ -15,8 +15,10 @@ MonoBehaviour:
   title: Weather is cold
   description: Your wife caught a cold. Buy medicine or it might get worse.
   isCompleted: 0
-  isActive: 0
+  isActive: 1
+  itemRequierd: 1
   objectNeeded: {fileID: 8591146905022585274, guid: 03485018700c50046a9226e1ad1cbb69, type: 3}
   moneyNeeded: 0
   healthTaken: 7
   objectiveEventName: WifeCold
+  id: 006

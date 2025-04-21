@@ -28,6 +28,10 @@ public class CrowdManager : MonoBehaviour
     [SerializeField] float detectionRadius;
     [SerializeField] float fleeRadius;
 
+    [SerializeField] float avoidDistance;
+    [SerializeField] Transform agentsContainer;
+    public ThirdPersonController player { get; private set; }
+
     public List<GameObject> GoalLocations { get { return goalLocations; } private set { } }
     public List<GameObject> InspectionPoints { get { return inspectionPoints; } private set { } }
     public Vector2 WalkOffsetRange { get { return walkOffsetRange; } private set { } }
@@ -39,6 +43,8 @@ public class CrowdManager : MonoBehaviour
     public float GrowingSpeed { get { return growingSpeed; } private set { } }
     public float DetectionRadius { get { return detectionRadius; } private set { } }
     public float FleeRadius { get { return fleeRadius; } private set { } }
+    public float AvoidDistance { get { return avoidDistance; } private set { } }
+    public Transform AgentsContainer { get { return agentsContainer; } private set { } }
 
     //Awake runs before all start methods. We use this to make sure the goalLocations and inspectionPoints are all initialised first
     void Awake()
@@ -46,6 +52,12 @@ public class CrowdManager : MonoBehaviour
         //Finds all goal point and inspection points in the scene
         goalLocations.AddRange(GameObject.FindGameObjectsWithTag("goal"));
         inspectionPoints.AddRange(GameObject.FindGameObjectsWithTag("inspection"));
+        player = FindAnyObjectByType<ThirdPersonController>();
+    }
+
+    public void StopAgentsFromColliding(AIControl agent1, AIControl agent2)
+    {
+        StartCoroutine(agent1.Wait());
     }
 
 }

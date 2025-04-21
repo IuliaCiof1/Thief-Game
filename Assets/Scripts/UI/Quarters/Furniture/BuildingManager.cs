@@ -19,12 +19,12 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] Camera topCamera;
     [SerializeField] private PlayerInput playerInput;
 
-    [SerializeField] int rotateAmount = 45;
+    [SerializeField] float rotateAmount = 45f;
     public bool CanPlace { get; set; }
 
     [Tooltip("Materials for valid and invalid object placement.")]
     [SerializeField] private Material[] materials;
-    Material initialMaterial;
+    public Material initialMaterial;
 
     VirtualMouseInput virtualMouse;
     // Start is called before the first frame update
@@ -67,6 +67,7 @@ public class BuildingManager : MonoBehaviour
 
     public void UpdateMaterials()
     {
+        
         if (CanPlace)
             pendingObject.GetComponent<MeshRenderer>().material = materials[0];
         else if (!CanPlace)
@@ -90,9 +91,11 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (pendingObject != null)
         {
-
+            print(pendingObject.GetComponent<MeshRenderer>().material.name);
+           
             pendingObject.transform.position = position;
             pendingObject.GetComponent<MeshCollider>().isTrigger = true;
             UpdateMaterials();
@@ -129,6 +132,7 @@ public class BuildingManager : MonoBehaviour
         if (ownedObjects[index].value <= PlayerStats.money)
         {
             pendingObject = Instantiate(ownedObjects[index].objectPrefab, position, transform.rotation, gameObject.transform);
+            pendingObject.transform.Rotate(Vector3.up, rotateAmount + 0.1f);
             initialMaterial = pendingObject.GetComponent<MeshRenderer>().material;
             pendingObject.GetComponent<Furniture>().idSO = index.ToString();
             pendingObject.SetActive(true);
@@ -151,24 +155,32 @@ public class BuildingManager : MonoBehaviour
 
     public void RotateObject()
     {
-        pendingObject.transform.Rotate(Vector3.up, rotateAmount);
+        //round the rotation and then add 0.1 to y rotation because the toon shader makes the object have black sides;
+        Vector3 eulerAngle = pendingObject.transform.rotation.eulerAngles;
+        eulerAngle.y = Mathf.Ceil(pendingObject.transform.rotation.y);
+        pendingObject.transform.Rotate(Vector3.up, rotateAmount+0.1f);
     }
 
-    private void OnDisable()
-    {
-        SaveSystem.SaveFurniture(this);
-    }
+    //private void OnDisable()
+    //{
+    //   SaveSystem.SaveFurniture(this);
+    //}
 
-    private void OnEnable()
+    public void LoadFurniture(FurnitureDataToSave data)
     {
-        FurnitureData data = SaveSystem.LoadFurniture();
+        //FurnitureDataToSave data = SaveSystem.LoadData<FurnitureDataToSave>();
 
-        foreach (FurnitureData.FurnitureTransformData transformData in data.furnitureDatasList)
+        if (data is null)
+        {
+            Debug.LogError("data is null");
+            return;
+        }
+        foreach (FurnitureDataToSave.FurnitureTransformData transformData in data.furnitureDatasList)
         {
             GameObject furniture = Instantiate(
                 ownedObjects[Int32.Parse(transformData.id)].objectPrefab,
                 new Vector3(transformData.furniturePosition[0], transformData.furniturePosition[1], transformData.furniturePosition[2]),
-                Quaternion.Euler(transformData.furnitureRotation[0], transformData.furnitureRotation[1], transformData.furnitureRotation[2]),
+                Quaternion.Euler(transformData.furnitureRotation[0], transformData.furnitureRotation[1] + 0.1f, transformData.furnitureRotation[2]),
                 gameObject.transform
                 );
 

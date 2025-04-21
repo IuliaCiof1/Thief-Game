@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,36 +32,97 @@ public class ObjectiveManager : MonoBehaviour
     //    ObjectiveEvents.OnObjectiveCompleted -= HandleObjectiveCompleted;
     //}
 
-    private void Start()
+    //public static ObjectiveManager Instance;
+
+  
+
+    private void Awake()
     {
-        foreach(MemberObjectives familyMember in familyMembers)
+        //LoadData();
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
+   
+        foreach (MemberObjectives familyMember in familyMembers)
         {
-            print(familyMember.name);
+           
             if(familyMember.possibleObjectives is null)
             {
                 print("possible objectives is null");
             }
-            foreach(Objective objective in familyMember.possibleObjectives)
-            {
-                if (objective.isActive)
-                {
-                    activeobjectives.Add(objective);
-                    print("take health "+ objective.healthTaken);
-                   familyMember.TakeHealth(objective.healthTaken);
+            //foreach (Objective objective in familyMember.possibleObjectives)
+            //{
+            //    if (objective.isActive)
+            //    {
+            //        activeobjectives.Add(objective);
+            //        print("take health " + objective.healthTaken);
+            //        familyMember.TakeHealth(objective.healthTaken);
 
-                    DisplayObjective(objective);
-                }
-            }
+            //        //DisplayObjective(objective);
+            //    }
+            //}
             objectives.AddRange(familyMember.possibleObjectives);
+            foreach (Objective obj in objectives)
+            {
+                obj.isActive = false;
+            }
+            print("objectives added to objective manager");
         }
 
         
-        StartNextObjective();
+        
 
     }
 
-    public void HandleObjectiveCompleted(Objective completedObjective, int activeIndex)
+    //Make sure that displaying objectives is made after game load
+    private void Start()
     {
+
+
+        foreach (MemberObjectives familyMember in familyMembers)
+        {
+           
+            if (familyMember.possibleObjectives is null)
+            {
+                print("possible objectives is null");
+            }
+            foreach (Objective objective in familyMember.possibleObjectives)
+            {
+                if (objective.isActive)
+                {
+                    //activeobjectives.Add(objective);
+                    print("take health " + objective.healthTaken);
+                    familyMember.TakeHealth(objective.healthTaken);
+
+                    //DisplayObjective(objective);
+                }
+            }
+
+            objectives.AddRange(familyMember.possibleObjectives);
+            print("objectives added to objective manager");
+        }
+
+        StartNextObjective();
+
+        //foreach (Objective objective in activeobjectives)
+        //{
+        //    print("display objective "+objective.name);
+        //    DisplayObjective(objective);
+        //}
+
+
+    }
+
+    public void HandleObjectiveCompleted(Objective completedObjective)
+    {
+        completedObjective.DeactivateObjective(); // Clean up
+        activeobjectives.Remove(completedObjective);
 
         foreach (Transform objectiveUI in objectiveContainer)
         {
@@ -69,13 +131,13 @@ public class ObjectiveManager : MonoBehaviour
             {
                 //description = objectiveContainer.GetChild(activeobjectives.Count - 1 - activeIndex).transform.GetChild(0).GetComponent<TMP_Text>();
                 description.text = "<s>" + description.text;
-                completedObjective.DeactivateObjective(); // Clean up
+                //completedObjective.DeactivateObjective(); // Clean up
                                                           //Invoke("DeleteObjectiveFromUIList", 0.5f);
                 StartCoroutine(UndisplayObjective(description.transform.parent.gameObject, completedObjective));
                 //currentObjectiveIndex++;
                 print("completed quest");
 
-                activeobjectives.Remove(completedObjective);
+                //activeobjectives.Remove(completedObjective);
             }
         }
         //objective.Complete();
@@ -95,20 +157,26 @@ public class ObjectiveManager : MonoBehaviour
 
     private void StartNextObjective()
     {
-  
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+
+        List<Objective> inactiveObjectives = new List<Objective>();
+        foreach (Objective obj in objectives)
+            if (!obj.isActive)
+                inactiveObjectives.Add(obj);
+
+        if (SceneManager.GetActiveScene().name == "Quarters" && inactiveObjectives.Any())
         {
 
-            int objectiveIndex = Random.Range(0, objectives.Count);
+            int objectiveIndex = Random.Range(0, inactiveObjectives.Count);
 
             print("start new objective " + objectiveIndex);
             currentObjectiveIndex = objectiveIndex;
 
-            Objective objective = objectives[objectiveIndex];
+            Objective objective = inactiveObjectives[objectiveIndex];
 
             if (!objective.isActive)
             {
                 DisplayObjective(objective);
+                print("activate objective");
                 activeobjectives.Add(objective);
                 objective.ActivateObjective();
             }
@@ -175,6 +243,8 @@ public class ObjectiveManager : MonoBehaviour
 
         TMP_Text title = objectiveUI.transform.GetChild(1).GetComponent<TMP_Text>();
         title.text = objective.title;
+
+        objective.isActive = true;
     }
 
     //void Start()
@@ -188,16 +258,54 @@ public class ObjectiveManager : MonoBehaviour
     //    //}
     //}
 
-//    public void CompleteObjective(Objective objective)
-//    {
-//        if (!objective.isCompleted)
-//        {
-//            objective.DeactivateObjective();
-//            objectiveIndex++;
+    //    public void CompleteObjective(Objective objective)
+    //    {
+    //        if (!objective.isCompleted)
+    //        {
+    //            objective.DeactivateObjective();
+    //            objectiveIndex++;
 
-//            //Start the next objective
-//            objectives[objectiveIndex].ActivateObjective();
-//            //objectiveUI.RemoveObjective(objective);
-//        }
-//    }
+    //            //Start the next objective
+    //            objectives[objectiveIndex].ActivateObjective();
+    //            //objectiveUI.RemoveObjective(objective);
+    //        }
+    //    }
+
+
+    //private void OnDisable()
+    //{
+    //    SaveSystem.SaveObjectives(this);
+    //}
+
+
+
+    public void LoadData(ObjectiveDataToSave data)
+    {
+        //ObjectiveDataToSave data = SaveSystem.LoadData<ObjectiveDataToSave>();
+        //foreach (Objective obj in objectives)
+        //    obj.isActive = false;
+
+        if (data is null)
+            print("no data recovered for obecjtives");
+
+        if (data.activeoOjectivesID is null)
+            print("no data recovered for obecjtives objectives");
+
+
+
+        for (int i = 0; i < data.activeoOjectivesID.Count; i++)
+        {
+            foreach (Objective obj in objectives)
+            {
+                if (obj.id == data.activeoOjectivesID[i])
+                {
+                    DisplayObjective(obj);
+                    obj.isActive = true;
+                    activeobjectives.Add(obj);
+                    print("objective " + obj.name + " " + obj.isActive);
+                    break;
+                }
+            }
+        }
+    }
 }

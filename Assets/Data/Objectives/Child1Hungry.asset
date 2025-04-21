@@ -16,8 +16,10 @@ MonoBehaviour:
   description: Your eldest child  is hungry. Get her some food or she might die of
     starvation.
   isCompleted: 0
-  isActive: 1
+  isActive: 0
+  itemRequierd: 1
   objectNeeded: {fileID: 5488972324912657813, guid: ebc57b4db2acf4d48a1f13cf2dc5dac7, type: 3}
   moneyNeeded: 0
-  healthTaken: 0
+  healthTaken: 3
   objectiveEventName: 
+  id: 002

@@ -106,7 +106,7 @@ public class ObjectSelection : MonoBehaviour
 
     public void Move()
     {
-
+        buildingManager.initialMaterial = selectedObject.GetComponent<MeshRenderer>().material;
         buildingManager.pendingObject = selectedObject;
     }
 

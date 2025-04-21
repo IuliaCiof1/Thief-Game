@@ -22,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.000087072876
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
       propertyPath: m_LocalRotation.y
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 180.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
       insertIndex: -1
       addedObject: {fileID: 800019587567754388}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7622659299348302993}
   m_SourcePrefab: {fileID: 100100000, guid: 7c5d20d89a823f3459f02deda685e385, type: 3}
 --- !u!1 &5942688876732487874 stripped
 GameObject:
@@ -96,7 +99,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -173,3 +176,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!208 &7622659299348302993
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5942688876732487874}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5000001, y: 0.61200005, z: 0.8}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.61200005, z: 0.05}
+  m_TimeToStationary: 0.5

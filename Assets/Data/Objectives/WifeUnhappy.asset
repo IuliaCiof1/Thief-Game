@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58ecfda3d63bfe4d9796d552319ff59, type: 3}
+  m_Name: WifeUnhappy
+  m_EditorClassIdentifier: 
+  title: Happiness decreased
+  description: Your wife is unhappy. Buy some entertainment so she doesn't get bored
+  isCompleted: 0
+  isActive: 0
+  itemRequierd: 1
+  objectNeeded: {fileID: 4030337183020701375, guid: 8e7d1a97e969f7a478d4891f9f84fe42, type: 3}
+  moneyNeeded: 0
+  healthTaken: 2
+  objectiveEventName: 
+  id: 008

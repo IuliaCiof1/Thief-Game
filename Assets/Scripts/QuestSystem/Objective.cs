@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [CreateAssetMenu(menuName = "Objective")]
 public class Objective: ScriptableObject
 {
@@ -11,11 +12,13 @@ public class Objective: ScriptableObject
     public bool isActive;
 
     //public FamilyMember familyMember;
+    public bool itemRequierd;
     public GameObject objectNeeded;
     public int moneyNeeded;
     public float healthTaken;
 
     public string objectiveEventName;
+    public string id;
 
     private void OnDisable()
     {
