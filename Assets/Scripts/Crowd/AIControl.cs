@@ -35,7 +35,8 @@ protected GameObject inspectionPoint;
 
     float inspectionTime;
 
-
+    //stores last 2 visited goals
+    [SerializeField]GameObject[] VisitedGoals;
     GameObject lastGoalVisited;
 
     public bool GetIsInspecting()
@@ -46,7 +47,7 @@ protected GameObject inspectionPoint;
 
     protected void Start()
     {
-        
+        VisitedGoals = new GameObject[2];
         agent = GetComponent<NavMeshAgent>();
 
         defaultSpeed = agent.speed;
@@ -92,10 +93,10 @@ protected GameObject inspectionPoint;
     protected void Update()
     {
         inspectionTime -= Time.deltaTime;
-       
+
         if (inspectionTime <= 0)
         {
-            
+
             inspectionTime = crowdManager.InspectionCooldown;
             InspectionPointSearch();
         }
@@ -108,7 +109,7 @@ protected GameObject inspectionPoint;
             {
                 ResetAgentSpeed();
                 // Make NPC look in the same direction as the inspection point's Z-axis
-                transform.rotation = Quaternion.LookRotation(inspectionPoint.transform.forward, Vector3.up);
+                transform.rotation = Quaternion.LookRotation(inspectionPoint.transform.forward);
 
                 //Remove the visited Inspection Point from the list
                 inspectionPoints.Remove(inspectionPoint);
@@ -119,7 +120,24 @@ protected GameObject inspectionPoint;
         }
 
         Walk();
-        //AvoidOthers();
+        //AvoidPlayer();
+    }
+
+    void AvoidPlayer()
+    {
+        float playerDistance = Vector3.Distance(crowdManager.player.transform.position, this.transform.position);
+        if (playerDistance <= crowdManager.AvoidDistance)
+        {
+            if (!isInspecting)
+            {
+
+                //vAvoid += (this.transform.position - crowdManager.player.transform.position).normalized / playerDistance;
+                //agentToAvoid = crowdManager.transform;
+                //groupSize++;
+                //isInspecting = true;
+                StartCoroutine(Wait());
+            }
+        }
     }
 
     void AvoidOthers()
@@ -184,12 +202,15 @@ protected GameObject inspectionPoint;
     public IEnumerator Wait()
     {
         //agent.speed = 0;
+        agent.isStopped = true;
         animator.SetBool("Inspect", true);
-        agent.enabled = false;
-        GetComponent<NavMeshObstacle>().enabled = true;
-        yield return new WaitForSeconds(1);
-        GetComponent<NavMeshObstacle>().enabled = false;
-        StartCoroutine(Delay());
+        //agent.enabled = false;
+       // GetComponent<NavMeshObstacle>().enabled = true;
+        yield return new WaitForSeconds(3);
+        isInspecting = false;
+        //animator.SetBool("Inspect", false);
+        // GetComponent<NavMeshObstacle>().enabled = false;
+        //StartCoroutine(Delay());
         //agent.enabled = true;
         //NavMeshHit hit;
         //if (NavMesh.SamplePosition(newTarget, out hit, 1.0f, NavMesh.AllAreas))
@@ -230,15 +251,37 @@ protected GameObject inspectionPoint;
 
     protected virtual void Walk()
     {
-
-  
-            if (agent.enabled && !isInspecting && agent.remainingDistance < 0.7f && !agent.pathPending)
+        float playerDistance = Vector3.Distance(crowdManager.player.transform.position, this.transform.position);
+        if (playerDistance <= crowdManager.AvoidDistance)
+        {
+            if (!isInspecting)
             {
 
-                ResetAgentSpeed();
-                SetNewDestination();
+                //vAvoid += (this.transform.position - crowdManager.player.transform.position).normalized / playerDistance;
+                //agentToAvoid = crowdManager.transform;
+                //groupSize++;
+               // isInspecting = true;
+                StartCoroutine(Wait());
             }
-      
+        }
+
+        else if (agent.enabled && !isInspecting && agent.remainingDistance < 0.7f && !agent.pathPending)
+        {
+            agent.isStopped = false;
+            animator.SetBool("Inspect", false);
+            // ResetAgentSpeed();
+            SetNewDestination();
+        }
+        else if (agent.pathPending)
+        {
+            animator.SetBool("Inspect", true); //trigger the inspecting animation with the path of the agent is still calculating
+        }
+        else if (!isInspecting)
+        {
+            agent.isStopped = false;
+            animator.SetBool("Inspect", false);
+        }
+
     }
 
     void InspectionPointSearch()
@@ -289,90 +332,75 @@ protected GameObject inspectionPoint;
         //InvokeRepeating("InspectionPointSearch", 2.0f, crowdManager.InspectionCooldown);
     }
 
+ 
+
+    //Because choosing a random goal destination, would make the npc only walk on the side of the road if the the detination was not in a straight line with the npc,
+    //I choose instead to take the random destination of the next 2 closest destination, as the final set next destination of the agent.
+    //it also keeps the last 2 visited points to avoid loops between 2 points
     protected void SetNewDestination()
     {
         isInspecting = false;
 
-        List<GameObject> forwardPoints = new List<GameObject>();
-        float maxDistance = 50f;
-        float minDotThreshold = 0.2f; // Higher = stricter forward filtering (1 = perfectly ahead)
+        float firstMaxDistance = 1000f;
+        float secondMaxDistance = 1000f;
+     
+        GameObject goal = null;
+        GameObject[]  possibleGoals = new GameObject [] { goalLocations[0],goalLocations[1] };
+
+        NavMeshPath path = new NavMeshPath();
+
 
         foreach (GameObject point in goalLocations)
         {
-            //if (point == lastGoalVisited) continue;
-
-            //Vector3 toPoint = (point.transform.position - transform.position).normalized;
-            //float dot = Vector3.Dot(transform.forward, toPoint);
-
-            float distance = Vector3.Distance(transform.position, point.transform.position);
-
-            if (/*dot > minDotThreshold*/ point != lastGoalVisited  && distance < maxDistance)
+            
+            if (point != VisitedGoals[0] && point != VisitedGoals[1] )
             {
-                //print("goalsss"+point.name + " " + Vector3.Distance(transform.position, point.transform.position));
-                forwardPoints.Add(point);
+               //calculate the distance of the path the agent would take to another points, not just the distance between two points which can be shorter.
+                if(NavMesh.CalculatePath(transform.position, point.transform.position, agent.areaMask, path))
+                {
+                    float distance = Vector3.Distance(transform.position, path.corners[0]);
+
+                    for(int j=1; j<path.corners.Length; j++)
+                    {
+                        distance += Vector3.Distance(path.corners[j - 1], path.corners[j]);
+                    }
+
+                    if (distance < firstMaxDistance && point)
+                    {
+                        goal = point;
+                        possibleGoals[0] = goal;
+                       
+                       // print(goal.name + "is first close");
+                        firstMaxDistance = distance;
+                    }
+                    else if (distance < secondMaxDistance && point!= possibleGoals[0]) 
+                    {
+                        goal = point;
+                        possibleGoals[1] = goal;
+                        //print(goal.name + "is second close");
+                        secondMaxDistance = distance;
+                    }
+
+                }
+
+              
             }
+          
         }
 
-        // Fallback if no forward points found
-        if (forwardPoints.Count == 0)
+        if (goal != null)
         {
-            print("no close goals found");
-            forwardPoints = new List<GameObject>(goalLocations);
+            int goalIndex = Random.Range(0, 2);
+            //keep only the last 2 visited goals
+            GameObject temp = VisitedGoals[0];
+            VisitedGoals[0] = possibleGoals[goalIndex];
+            VisitedGoals[1] = temp;
+
+            Vector3 offset = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f)); //add an offset to spread the walking path
+            agent.SetDestination(possibleGoals[goalIndex].transform.position+offset);
+           // print("destination set");
         }
-
-        int i = Random.Range(0, forwardPoints.Count);
-
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(forwardPoints[i].transform.position, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            //print(gameObject.name + " " + forwardPoints[i].name + " " + Vector3.Distance(transform.position, forwardPoints[i].transform.position));
-            lastGoalVisited = forwardPoints[i];
-            Vector3 offset = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)); // Sidewalk spread
-            agent.SetDestination(forwardPoints[i].transform.position + offset);
-        }
-
-        //isInspecting = false;
-
-        //List<GameObject> closestPoints = new List<GameObject>();
-        //float maxDistance = 20;
-
-        //foreach (GameObject point in goalLocations)
-        //{
-        //    float distance = Vector3.Distance(transform.position, point.transform.position);
-        //    if (distance < maxDistance && point != lastGoalVisited)
-        //    {
-        //        //closestDistance = distance;
-        //        //closestPoint = point;
-        //        closestPoints.Add(point);
-        //    }
-        //}
-        //int i = Random.Range(0, closestPoints.Count);
-        ////print(closestPoint.name + " " + 
-        ////    lastGoalVisited.name);
-
-        //NavMeshHit hit;
-        //if (NavMesh.SamplePosition(closestPoints[i].transform.position, out hit, 1.0f, NavMesh.AllAreas))
-        //{
-        //    //agent.avoidancePriority = Random.Range(30, 70);
-        //    //agent.SetDestination(hit.position);
-        //    lastGoalVisited = closestPoints[i];
-        //    Vector3 offset = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)); //adds an offest to the goal to avoid congestion on the side of the sidewalk
-        //    agent.SetDestination(closestPoints[i].transform.position + offset);
-        //}
-
-
-        //=============
-        //int i = Random.Range(0, goalLocations.Count);
-
-        //NavMeshHit hit;
-        //if (NavMesh.SamplePosition(goalLocations[i].transform.position, out hit, 1.0f, NavMesh.AllAreas))
-        //{
-        //    //agent.avoidancePriority = Random.Range(30, 70);
-        //    //agent.SetDestination(hit.position);
-        //    Vector3 offset = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)); //adds an offest to the goal to avoid congestion on the side of the sidewalk
-        //    agent.SetDestination(goalLocations[i].transform.position + offset);
-        //}
-
+      
     }
 
     GameObject GetClosestInspectionPoint()

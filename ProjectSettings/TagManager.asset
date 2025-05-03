@@ -24,8 +24,8 @@ TagManager:
   - FurnitureFloor
   - AgentGoals
   - InspectionPoints
-  - 
-  - 
+  - VehicleGoals
+  - AvoidedByVehicles
   - 
   - 
   - 

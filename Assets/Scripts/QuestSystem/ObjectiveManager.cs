@@ -286,10 +286,13 @@ public class ObjectiveManager : MonoBehaviour
         //    obj.isActive = false;
 
         if (data is null)
+        {
             print("no data recovered for obecjtives");
+            return;
+        }
 
-        if (data.activeoOjectivesID is null)
-            print("no data recovered for obecjtives objectives");
+        //if (data.activeoOjectivesID is null)
+        //    print("no data recovered for obecjtives objectives");
 
 
 

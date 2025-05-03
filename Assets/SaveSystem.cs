@@ -187,7 +187,8 @@ public static class SaveSystem
         saveStream.Close();
         //foreach (Objective obj in objectiveManager.objectives)
         //    obj.isActive = false;
-        Debug.LogWarning("Saved game data (partial or full) to: " + path);
+        Debug.LogWarning("Saved game data (partial or full) to: " + Application.persistentDataPath+ Path.Combine(Application.persistentDataPath, saveFileName));
+        //Application.OpenURL("file://" + Application.persistentDataPath);
 
         //Task.Delay(100000).ContinueWith(t => ResetObjectivesSO(objectiveManager));
         //DelayHelper.Instance.ResetObjectives(objectiveManager, 0.3f);
