@@ -184,7 +184,7 @@ public class BuildingManager : MonoBehaviour
                 gameObject.transform
                 );
 
-
+            print("loaded rotation " + transformData.furnitureRotation[1]);
             furniture.GetComponent<Furniture>().idSO = transformData.id.ToString();
             furniture.SetActive(true);
         }

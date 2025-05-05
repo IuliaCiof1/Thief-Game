@@ -49,31 +49,31 @@ public class ObjectiveManager : MonoBehaviour
         //    Destroy(gameObject);
         //}
    
-        foreach (MemberObjectives familyMember in familyMembers)
-        {
+        //foreach (MemberObjectives familyMember in familyMembers)
+        //{
            
-            if(familyMember.possibleObjectives is null)
-            {
-                print("possible objectives is null");
-            }
-            //foreach (Objective objective in familyMember.possibleObjectives)
-            //{
-            //    if (objective.isActive)
-            //    {
-            //        activeobjectives.Add(objective);
-            //        print("take health " + objective.healthTaken);
-            //        familyMember.TakeHealth(objective.healthTaken);
+        //    if(familyMember.possibleObjectives is null)
+        //    {
+        //        print("possible objectives is null");
+        //    }
+        //    //foreach (Objective objective in familyMember.possibleObjectives)
+        //    //{
+        //    //    if (objective.isActive)
+        //    //    {
+        //    //        activeobjectives.Add(objective);
+        //    //        print("take health " + objective.healthTaken);
+        //    //        familyMember.TakeHealth(objective.healthTaken);
 
-            //        //DisplayObjective(objective);
-            //    }
-            //}
-            objectives.AddRange(familyMember.possibleObjectives);
-            foreach (Objective obj in objectives)
-            {
-                obj.isActive = false;
-            }
-            print("objectives added to objective manager");
-        }
+        //    //        //DisplayObjective(objective);
+        //    //    }
+        //    //}
+        //    objectives.AddRange(familyMember.possibleObjectives);
+        //    foreach (Objective obj in objectives)
+        //    {
+        //        obj.isActive = false;
+        //    }
+        //    print("objectives added to objective manager");
+        //}
 
         
         
@@ -285,7 +285,35 @@ public class ObjectiveManager : MonoBehaviour
         //foreach (Objective obj in objectives)
         //    obj.isActive = false;
 
-        if (data is null)
+
+        foreach (MemberObjectives familyMember in familyMembers)
+        {
+
+            if (familyMember.possibleObjectives is null)
+            {
+                print("possible objectives is null");
+            }
+            //foreach (Objective objective in familyMember.possibleObjectives)
+            //{
+            //    if (objective.isActive)
+            //    {
+            //        activeobjectives.Add(objective);
+            //        print("take health " + objective.healthTaken);
+            //        familyMember.TakeHealth(objective.healthTaken);
+
+            //        //DisplayObjective(objective);
+            //    }
+            //}
+            objectives.AddRange(familyMember.possibleObjectives);
+            foreach (Objective obj in objectives)
+            {
+                obj.isActive = false;
+            }
+            print("objectives added to objective manager");
+        }
+        
+
+            if (data is null)
         {
             print("no data recovered for obecjtives");
             return;
@@ -294,12 +322,14 @@ public class ObjectiveManager : MonoBehaviour
         //if (data.activeoOjectivesID is null)
         //    print("no data recovered for obecjtives objectives");
 
-
+        Debug.Log("ObjectiveManager:: Loading data objectives");
 
         for (int i = 0; i < data.activeoOjectivesID.Count; i++)
         {
+            Debug.Log("ObjectiveManager:: active objective: "+data.activeoOjectivesID[i]);
             foreach (Objective obj in objectives)
             {
+                Debug.Log("ObjectiveManager:: objective: " + obj.name);
                 if (obj.id == data.activeoOjectivesID[i])
                 {
                     DisplayObjective(obj);

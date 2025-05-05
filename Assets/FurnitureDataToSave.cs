@@ -25,7 +25,9 @@ public class FurnitureDataToSave
             FurnitureTransformData furnitureData;
         
             furnitureData.furniturePosition = new float[] {furniture.position.x,  furniture.position.y, furniture.position.z};
-            furnitureData.furnitureRotation = new float[] {furniture.rotation.x,  furniture.rotation.y, furniture.rotation.z};
+            furnitureData.furnitureRotation = new float[] {furniture.rotation.eulerAngles.x,  furniture.rotation.eulerAngles.y, furniture.rotation.eulerAngles.z};
+
+            Debug.Log("FurnitureDataToSave:: furniture y rotation: " + furniture.rotation.y);
             furnitureData.id = furniture.GetComponent<Furniture>().idSO;
 
             furnitureDatasList.Add(furnitureData);

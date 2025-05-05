@@ -20,7 +20,7 @@ public class GameData
 
 public static class SaveSystem
 {
-    const string saveFileName = "/saveddata.bin";
+    const string saveFileName = "saveddata.bin";
 
     //public static void SaveFurniture(BuildingManager buildingManager)
     //{
@@ -142,6 +142,12 @@ public static class SaveSystem
     static ObjectiveManager objectiveManager_;
     public static void Save(BuildingManager buildingManager, ObjectiveManager objectiveManager)
     {
+        //string path = Path.Combine(Application.persistentDataPath, "newsavefile.txt");
+        //BinaryFormatter formatter = new BinaryFormatter();
+
+        //GameData data;
+
+
         objectiveManager_ = objectiveManager;
         //string path = Path.Combine(Application.persistentDataPath, saveFileName);
         //BinaryFormatter formatter = new BinaryFormatter();
@@ -179,7 +185,12 @@ public static class SaveSystem
             data.furnitureData = new FurnitureDataToSave(buildingManager);
 
         if (objectiveManager != null)
+        {
+            Debug.Log("SaveSystem:: going to save the objectives");
             data.objectiveData = new ObjectiveDataToSave(objectiveManager);
+        }
+        else
+            Debug.Log("SaveSystem:: objective manager is null");
 
         // Save everything back to file
         FileStream saveStream = new FileStream(path, FileMode.Create);
