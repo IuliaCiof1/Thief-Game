@@ -11,9 +11,11 @@ public class FurnitureDataToSave
         public string id;
         public float[] furniturePosition;
         public float[] furnitureRotation;
+       
     }
 
     public List<FurnitureTransformData> furnitureDatasList { get; private set; }
+    public string wallPaintID;
 
     public FurnitureDataToSave(BuildingManager buildingManager)
     {
@@ -31,6 +33,7 @@ public class FurnitureDataToSave
             furnitureData.id = furniture.GetComponent<Furniture>().idSO;
 
             furnitureDatasList.Add(furnitureData);
+            wallPaintID = buildingManager.currentWallPaintID;
         }
     }
 

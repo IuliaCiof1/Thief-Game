@@ -10,8 +10,10 @@ using System;
 public class BuildingManager : MonoBehaviour
 {
     [SerializeField] FurnitureSO[] ownedObjects;
-    [SerializeField] Material[] ownedWallMaterials;
+    [SerializeField] PaintSO[] ownedWallMaterials;
     [SerializeField] Material[] ownedFloorMaterials;
+    [SerializeField] Transform wallsParent;
+    public string currentWallPaintID;
     public GameObject pendingObject { get; set; }
     private Vector3 position;
     private RaycastHit hit;
@@ -84,7 +86,7 @@ public class BuildingManager : MonoBehaviour
         return ownedFloorMaterials;
     }
 
-    public Material[] GetOwnedWallMaterials()
+    public PaintSO[] GetOwnedWallMaterials()
     {
         return ownedWallMaterials;
     }
@@ -189,5 +191,22 @@ public class BuildingManager : MonoBehaviour
             furniture.SetActive(true);
         }
 
+        //Load walls paint
+        currentWallPaintID = data.wallPaintID;
+        print(data.wallPaintID);
+        List<Material> materialList = new List<Material>();
+
+        foreach (PaintSO paint in ownedWallMaterials)
+            if (paint.ID == currentWallPaintID)
+            {
+                print("found paintso");
+                materialList.Add(paint.paintMaterial);
+                break;
+            }
+
+        foreach (Transform wall in wallsParent)
+        {
+            wall.GetComponent<MeshRenderer>().SetMaterials(materialList);
+        }
     }
 }

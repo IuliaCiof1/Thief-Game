@@ -18,7 +18,7 @@ public class ObjectPreview : MonoBehaviour
     string filePath = "Assets/Data/ObjectPreviews/";
     [SerializeField] RenderTexture renderTexture;
     [SerializeField] GameObject objectsContainer;
-
+    [SerializeField] Camera photographer;
 
     public bool generatePreviews;
    
@@ -28,6 +28,8 @@ public class ObjectPreview : MonoBehaviour
     {
         if (generatePreviews)
         {
+            photographer.gameObject.SetActive(true);
+
             generatePreviews = false; // Reset the flag to prevent continuous generation
             EditorCoroutineUtility.StartCoroutineOwnerless(CaptureAllPreviews());
         }
@@ -41,6 +43,9 @@ public class ObjectPreview : MonoBehaviour
         {
             yield return EditorCoroutineUtility.StartCoroutineOwnerless(CreatePreview(child));
         }
+
+        photographer.gameObject.SetActive(false);
+
     }
 
     private IEnumerator CreatePreview(Transform child)
@@ -122,7 +127,14 @@ public class ObjectPreview : MonoBehaviour
         }
 
         // Save the ScriptableObject asset
-        AssetDatabase.CreateAsset(furnitureSO, assetPath);
+        if (string.IsNullOrEmpty(AssetDatabase.AssetPathToGUID(assetPath)))
+            AssetDatabase.CreateAsset(furnitureSO, assetPath);
+        else
+        {
+           FurnitureSO foundFurnitureSO = (FurnitureSO)AssetDatabase.LoadAssetAtPath(assetPath, typeof(FurnitureSO));
+            foundFurnitureSO.previewImage = furnitureSO.previewImage;
+            foundFurnitureSO.objectPrefab = furnitureSO.objectPrefab;
+        }
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         Debug.Log("ScriptableObject saved at: " + assetPath);
@@ -143,15 +155,15 @@ public class ObjectPreview : MonoBehaviour
         }
 
         // Create the prefab
-        MeshCollider col;
-        if (!obj.TryGetComponent<MeshCollider>(out MeshCollider c))
+        BoxCollider col;
+        if (!obj.TryGetComponent<BoxCollider>(out BoxCollider c) && !obj.TryGetComponent<MeshCollider>(out MeshCollider m))
         {
-            col = obj.AddComponent<MeshCollider>();
+            col = obj.AddComponent<BoxCollider>();
 
         }
-        else {col = obj.GetComponent<MeshCollider>(); }
+        else {col = obj.GetComponent<BoxCollider>(); }
 
-        col.convex = true;
+        //col.convex = true;
         //col.isTrigger = true;
 
         Rigidbody rg;
@@ -175,9 +187,14 @@ public class ObjectPreview : MonoBehaviour
             obj.AddComponent<CheckObjectPlacement>();
         }
 
-        
+        if (!obj.TryGetComponent<Outline>(out Outline o))
+        {
+            obj.AddComponent<Outline>();
+        }
+
         GameObject prefab = PrefabUtility.SaveAsPrefabAsset(obj, prefabPath);
         Debug.Log("Prefab created at: " + prefabPath);
+        prefab.gameObject.SetActive(true);
 
         return prefab;
     }

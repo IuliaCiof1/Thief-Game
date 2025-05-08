@@ -9,22 +9,22 @@ public class PaintingRoomUI : MonoBehaviour
 {
     [SerializeField] Transform wallsParent;
     [SerializeField] Transform FloorsParent;
-    [SerializeField] Material wallMaterial;
-    [SerializeField] Material floorMaterial;
+    //[SerializeField] Material wallMaterial;
+    //[SerializeField] Material floorMaterial;
 
-    public bool paintWall;
-    public bool paintFloor;
+    //public bool paintWall;
+    //public bool paintFloor;
 
-    private void OnValidate()
-    {
-        if (paintWall)
-        {
-            PaintWalls(wallMaterial);
-            
-        }
-        else if(paintFloor)
-            PaintWalls(floorMaterial);
-    }
+    //private void OnValidate()
+    //{
+    //    if (paintWall)
+    //    {
+    //        PaintWalls(wallMaterial);
+
+    //    }
+    //    else if(paintFloor)
+    //        PaintWalls(floorMaterial);
+    //}
 
 
     [SerializeField] private GameObject furniturePanel;
@@ -90,14 +90,15 @@ public class PaintingRoomUI : MonoBehaviour
 
 
 
-    public void UpdateFurnitureUI(Material[] ownedFurniture)
+    public void UpdateFurnitureUI(PaintSO[] ownedFurniture)
     {
 
         for (int i = 0; i < ownedFurniture.Length; i++)
         {
             GameObject slot = Instantiate(furnitureSlotPrefab, furniturePanel.GetComponentInChildren<GridLayoutGroup>().transform);
-            slot.transform.GetChild(0).GetComponent<Image>().material = ownedFurniture[i];
-            //slot.transform.GetChild(1).GetComponent<TMP_Text>().text = ownedFurniture[i].value + "$";
+            slot.transform.GetChild(0).GetComponentInChildren<Image>().material = ownedFurniture[i].paintMaterial;
+            slot.transform.GetChild(1).GetComponent<TMP_Text>().text = "- " + ownedFurniture[i].value + "$";
+            slot.transform.GetChild(2).GetComponent<TMP_Text>().text = "+ " + ownedFurniture[i].reputation;
 
 
             int capturedIndex = i; // Capture the current value of i
@@ -136,14 +137,20 @@ public class PaintingRoomUI : MonoBehaviour
     }
 
 
-    void PaintWalls(Material material)
+    public void PaintWalls(PaintSO paint)
     {
-        List<Material> materialList = new List<Material>();
-        materialList.Add(material);
+        if(PlayerStats.BuyWithMoney(paint.value)){
+            List<Material> materialList = new List<Material>();
+            materialList.Add(paint.paintMaterial);
 
-        foreach (Transform wall in wallsParent)
-        {
-            wall.GetComponent<MeshRenderer>().SetMaterials(materialList);
+            foreach (Transform wall in wallsParent)
+            {
+                wall.GetComponent<MeshRenderer>().SetMaterials(materialList);
+            }
+
+
+            PlayerStats.AddReputation(paint.reputation);
+            buildingManager.currentWallPaintID = paint.ID;
         }
     }
 
