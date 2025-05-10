@@ -6,6 +6,7 @@ public class SaveDataScript : MonoBehaviour
 {
     BuildingManager buildingManager;
     ObjectiveManager objectiveManager;
+    FamilyManager familyManager;
 
     public static SaveDataScript Instance;
 
@@ -24,6 +25,7 @@ public class SaveDataScript : MonoBehaviour
         print("load");
         buildingManager = FindAnyObjectByType<BuildingManager>();
         objectiveManager = FindAnyObjectByType<ObjectiveManager>();
+        familyManager = FindAnyObjectByType<FamilyManager>();
         //SaveSystem.Load();
 
         GameData loadedData = SaveSystem.Load();
@@ -34,8 +36,11 @@ public class SaveDataScript : MonoBehaviour
 
             if(buildingManager != null)
                 buildingManager.LoadFurniture(furnitureData);
+            if (familyManager != null)
+                familyManager.LoadData();
             if (objectiveManager != null)
                 objectiveManager.LoadData(objectiveData);
+            
         }
     }
 

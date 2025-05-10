@@ -56,7 +56,7 @@ public class ChangeInputMaps : MonoBehaviour
     IEnumerator FixInputSystem()
     {
         yield return new WaitForEndOfFrame(); // Wait until the end of the first frame
-        Debug.Log("FurnitureUI initialized with action map: " + playerPlayerInput.currentActionMap.name);
+      
         playerPlayerInput.SwitchCurrentActionMap("BaseGameplay");
         controls.BaseGameplay.Enable();
     }

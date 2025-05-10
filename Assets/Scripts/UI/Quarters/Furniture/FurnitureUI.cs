@@ -36,7 +36,7 @@ public class FurnitureUI : MonoBehaviour
     private void Start()
     {
 
-        print("Furniture UI Awake");
+       
 
         changeInputMaps = FindObjectOfType<ChangeInputMaps>();
 
@@ -46,7 +46,7 @@ public class FurnitureUI : MonoBehaviour
             return;
         }
 
-        print("Found ChangeInputMaps: " + changeInputMaps.gameObject.name);
+      
 
         controls = changeInputMaps.controls;
 
@@ -67,7 +67,7 @@ public class FurnitureUI : MonoBehaviour
 
     private void OnFurniture()
     {
-        print("furniture");
+        
         if (furniturePanel.activeSelf)
         {
             controls.Furniture.Disable();
@@ -87,7 +87,7 @@ public class FurnitureUI : MonoBehaviour
 
     public void UpdateFurnitureUI(FurnitureSO[] ownedFurniture)
     {
-        print("update furniture");
+       
         for (int i = 0; i < ownedFurniture.Length; i++)
         {
             GameObject slot = Instantiate(furnitureSlotPrefab, furniturePanel.GetComponentInChildren<GridLayoutGroup>().transform);

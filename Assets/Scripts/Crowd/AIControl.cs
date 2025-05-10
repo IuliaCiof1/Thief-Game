@@ -45,10 +45,20 @@ protected GameObject inspectionPoint;
         return isInspecting;
     }
 
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+
+        if (!transform.GetChild(0).TryGetComponent<Animator>(out animator))
+        {
+            Debug.LogError("No Animator found on first child of crowd agent");
+        }
+    }
+
     protected void Start()
     {
         VisitedGoals = new GameObject[2];
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
 
         defaultSpeed = agent.speed;
         //Get values from CrowdManager
@@ -66,10 +76,10 @@ protected GameObject inspectionPoint;
         goalLocations = new List<GameObject>(crowdManager.GoalLocations);
 
 
-        if (!transform.GetChild(0).TryGetComponent<Animator>(out animator))
-        {
-            Debug.LogError("No Animator found on first child of crowd agent");
-        }
+        //if (!transform.GetChild(0).TryGetComponent<Animator>(out animator))
+        //{
+        //    Debug.LogError("No Animator found on first child of crowd agent");
+        //}
 
         walkOffsetRange = crowdManager.WalkOffsetRange;
         speedMultiplier = crowdManager.SpeedMultiplier;

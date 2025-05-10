@@ -22,3 +22,6 @@ MonoBehaviour:
   healthTaken: 2
   objectiveEventName: 
   id: 008
+  member: wife
+  objectiveCooldown: 3
+  leftCooldown: 3

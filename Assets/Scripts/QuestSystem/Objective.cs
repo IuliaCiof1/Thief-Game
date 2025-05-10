@@ -20,6 +20,8 @@ public class Objective: ScriptableObject
     public string objectiveEventName;
     public string id;
     public string member;
+    public int objectiveCooldown;
+    public int leftCooldown;
 
     private void OnDisable()
     {
@@ -57,7 +59,8 @@ public class Objective: ScriptableObject
     public void DeactivateObjective()
     {
         //ObjectiveEvents.OnOpenSpookyMail -= Complete;
-       // ObjectiveEvents.UnsubscribeEvent(objectiveEventName, Complete);
+        // ObjectiveEvents.UnsubscribeEvent(objectiveEventName, Complete);
+        leftCooldown = objectiveCooldown;
         isCompleted = true;
         isActive = false;
         //familyMember.GetComponent<FamilyMember>().currentObjective = null;

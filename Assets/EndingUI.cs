@@ -11,7 +11,7 @@ public class EndingUI : MonoBehaviour
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeDuration;
 
-    private void OnEnable()
+    private void Awake()
     {
         EndingManager.endingEvent += HandleEnding;
     }

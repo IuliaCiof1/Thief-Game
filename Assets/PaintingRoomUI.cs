@@ -50,7 +50,7 @@ public class PaintingRoomUI : MonoBehaviour
             return;
         }
 
-        print("Found ChangeInputMaps: " + changeInputMaps.gameObject.name);
+      
 
         controls = changeInputMaps.controls;
 

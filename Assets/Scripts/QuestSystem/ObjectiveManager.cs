@@ -9,8 +9,9 @@ public class ObjectiveManager : MonoBehaviour
 {
     public List<Objective> objectives;
     public List<Objective> activeobjectives;
+    int activeObjectivesAtOnce;
 
-    public List<MemberObjectives> familyMembers;
+   // public List<MemberObjectives> familyMembers;
     //public ObjectiveUI objectiveUI;
     private int currentObjectiveIndex;
 
@@ -27,18 +28,18 @@ public class ObjectiveManager : MonoBehaviour
     //Make sure that displaying objectives is made after game load
     private void Start()
     {
-        
 
-        foreach (MemberObjectives familyMember in familyMembers)
-        {
+        activeObjectivesAtOnce = 0;
+        //foreach (MemberObjectives familyMember in familyMembers)
+        //{
            
         
 
-            objectives.AddRange(familyMember.possibleObjectives);
-            print("objectives added to objective manager");
-        }
+        //    objectives.AddRange(familyMember.possibleObjectives);
+        //    print("objectives added to objective manager");
+        //}
 
-        StartNextObjective();
+        //StartNextObjective();
 
         //foreach (Objective objective in activeobjectives)
         //{
@@ -87,15 +88,15 @@ public class ObjectiveManager : MonoBehaviour
 
 
 
-    private void StartNextObjective()
+    public void StartNextObjective(List<Objective> inactiveObjectives)
     {
 
-        List<Objective> inactiveObjectives = new List<Objective>();
-        foreach (Objective obj in objectives)
-            if (!obj.isActive)
-                inactiveObjectives.Add(obj);
+        //List<Objective> inactiveObjectives = new List<Objective>();
+        //foreach (Objective obj in memberObjectives)
+        //    if (!obj.isActive)
+        //        inactiveObjectives.Add(obj);
 
-        if (SceneManager.GetActiveScene().name == "Quarters" && inactiveObjectives.Any())
+        if (SceneManager.GetActiveScene().name == "Quarters" && inactiveObjectives.Any() && activeObjectivesAtOnce<2)
         {
 
             int objectiveIndex = Random.Range(0, inactiveObjectives.Count);
@@ -105,13 +106,13 @@ public class ObjectiveManager : MonoBehaviour
 
             Objective objective = inactiveObjectives[objectiveIndex];
 
-            if (!objective.isActive)
-            {
+           
                 DisplayObjective(objective);
                 print("activate objective");
                 activeobjectives.Add(objective);
                 objective.ActivateObjective();
-            }
+
+            activeObjectivesAtOnce++;
         }
         
 
@@ -218,34 +219,40 @@ public class ObjectiveManager : MonoBehaviour
         //    obj.isActive = false;
 
 
-        foreach (MemberObjectives familyMember in familyMembers)
+        //foreach (MemberObjectives familyMember in familyMembers)
+        //{
+
+        //    if (familyMember.possibleObjectives is null)
+        //    {
+        //        print("possible objectives is null");
+        //    }
+        //    //foreach (Objective objective in familyMember.possibleObjectives)
+        //    //{
+        //    //    if (objective.isActive)
+        //    //    {
+        //    //        activeobjectives.Add(objective);
+        //    //        print("take health " + objective.healthTaken);
+        //    //        familyMember.TakeHealth(objective.healthTaken);
+
+        //    //        //DisplayObjective(objective);
+        //    //    }
+        //    //}
+        //    objectives.AddRange(familyMember.possibleObjectives);
+        //    foreach (Objective obj in objectives)
+        //    {
+        //        obj.isActive = false;
+        //    }
+        //    print("objectives added to objective manager");
+        //}
+
+
+        foreach (Objective obj in objectives)
         {
-
-            if (familyMember.possibleObjectives is null)
-            {
-                print("possible objectives is null");
-            }
-            //foreach (Objective objective in familyMember.possibleObjectives)
-            //{
-            //    if (objective.isActive)
-            //    {
-            //        activeobjectives.Add(objective);
-            //        print("take health " + objective.healthTaken);
-            //        familyMember.TakeHealth(objective.healthTaken);
-
-            //        //DisplayObjective(objective);
-            //    }
-            //}
-            objectives.AddRange(familyMember.possibleObjectives);
-            foreach (Objective obj in objectives)
-            {
-                obj.isActive = false;
-            }
-            print("objectives added to objective manager");
+            obj.isActive = false;
         }
-        
 
-            if (data is null)
+
+        if (data is null)
         {
             print("no data recovered for obecjtives");
             return;

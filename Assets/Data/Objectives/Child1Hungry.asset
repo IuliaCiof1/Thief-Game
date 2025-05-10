@@ -23,3 +23,6 @@ MonoBehaviour:
   healthTaken: 3
   objectiveEventName: 
   id: 002
+  member: child1
+  objectiveCooldown: 3
+  leftCooldown: 0

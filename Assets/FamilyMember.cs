@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FamilyMember : AIControl
 {
@@ -17,6 +18,7 @@ public class FamilyMember : AIControl
     ThirdPersonController player;
     [SerializeField] float lookAtPlayerSpeed = 5f;
     [SerializeField] float lookAtPlayerDistance = 5f;
+    
 
     private void Awake()
     {
@@ -28,6 +30,8 @@ public class FamilyMember : AIControl
         //TakeHealth(0);
 
         player = FindObjectOfType<ThirdPersonController>();
+        agent = GetComponentInChildren<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
         //Health = maxHealth;
     }
 
@@ -58,13 +62,13 @@ public class FamilyMember : AIControl
 
     IEnumerator Wait()
     {
-        print("wait");
+      
         yield return new WaitForSeconds(7);
         ResetAgentSpeed();
         SetNewDestination();
         isInspecting = false;
         animator.SetBool("Inspect", false);
-        print("stop wait");
+      
     }
 
     //public void GiveHealth(float amount)

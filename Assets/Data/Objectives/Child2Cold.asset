@@ -22,3 +22,6 @@ MonoBehaviour:
   healthTaken: 7
   objectiveEventName: 
   id: 003
+  member: child2
+  objectiveCooldown: 3
+  leftCooldown: 0

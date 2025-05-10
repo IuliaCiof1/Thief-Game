@@ -21,7 +21,7 @@ public static class EndingManager
 
         
         Debug.Log(endingType);
-        endingEvent.Invoke(endDict[endingType]);
+        endingEvent?.Invoke(endDict[endingType]);
     }
 
 }

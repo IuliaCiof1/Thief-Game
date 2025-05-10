@@ -8,6 +8,14 @@ public class PlayerStats : MonoBehaviour
     public static int money { get; private set; }
     public static int reputation { get; private set; }
 
+    [SerializeField] int maxReputation;
+    public static int maxReputation_{ get; private set; }
+
+    public static int GetMaxReputation()
+    {
+        return maxReputation_;
+    }
+
     //private void Awake()
     //{
     //    if (Instance is null)
@@ -65,6 +73,8 @@ public class PlayerStats : MonoBehaviour
 
     private void OnEnable()
     {
+        maxReputation_ = maxReputation;
+
         money = PlayerPrefs.GetInt("money", money);
         reputation = PlayerPrefs.GetInt("reputation", reputation);
     }
