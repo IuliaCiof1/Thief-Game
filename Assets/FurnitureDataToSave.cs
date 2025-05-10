@@ -33,8 +33,10 @@ public class FurnitureDataToSave
             furnitureData.id = furniture.GetComponent<Furniture>().idSO;
 
             furnitureDatasList.Add(furnitureData);
-            wallPaintID = buildingManager.currentWallPaintID;
+            
         }
+
+        wallPaintID = buildingManager.currentWallPaintID;
     }
 
   

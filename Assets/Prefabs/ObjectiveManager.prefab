@@ -6702,6 +6702,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2724971767199014310}
+    - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 163457145267001263}
   m_SourcePrefab: {fileID: 100100000, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
 --- !u!114 &3711864721840797541 stripped
 MonoBehaviour:
@@ -6738,6 +6741,7 @@ MonoBehaviour:
   inspectionPoints: []
   initialInspectionPoints: []
   ItemsInPocket: []
+  VisitedGoals: []
   lookAtPlayerSpeed: 1
   lookAtPlayerDistance: 3
 --- !u!114 &1558758568707658732
@@ -6754,9 +6758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleObjectives:
   - {fileID: 11400000, guid: 4266ded60f7b1c647a13420d05687314, type: 2}
-  maxHealth: 10
-  healthUI: {fileID: 5297592799578027519}
-  tombStone: {fileID: 7780819209198087317}
 --- !u!114 &2724971767199014310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6776,10 +6777,26 @@ MonoBehaviour:
   inspectionPoints: []
   initialInspectionPoints: []
   ItemsInPocket: []
+  VisitedGoals: []
   enterLocation: {fileID: 7345991425693662950}
   waitLocation: {fileID: 2353238533859448071}
   lookAtPlayerSpeed: 1
   lookAtPlayerDistance: 3
+--- !u!114 &163457145267001263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4284555145998611165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917b47e65a57d504db571fb16396b709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  healthUI: {fileID: 5297592799578027519}
+  tombStone: {fileID: 7780819209198087317}
 --- !u!4 &4861649922488359762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4645408140327199667, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -6951,6 +6968,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 593489287387621244}
+    - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3169314787434064525}
   m_SourcePrefab: {fileID: 100100000, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
 --- !u!1 &2558422563141490023 stripped
 GameObject:
@@ -6976,6 +6996,7 @@ MonoBehaviour:
   inspectionPoints: []
   initialInspectionPoints: []
   ItemsInPocket: []
+  VisitedGoals: []
   lookAtPlayerSpeed: 1
   lookAtPlayerDistance: 3
 --- !u!114 &593489287387621244
@@ -6993,7 +7014,19 @@ MonoBehaviour:
   possibleObjectives:
   - {fileID: 11400000, guid: 4211c8ea0a2bd8f47a0288ec744e6f60, type: 2}
   - {fileID: 11400000, guid: 46a04294a1596314184497a20f1bd0f1, type: 2}
-  maxHealth: 150
+--- !u!114 &3169314787434064525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2558422563141490023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917b47e65a57d504db571fb16396b709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 15
   healthUI: {fileID: 8949572403555596816}
   tombStone: {fileID: 9003179792368277196}
 --- !u!114 &3132159790880051423 stripped
@@ -7253,6 +7286,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1943786083258168555}
+    - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4295865892325023366}
   m_SourcePrefab: {fileID: 100100000, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
 --- !u!114 &1589972998639632637 stripped
 MonoBehaviour:
@@ -7289,6 +7325,7 @@ MonoBehaviour:
   inspectionPoints: []
   initialInspectionPoints: []
   ItemsInPocket: []
+  VisitedGoals: []
   lookAtPlayerSpeed: 1
   lookAtPlayerDistance: 3
 --- !u!114 &1943786083258168555
@@ -7307,7 +7344,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c852307b2ce167f45898140bdda1380e, type: 2}
   - {fileID: 11400000, guid: 507a17ceca380b842875cb2024c6dcc5, type: 2}
   - {fileID: 11400000, guid: 4edc25e3c4af1264db03505a1c03a86b, type: 2}
-  maxHealth: 200
+--- !u!114 &4295865892325023366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226543467145626949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917b47e65a57d504db571fb16396b709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
   healthUI: {fileID: 6710709587499120473}
   tombStone: {fileID: 7053279801159722238}
 --- !u!4 &7416168066289396938 stripped
@@ -7461,6 +7510,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6246159362856643180}
+    - targetCorrespondingSourceObject: {fileID: 4069581687116384828, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8589327848212379976}
   m_SourcePrefab: {fileID: 100100000, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
 --- !u!4 &1260291317555308895 stripped
 Transform:
@@ -7502,6 +7554,7 @@ MonoBehaviour:
   inspectionPoints: []
   initialInspectionPoints: []
   ItemsInPocket: []
+  VisitedGoals: []
   lookAtPlayerSpeed: 1
   lookAtPlayerDistance: 3
 --- !u!114 &6246159362856643180
@@ -7519,7 +7572,19 @@ MonoBehaviour:
   possibleObjectives:
   - {fileID: 11400000, guid: 8eecdb939b9db8849a8d51442da716f3, type: 2}
   - {fileID: 11400000, guid: 9d5dfefaa8ac33749b5706483b53265f, type: 2}
-  maxHealth: 170
+--- !u!114 &8589327848212379976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597771215449374928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917b47e65a57d504db571fb16396b709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 16
   healthUI: {fileID: 3534868006991932025}
   tombStone: {fileID: 1309086339822075408}
 --- !u!1001 &6138874154465762432

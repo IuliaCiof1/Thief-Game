@@ -19,6 +19,7 @@ public class Objective: ScriptableObject
 
     public string objectiveEventName;
     public string id;
+    public string member;
 
     private void OnDisable()
     {

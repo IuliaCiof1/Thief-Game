@@ -22,87 +22,17 @@ public class ObjectiveManager : MonoBehaviour
 
     string currentObjectiveKey = "currentObjective";
 
-    //private void OnEnable()
-    //{
-    //    ObjectiveEvents.OnObjectiveCompleted += HandleObjectiveCompleted;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    ObjectiveEvents.OnObjectiveCompleted -= HandleObjectiveCompleted;
-    //}
-
-    //public static ObjectiveManager Instance;
-
-  
-
-    private void Awake()
-    {
-        //LoadData();
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
-   
-        //foreach (MemberObjectives familyMember in familyMembers)
-        //{
-           
-        //    if(familyMember.possibleObjectives is null)
-        //    {
-        //        print("possible objectives is null");
-        //    }
-        //    //foreach (Objective objective in familyMember.possibleObjectives)
-        //    //{
-        //    //    if (objective.isActive)
-        //    //    {
-        //    //        activeobjectives.Add(objective);
-        //    //        print("take health " + objective.healthTaken);
-        //    //        familyMember.TakeHealth(objective.healthTaken);
-
-        //    //        //DisplayObjective(objective);
-        //    //    }
-        //    //}
-        //    objectives.AddRange(familyMember.possibleObjectives);
-        //    foreach (Objective obj in objectives)
-        //    {
-        //        obj.isActive = false;
-        //    }
-        //    print("objectives added to objective manager");
-        //}
-
-        
-        
-
-    }
+    
 
     //Make sure that displaying objectives is made after game load
     private void Start()
     {
-
+        
 
         foreach (MemberObjectives familyMember in familyMembers)
         {
            
-            if (familyMember.possibleObjectives is null)
-            {
-                print("possible objectives is null");
-            }
-            foreach (Objective objective in familyMember.possibleObjectives)
-            {
-                if (objective.isActive)
-                {
-                    //activeobjectives.Add(objective);
-                    print("take health " + objective.healthTaken);
-                    familyMember.TakeHealth(objective.healthTaken);
-
-                    //DisplayObjective(objective);
-                }
-            }
+        
 
             objectives.AddRange(familyMember.possibleObjectives);
             print("objectives added to objective manager");
@@ -118,6 +48,8 @@ public class ObjectiveManager : MonoBehaviour
 
 
     }
+
+   
 
     public void HandleObjectiveCompleted(Objective completedObjective)
     {

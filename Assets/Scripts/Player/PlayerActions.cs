@@ -235,7 +235,7 @@ public class PlayerActions : MonoBehaviour
                 if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
                 {
                     PlayerStats.BuyWithMoney(objective.moneyNeeded);
-                    landlord.GetComponent<MemberObjectives>().GiveHealth(objective.healthTaken * 2);
+                    landlord.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
                     landlord.Leave();
                     objectiveManager.HandleObjectiveCompleted(objective);
                     showKeyboardHint = false;
@@ -253,7 +253,7 @@ public class PlayerActions : MonoBehaviour
                     if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
                     {
                         PlayerStats.BuyWithMoney(objective.moneyNeeded);
-                        familyMember.GiveHealth(objective.healthTaken * 2);
+                        familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
                         objectiveManager.HandleObjectiveCompleted(objective);
                         showKeyboardHint = false;
 
@@ -269,7 +269,7 @@ public class PlayerActions : MonoBehaviour
                             print("you gave to" + familyMember.name + " some " + item.name);
                             //print("complete " + objective.title);
                             //objective.Complete();
-                            familyMember.GiveHealth(objective.healthTaken * 2);
+                            familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
                             objectiveManager.HandleObjectiveCompleted(objective);
                             //familyMember.currentObjective = null;
                             showKeyboardHint = false;
