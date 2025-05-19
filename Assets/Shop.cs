@@ -6,21 +6,41 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] GameObject goodsPrefab;
     [SerializeField] int goodsPrice;
+    Transform inventory;
+
+    private void Start()
+    {
+        inventory = FindAnyObjectByType<Inventory>().transform;
+    }
 
     public void BuyGoods()
     {
-        
-
-        if (PlayerStats.BuyWithMoney(goodsPrice))
+        if (!CheckIfItemExists(goodsPrefab.name))
         {
-            Transform inventory = FindAnyObjectByType<Inventory>().transform;
-            GameObject goods = Instantiate(goodsPrefab,inventory);
 
-            //DontDestroyOnLoad(goods);
+            if (PlayerStats.BuyWithMoney(goodsPrice))
+            {
+
+                GameObject goods = Instantiate(goodsPrefab, inventory);
+
+
+                //DontDestroyOnLoad(goods);
+            }
         }
-
         
     }
+
+    public bool CheckIfItemExists(string itemName)
+    {
+        foreach (Transform item in inventory.transform)
+        {
+            if (item.name.Contains(itemName))
+                return true;
+        }
+
+        return false;
+    }
+
 
     public string GetGoodsName()
     {

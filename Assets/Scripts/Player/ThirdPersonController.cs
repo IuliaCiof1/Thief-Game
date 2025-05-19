@@ -11,6 +11,13 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] PlayerActions playerActions;
 
+
+    public Transform currentPlatform;
+    public Vector3 lastPlatformPosition;
+    public Quaternion lastPlatformRotation;
+
+    public bool inTram { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +46,7 @@ public class ThirdPersonController : MonoBehaviour
             animator.gameObject.transform.rotation = Quaternion.Slerp(animator.gameObject.transform.rotation, targetRotation, rotationSpeed);
 
             animator.SetTrigger("RunForward");
+           
         }
         else if (!playerActions.actionInProgress)
         {
@@ -47,7 +55,41 @@ public class ThirdPersonController : MonoBehaviour
         }
 
 
+        Vector3 platformDelta = Vector3.zero;
+        Quaternion rotationDelta = Quaternion.identity;
 
+        if (inTram)
+        {
+            //platformDelta = currentPlatform.position - lastPlatformPosition;
+            //lastPlatformPosition = currentPlatform.position;
+            //transform.rotation = currentPlatform.rotation;
+            //chController.Move(move.normalized * Time.deltaTime * movementSpeed + platformDelta);
+
+            // Calculate delta movement
+            platformDelta = currentPlatform.position - lastPlatformPosition;
+
+            // Calculate delta rotation
+             rotationDelta = currentPlatform.rotation * Quaternion.Inverse(lastPlatformRotation);
+
+            // Rotate player's position around platform pivot
+            Vector3 localOffset = transform.position - currentPlatform.position;
+            Vector3 rotatedOffset = rotationDelta * localOffset;
+            Vector3 newPosition = currentPlatform.position + rotatedOffset;
+
+            // Apply rotation
+            transform.rotation = rotationDelta * transform.rotation;
+
+            // Apply movement
+            Vector3 movement = newPosition - transform.position;
+            chController.Move(movement + move.normalized * movementSpeed * Time.deltaTime + platformDelta);
+
+            // Update for next frame
+            lastPlatformPosition = currentPlatform.position;
+            lastPlatformRotation = currentPlatform.rotation;
+
+        }
+        else
+            chController.Move(move.normalized * Time.deltaTime * movementSpeed);
 
         //Vector3 rotation = new Vector3(0, Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime*180, 0);
         // print(rotation);
@@ -63,7 +105,32 @@ public class ThirdPersonController : MonoBehaviour
         ////Rotate smoothly to this target:
         //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
 
-        chController.Move(move.normalized * Time.deltaTime * movementSpeed);
+        //chController.Move(move.normalized * Time.deltaTime * movementSpeed);
 
     }
+    //private void OnCollisionEnter(Collision hit)
+    //{
+    //    print("collide with sth " + hit.gameObject.name);
+
+    //    // Detect if player is on a moving platform
+    //    if (hit.collider.TryGetComponent(out Tram tram))
+    //    {
+    //        print("collide with tram");
+    //        currentPlatform = hit.collider.transform;
+    //        lastPlatformPosition = hit.collider.transform.position;
+    //    }
+    //}
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+     
+        // Detect if player is on a moving platform
+        if (hit.collider.TryGetComponent(out Tram tram))
+        {
+           
+            currentPlatform = hit.collider.transform;
+            lastPlatformPosition = hit.collider.transform.position;
+        }
+    }
+
 }

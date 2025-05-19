@@ -101,14 +101,14 @@ public class ObjectiveManager : MonoBehaviour
 
             int objectiveIndex = Random.Range(0, inactiveObjectives.Count);
 
-            print("start new objective " + objectiveIndex);
+         
             currentObjectiveIndex = objectiveIndex;
 
             Objective objective = inactiveObjectives[objectiveIndex];
 
            
                 DisplayObjective(objective);
-                print("activate objective");
+             
                 activeobjectives.Add(objective);
                 objective.ActivateObjective();
 

@@ -54,7 +54,7 @@ public class CollisionChecker : MonoBehaviour
         {
             //cameraController.RemoveObjectCollidingWithCamera(other.gameObject);
 
-            cameraController.ResetCameraRotation();
+            cameraController.ResetCamera();
             buildingFound = false;
         }
     }

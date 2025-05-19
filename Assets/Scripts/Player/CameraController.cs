@@ -64,7 +64,7 @@ public class CameraController : MonoBehaviour
         this.targetRotation = targetRotation;
     }
 
-    public void ResetCameraRotation()
+    public void ResetCamera()
     {
         targetRotation = cameraRotation;
         isRotating = true;
@@ -75,6 +75,9 @@ public class CameraController : MonoBehaviour
         vrCamCompFrameTransposer.m_ScreenX = iniScreenX;
         vrCamCompFrameTransposer.m_ScreenY = iniScreenY;
         vrCamCompPerlin.m_AmplitudeGain = iniAplitudeGain;
+        vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
+        vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
+        vrCamCompZoom.m_MinFOV = 3;
     }
 
     public void SetCollisionCamera()
@@ -100,6 +103,24 @@ public class CameraController : MonoBehaviour
         //    objectColliding.SetActive(false);
 
         
+    }
+
+    public void SetTramCamera()
+    {
+        SetCollisionCamera();
+
+        vrCamCompFrameTransposer.m_SoftZoneHeight = 0.22f;
+        vrCamCompFrameTransposer.m_SoftZoneHeight = 0.23f;
+        vrCamCompZoom.m_MinFOV = 29;
+       vrCamCompZoom.enabled = true;
+        //vrCamCompFrameTransposer.m_ScreenX = 0.46f;
+        //vrCamCompFrameTransposer.m_ScreenY = 0.62f;
+        //vrCamCompPerlin.m_AmplitudeGain = 0.09f;
+
+        //foreach (GameObject objectColliding in objectsColliding)
+        //    objectColliding.SetActive(false);
+
+
     }
 
     public void ToggleComponent<T>(bool enable) where T : Behaviour
@@ -137,7 +158,7 @@ public class CameraController : MonoBehaviour
 
         if (other.TryGetComponent<Building>(out Building building))
         {
-            print(other.gameObject.name + " building enter");
+            
             //AddObjectCollidingWithCamera(other.gameObject);
 
 

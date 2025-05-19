@@ -12,22 +12,29 @@ public class RandomEvent
 
 public class RandomEvents: MonoBehaviour
 {
+    [Range(0, 10)]
+    [SerializeField] int eventChance = 8;
+
     [SerializeField] RandomEvent[] randomEvents;
 
 
     [SerializeField] Image posterUI;
 
-    private void Start()
+    private void Awake()
     {
-        int eventIndex = Random.Range(-10, randomEvents.Length);
-
-        if (eventIndex > -1)
+        int isEvent = Random.Range(0, 10);
+        if (isEvent < eventChance)
         {
-            posterUI.transform.parent.gameObject.SetActive(true);
-            posterUI.sprite = randomEvents[eventIndex].poster;
-            randomEvents[eventIndex].eventZone.SetActive(true);
+            int eventIndex = Random.Range(-5, randomEvents.Length);
+
+            if (eventIndex > -1)
+            {
+                posterUI.transform.parent.gameObject.SetActive(true);
+                posterUI.sprite = randomEvents[eventIndex].poster;
+                randomEvents[eventIndex].eventZone.SetActive(true);
+            }
+            //eventZone[eventIndex].SetActive(true);
         }
-        //eventZone[eventIndex].SetActive(true);
     }
 
     private void Update()

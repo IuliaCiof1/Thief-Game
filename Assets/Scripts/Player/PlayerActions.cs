@@ -16,7 +16,7 @@ public class PlayerActions : MonoBehaviour
 
 
     bool isStealing = false;
-
+    bool inTram = false;
 
     ThirdPersonController thirdPersonController;
 
@@ -140,14 +140,14 @@ public class PlayerActions : MonoBehaviour
 
                                 return;
                             }
-                            
+
 
                         }
                     }
                     if (itemFound)
                         break;
 
-                    
+
                 }
                 else if (collider.TryGetComponent(out Shop shop))
                 {
@@ -158,6 +158,52 @@ public class PlayerActions : MonoBehaviour
 
                     break;
                 }
+                else if (collider.TryGetComponent(out TramStation tramStation))
+                {
+                    if (tramStation.IsTramInStation() != null)
+                    {
+                        //if (collider.TryGetComponent(out Tram tram))
+                        //{
+
+                        //    currentTarget = collider.gameObject;
+                        //    showKeyboardHint = true;
+                        //    keyboardHintText.text = "<size=26><sprite=64></size>  Get Off ";
+                        //}
+
+                        if (!inTram)
+                        {
+                            currentTarget = collider.gameObject;
+
+                            showKeyboardHint = true;
+                            keyboardHintText.text = "<size=26><sprite=64></size>  Buy tram ticket for " + tramStation.GetTicketPrice() + "$";
+                        }
+
+
+                    }
+
+
+                    break;
+                }
+                else if (thirdPersonController.inTram && collider.TryGetComponent(out Tram tram))
+                {
+                    print("in tram");   
+                    TramStation tramStation_ = tram.GetTramStation();
+                    if (tramStation_ != null)
+                    {
+                        print("tramstation not null");
+
+                        currentTarget = tramStation_.gameObject;
+
+                        showKeyboardHint = true;
+                        keyboardHintText.text = "<size=26><sprite=64></size>  Get Off";
+
+                    }
+                    else
+                        print("tramstation null");
+
+                    break;
+                }
+
                 else
                     showKeyboardHint = false;
             }
@@ -263,10 +309,9 @@ public class PlayerActions : MonoBehaviour
                     foreach (Transform item in playerInventory.transform)
                     {
 
-                        print(" for objective " + objective.title);
                         if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
                         {
-                            print("you gave to" + familyMember.name + " some " + item.name);
+                           
                             //print("complete " + objective.title);
                             //objective.Complete();
                             familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
@@ -275,9 +320,9 @@ public class PlayerActions : MonoBehaviour
                             showKeyboardHint = false;
 
                             actionInProgress = false;
-                            print(item.name);
+                           
                             Destroy(item.gameObject);
-                            print(item.name + "destroyed");
+                            
                             return;
                         }
                     }
@@ -292,17 +337,37 @@ public class PlayerActions : MonoBehaviour
 
                 shop.BuyGoods();
             }
+            if (currentTarget.TryGetComponent(out TramStation tramStation))
+            {
+                if (tramStation.IsTramInStation())
+                {
+                    if (tramStation.IsTramInStation() != null)
+                    {
+                        if (thirdPersonController.inTram)
+                        {
+                           // inTram = false;
+                            tramStation.GetOff();
+                        }
+                        else
+                        {
+                            //inTram = true;
+                            tramStation.GetTram();
+                        }
+                    }
+                }
+            }
+
+            
 
         }
 
         if (isStealing)
         {
-            print("Player is stealing");
+         
             //print(stealTImer.Value);
             if (stealTImer.Value <= 0)
             {
-                print("Steal timer reached 0");
-                print(npc.name + " starts deadzone");
+               
                
 
                 StartCoroutine(DisableStealUI());
@@ -344,7 +409,7 @@ public class PlayerActions : MonoBehaviour
         yield return new WaitForSeconds(0);
         
         stealCanvas.SetActive(false);
-        cameraController.ResetCameraRotation();
+        cameraController.ResetCamera();
         
         thirdPersonController.enabled = true;
         animator.ResetTrigger("Idle");

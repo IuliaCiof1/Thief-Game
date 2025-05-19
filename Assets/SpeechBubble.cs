@@ -57,7 +57,7 @@ public class SpeechBubble : MonoBehaviour
         text.SetText(textLine);
         text.ForceMeshUpdate();
         Vector2 textSize = text.GetRenderedValues(false);
-        print(textSize);
+        
         bubbleBackround.size = textSize;
         bubbleBackround.transform.localPosition = new Vector3(bubbleBackround.size.x / 2f, 0f);
         Vector2 pading = new Vector2(0.2f, 0.3f);
