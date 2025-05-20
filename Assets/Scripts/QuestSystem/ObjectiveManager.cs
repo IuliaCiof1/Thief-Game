@@ -9,7 +9,7 @@ public class ObjectiveManager : MonoBehaviour
 {
     public List<Objective> objectives;
     public List<Objective> activeobjectives;
-    int activeObjectivesAtOnce;
+     int activeObjectivesAtOnce;
 
    // public List<MemberObjectives> familyMembers;
     //public ObjectiveUI objectiveUI;
@@ -98,7 +98,7 @@ public class ObjectiveManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Quarters" && inactiveObjectives.Any() && activeObjectivesAtOnce<2)
         {
-
+            print("active objectives at once" + activeObjectivesAtOnce);
             int objectiveIndex = Random.Range(0, inactiveObjectives.Count);
 
          
@@ -112,7 +112,7 @@ public class ObjectiveManager : MonoBehaviour
                 activeobjectives.Add(objective);
                 objective.ActivateObjective();
 
-            activeObjectivesAtOnce++;
+           
         }
         
 
@@ -178,6 +178,7 @@ public class ObjectiveManager : MonoBehaviour
         title.text = objective.title;
 
         objective.isActive = true;
+        activeObjectivesAtOnce++;
     }
 
     //void Start()

@@ -128,6 +128,9 @@ protected GameObject inspectionPoint;
                 StartCoroutine(InspectEnvironment());
             }
         }
+        
+        if(isInspecting)
+            animator.SetBool("Inspect", true);
 
         Walk();
         //AvoidPlayer();

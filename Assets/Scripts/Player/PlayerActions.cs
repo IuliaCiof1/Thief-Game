@@ -247,7 +247,8 @@ public class PlayerActions : MonoBehaviour
 
                     //cameraController.RotateCamera(Quaternion.identity);
                     pocketItemsGeneraton.CreateItems(npc);
-                    cameraController.SetStealCamera();
+                   
+                        cameraController.SetStealCamera();
                     //cameraController.ToggleComponent<CinemachineFollowZoom>(true);
                     stealCanvas.SetActive(true);
 
@@ -409,7 +410,10 @@ public class PlayerActions : MonoBehaviour
         yield return new WaitForSeconds(0);
         
         stealCanvas.SetActive(false);
-        cameraController.ResetCamera();
+        if (thirdPersonController.inTram)
+            cameraController.SetTramCamera();
+        else
+            cameraController.ResetCamera();
         
         thirdPersonController.enabled = true;
         animator.ResetTrigger("Idle");
