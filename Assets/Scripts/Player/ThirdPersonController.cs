@@ -18,7 +18,6 @@ public class ThirdPersonController : MonoBehaviour
 
     public bool inTram { get; set; }
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +33,6 @@ public class ThirdPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         float xDir = Input.GetAxis("Horizontal");
         float zDir = Input.GetAxis("Vertical");
 

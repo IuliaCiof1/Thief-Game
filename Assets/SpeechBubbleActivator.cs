@@ -7,37 +7,29 @@ public class SpeechBubbleActivator : MonoBehaviour
     [Range(0, 100)]
     [SerializeField] int showChance;
     [SerializeField] string[] textLines;
-    ThirdPersonController player;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<ThirdPersonController>();
         InvokeRepeating("DetectNPC", 0, 3);
     }
 
     // Update is called once per frame
     void DetectNPC()
     {
-        if (!player.inTram)
-          
+        
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
+        
+        foreach(Collider collider in colliders)
         {
-           
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
-
-            foreach (Collider collider in colliders)
+            if(collider.TryGetComponent<NPC>(out NPC npc))
             {
-                if (collider.TryGetComponent<NPC>(out NPC npc))
-                {
-                    int random = Random.Range(0, 100);
+                int random = Random.Range(0, 100);
 
-                    if (random <= showChance)
-                    {
-                        random = Random.Range(0, textLines.Length);
-                        SpeechBubble speechBubble = npc.GetComponentInChildren<SpeechBubble>();
-                        if (speechBubble != null)
-                            speechBubble.ShowBubble(textLines[random]);
-                    }
+                if (random <= showChance)
+                {
+                    random = Random.Range(0, textLines.Length);
+                    npc.GetComponentInChildren<SpeechBubble>().ShowBubble(textLines[random]);
                 }
             }
         }

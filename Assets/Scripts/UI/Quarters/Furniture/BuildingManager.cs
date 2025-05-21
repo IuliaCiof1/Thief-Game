@@ -131,10 +131,8 @@ public class BuildingManager : MonoBehaviour
 
     public void SelectObject(int index)
     {
-        print("trys to buy furniture");
         if (ownedObjects[index].value <= PlayerStats.money)
         {
-            print("buys furnitre");
             pendingObject = Instantiate(ownedObjects[index].objectPrefab, position, transform.rotation, gameObject.transform);
             pendingObject.transform.Rotate(Vector3.up, rotateAmount + 0.1f);
             initialMaterial = pendingObject.GetComponent<MeshRenderer>().material;

@@ -94,8 +94,8 @@ public class FurnitureUI : MonoBehaviour
             slot.transform.GetChild(0).GetComponent<Image>().sprite = ownedFurniture[i].previewImage;
             slot.transform.GetChild(1).GetComponent<TMP_Text>().text = "- "+ownedFurniture[i].value+"$";
             slot.transform.GetChild(2).GetComponent<TMP_Text>().text = "+ "+ownedFurniture[i].reputation;
+          
 
-            print("add listener");
             int capturedIndex = i; // Capture the current value of i
             slot.GetComponent<Button>().onClick.AddListener(() => buildingManager.SelectObject(capturedIndex));
         }

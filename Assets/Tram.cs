@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Tram : MonoBehaviour
 {
     List<NavMeshAgent> agents;
-    [SerializeField]  Transform agentsParent;
     NavMeshAgent tramAgent;
     bool alreadyStopped;
     [SerializeField] TramStation tramStation;
@@ -18,7 +17,7 @@ public class Tram : MonoBehaviour
     {
         tramAgent = GetComponent<NavMeshAgent>();
 
-        foreach(Transform npc in agentsParent)
+        foreach(Transform npc in transform)
         {
             NavMeshAgent agent;
             if (npc.TryGetComponent<NavMeshAgent>(out agent))
