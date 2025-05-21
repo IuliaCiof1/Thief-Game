@@ -23,13 +23,13 @@ public class MemberObjectives : MonoBehaviour
         possibleObjectives.Clear();
         foreach (Objective obj in objectives)
         {
-            
+            print("member objectives: "+gameObject.name);
 
             if (gameObject.name.ToLower().Contains(obj.member.ToLower()))
             {
                 print("cooldown lowered");
 
-                if (!obj.isActive && obj.leftCooldown <= 0)
+                if (obj.leftCooldown <= 0)
                 {
                     print($"{obj.name} {obj.isActive} {obj.leftCooldown}");
                     possibleObjectives.Add(obj);

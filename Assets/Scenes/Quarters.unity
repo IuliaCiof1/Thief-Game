@@ -1350,21 +1350,6 @@ MonoBehaviour:
   health: 16
   healthUI: {fileID: 1586326490}
   tombStone: {fileID: 1394077232}
---- !u!114 &92721200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92721197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c6e8cefda3c5049bf99d3081f5b839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  possibleObjectives:
-  - {fileID: 11400000, guid: 8eecdb939b9db8849a8d51442da716f3, type: 2}
-  - {fileID: 11400000, guid: 9d5dfefaa8ac33749b5706483b53265f, type: 2}
 --- !u!114 &92721201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12971,6 +12956,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &732313483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7597771215449374928, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+  m_PrefabInstance: {fileID: 4461976567375272185}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &732313484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732313483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c6e8cefda3c5049bf99d3081f5b839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleObjectives:
+  - {fileID: 11400000, guid: 8eecdb939b9db8849a8d51442da716f3, type: 2}
+  - {fileID: 11400000, guid: 9d5dfefaa8ac33749b5706483b53265f, type: 2}
 --- !u!1001 &739323499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41304,15 +41309,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2861477752273885450, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2861477752273885450, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2861477752273885450, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3169314787434064525, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_Enabled
@@ -41341,6 +41346,22 @@ PrefabInstance:
     - target: {fileID: 4633974944112530576, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064007508957230319, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064007508957230319, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064007508957230319, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130648689323183667, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6246159362856643180, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_Enabled
@@ -41393,6 +41414,10 @@ PrefabInstance:
     - target: {fileID: 7053279801159722238, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387947077307106777, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7557963876061762275, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_Name
@@ -41448,21 +41473,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8900676086810960016, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8900676086810960016, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8900676086810960016, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9003179792368277196, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8589327848212379976, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+    - {fileID: 6246159362856643180, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -41492,10 +41519,10 @@ PrefabInstance:
       addedObject: {fileID: 92721201}
     - targetCorrespondingSourceObject: {fileID: 8729680575819001065, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 92721200}
-    - targetCorrespondingSourceObject: {fileID: 8729680575819001065, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 92721199}
+    - targetCorrespondingSourceObject: {fileID: 7597771215449374928, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 732313484}
     - targetCorrespondingSourceObject: {fileID: 476018093046845434, guid: a9fde80a25a2e6e42a81dc43d6f5e22f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4461976567375272192}
@@ -41560,7 +41587,7 @@ MonoBehaviour:
   familyMembers:
   - {fileID: 235676291}
   - {fileID: 1669806811}
-  - {fileID: 92721200}
+  - {fileID: 0}
   - {fileID: 4461976567375272192}
 --- !u!114 &4461976567375272192
 MonoBehaviour:

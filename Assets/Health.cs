@@ -17,8 +17,8 @@ public class Health : MonoBehaviour
     {
        
         healthUI.SetMaxSliderValueUI(maxHealth);
-        
-       
+        health = maxHealth;
+
         //get's the last saved health for this family member. If no health is saved, return maxHealth
         health = PlayerPrefs.GetFloat(gameObject.name, maxHealth);
         print("health" + health);
@@ -31,8 +31,10 @@ public class Health : MonoBehaviour
     {
         //Set health to maxHealth if no data loaded
         if (!healtLoaded)
+        {
+            healthUI.SetMaxSliderValueUI(maxHealth);
             health = maxHealth;
-
+        }
         List <Objective> objectives = GetComponent<MemberObjectives>().possibleObjectives;
 
         foreach (Objective objective in objectives)
@@ -49,19 +51,25 @@ public class Health : MonoBehaviour
 
     }
 
+    //private void Update()
+    //{
+    //    print(health);
+    //}
+
     public void GiveHealth(float amount)
     {
         print("give health " + amount);
+        print("health " + health + gameObject.name);
         health += amount;
         if (health > maxHealth)
             health = maxHealth;
-
+        print("health " + health);
         healthUI.SetSliderValueUI(health);
     }
 
     public void TakeHealth(float amount)
     {
-        
+        print("take health");
         //if the family member dies, make a tombstone appear
         if (health <= 0)
         {

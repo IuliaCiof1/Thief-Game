@@ -111,21 +111,21 @@ public class PlayerActions : MonoBehaviour
 
                     bool itemFound = false;
 
-
+                    print("member objective family");
                     foreach (Objective objective in familyMember.possibleObjectives)
                     {
-                        if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
-                        {
-                            itemFound = true;
+                        //if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                        //{
+                        //    itemFound = true;
 
 
-                            currentTarget = collider.gameObject;
+                        //    currentTarget = collider.gameObject;
 
-                            showKeyboardHint = true;
-                            keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
+                        //    showKeyboardHint = true;
+                        //    keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
 
-                            return;
-                        }
+                        //    return;
+                        //}
                         foreach (Transform item in playerInventory.transform)
                         {
                             if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
@@ -296,23 +296,25 @@ public class PlayerActions : MonoBehaviour
 
                 for (int i = 0; i < familyMember.possibleObjectives.Count; i++)
                 {
-                    Objective objective = familyMember.possibleObjectives[i];
-                    if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
-                    {
-                        PlayerStats.BuyWithMoney(objective.moneyNeeded);
-                        familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
-                        objectiveManager.HandleObjectiveCompleted(objective);
-                        showKeyboardHint = false;
+                    Objective objective = objectiveManager.objectives[i];
+                    //if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                    //{
+                    //    PlayerStats.BuyWithMoney(objective.moneyNeeded);
+                    //    familyMember.GetComponentInParent<Health>().GiveHealth(objective.healthTaken * 2);
+                    //    objectiveManager.HandleObjectiveCompleted(objective);
+                    //    showKeyboardHint = false;
 
-                        actionInProgress = false;
-                        return;
-                    }
+                    //    actionInProgress = false;
+                    //    return;
+                    //}
+                    print("objective "+ objective);
+
                     foreach (Transform item in playerInventory.transform)
                     {
-
+                        print("each item");
                         if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
                         {
-                           
+                            print("objective has item");
                             //print("complete " + objective.title);
                             //objective.Complete();
                             familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
