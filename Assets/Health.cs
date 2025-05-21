@@ -31,7 +31,10 @@ public class Health : MonoBehaviour
     {
         //Set health to maxHealth if no data loaded
         if (!healtLoaded)
+        {
+            healthUI.SetMaxSliderValueUI(maxHealth);
             health = maxHealth;
+        }
 
         List <Objective> objectives = GetComponent<MemberObjectives>().possibleObjectives;
 

@@ -166,6 +166,7 @@ public class ObjectiveManager : MonoBehaviour
 
     private void DisplayObjective(Objective objective)
     {
+        print("display obj " + objective.title + " " + activeObjectivesAtOnce);
         GameObject objectiveUI =  Instantiate(objectivePrefab, objectiveContainer);
         objectiveUI.transform.SetAsFirstSibling();
 

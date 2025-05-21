@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Happiness decreased
   description: Your wife is unhappy. Buy some entertainment so she doesn't get bored
-  isCompleted: 0
-  isActive: 1
+  isCompleted: 1
+  isActive: 0
   itemRequierd: 1
   objectNeeded: {fileID: 4030337183020701375, guid: 8e7d1a97e969f7a478d4891f9f84fe42, type: 3}
   moneyNeeded: 0

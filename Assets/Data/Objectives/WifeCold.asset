@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Weather is cold
   description: Your wife caught a cold. Buy medicine or it might get worse.
-  isCompleted: 0
+  isCompleted: 1
   isActive: 0
   itemRequierd: 1
   objectNeeded: {fileID: 8591146905022585274, guid: 03485018700c50046a9226e1ad1cbb69, type: 3}
