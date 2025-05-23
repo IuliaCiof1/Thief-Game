@@ -19,6 +19,10 @@ public class ThirdPersonController : MonoBehaviour
     public bool inTram { get; set; }
 
 
+
+float gravity = 9.8f;
+private float vSpeed = 0; // current vertical velocity
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +64,17 @@ public class ThirdPersonController : MonoBehaviour
         Vector3 platformDelta = Vector3.zero;
         Quaternion rotationDelta = Quaternion.identity;
 
+        //Gravity
+        Vector3 vel =  move.normalized * movementSpeed;
+        if (chController.isGrounded)
+        {
+            vSpeed = 0; // grounded character has vSpeed = 0...   
+        }
+  
+        // apply gravity acceleration to vertical speed:
+        vSpeed -= gravity * Time.deltaTime;
+        vel.y = vSpeed;
+
         if (inTram)
         {
             //platformDelta = currentPlatform.position - lastPlatformPosition;
@@ -91,7 +106,7 @@ public class ThirdPersonController : MonoBehaviour
 
         }
         else
-            chController.Move(move.normalized * Time.deltaTime * movementSpeed);
+            chController.Move(Time.deltaTime  * vel);
 
         //Vector3 rotation = new Vector3(0, Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime*180, 0);
         // print(rotation);

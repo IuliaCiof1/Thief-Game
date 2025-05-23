@@ -6316,6 +6316,7 @@ MonoBehaviour:
   useFadeOutAtBeggining: 1
   beginLoadTime: 0
   nextSceneName: 
+  message: 
 --- !u!1 &383812273
 GameObject:
   m_ObjectHideFlags: 0
@@ -10427,7 +10428,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582257451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0018341925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10436,9 +10437,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.82400006, y: 0.018518515}
   m_AnchorMax: {x: 0.9932292, y: 0.975}
-  m_AnchoredPosition: {x: 0.4491577, y: 2.2338867}
+  m_AnchoredPosition: {x: 0.4491577, y: -13.687317}
   m_SizeDelta: {x: -25.178223, y: -31.863998}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &582257453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10506,11 +10507,11 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.1
+  m_Elasticity: 0.07
   m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 10
-  m_Viewport: {fileID: 0}
+  m_Viewport: {fileID: 582257452}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
   m_HorizontalScrollbarVisibility: 0
@@ -17319,7 +17320,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965559417}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000057599507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17331,11 +17332,11 @@ RectTransform:
   - {fileID: 1032884253}
   m_Father: {fileID: 582257452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00079107, y: 0.000021127615}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.00079345703, y: -500.99997}
   m_SizeDelta: {x: 299.82, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &965559419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17352,7 +17353,7 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 0
+    m_Bottom: 100
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
@@ -26362,8 +26363,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2abfe2dfd629f3445accc8e73785b123, type: 2}
   - {fileID: 11400000, guid: 4d8b821f251ed43419a9b0aa89327534, type: 2}
   - {fileID: 11400000, guid: 59d7c91d3ecc28c4bbe025e52f87f3e5, type: 2}
-  - {fileID: 11400000, guid: cfae8904e366fb44e89429c95a7ae0bc, type: 2}
-  - {fileID: 11400000, guid: 920b75db00ec9614d9418fe1134aaf56, type: 2}
   - {fileID: 11400000, guid: b4eaa8154872c6a44ac26fdfd7907dbc, type: 2}
   - {fileID: 11400000, guid: a9270727ede45a24f8be7d4803336097, type: 2}
   - {fileID: 11400000, guid: 9203e4d1bc283bf4cace4015c77864ab, type: 2}
@@ -38841,6 +38840,7 @@ MonoBehaviour:
   useFadeOutAtBeggining: 1
   beginLoadTime: 0
   nextSceneName: Main
+  message: Go Outside
 --- !u!4 &2047447318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9083850163126486568, guid: 38132e5b8837f974d9125bc814751ec3, type: 3}

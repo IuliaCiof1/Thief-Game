@@ -37490,6 +37490,7 @@ MonoBehaviour:
   useFadeOutAtBeggining: 1
   beginLoadTime: 2
   nextSceneName: Quarters
+  message: Go Home
 --- !u!65 &922717232
 BoxCollider:
   m_ObjectHideFlags: 0

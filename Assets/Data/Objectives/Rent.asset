@@ -24,4 +24,4 @@ MonoBehaviour:
   id: 005
   member: landlord
   objectiveCooldown: 3
-  leftCooldown: 0
+  leftCooldown: 3

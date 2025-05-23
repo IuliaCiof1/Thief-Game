@@ -52,7 +52,7 @@ public class BuildingManager : MonoBehaviour
 
     void OnLeftClick()
     {
-        if (pendingObject != null)
+        if (CanPlace && pendingObject != null)
         {
 
             PlaceObject();
@@ -99,7 +99,7 @@ public class BuildingManager : MonoBehaviour
             print(pendingObject.GetComponent<MeshRenderer>().material.name);
            
             pendingObject.transform.position = position;
-            pendingObject.GetComponent<MeshCollider>().isTrigger = true;
+            pendingObject.GetComponent<Collider>().isTrigger = true;
             UpdateMaterials();
 
         }
@@ -151,7 +151,7 @@ public class BuildingManager : MonoBehaviour
 
     public void PlaceObject()
     {
-        pendingObject.GetComponent<MeshCollider>().isTrigger = false;
+        pendingObject.GetComponent<Collider>().isTrigger = false;
         pendingObject.GetComponent<MeshRenderer>().material = initialMaterial;
 
         pendingObject = null;
@@ -191,6 +191,8 @@ public class BuildingManager : MonoBehaviour
             print("loaded rotation " + transformData.furnitureRotation[1]);
             furniture.GetComponent<Furniture>().idSO = transformData.id.ToString();
             furniture.SetActive(true);
+
+            furniture.GetComponent<Outline>().enabled = false;
         }
 
         //Load walls paint

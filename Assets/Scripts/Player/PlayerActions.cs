@@ -84,7 +84,7 @@ public class PlayerActions : MonoBehaviour
                     currentTarget = collider.gameObject;
 
                     showKeyboardHint = true;
-                    keyboardHintText.text = "<size=26><sprite=64></size>  Go Home";
+                    keyboardHintText.text = "<size=26><sprite=64></size>  " + homeEntrance.GetMessage();
 
                     break;
                 }

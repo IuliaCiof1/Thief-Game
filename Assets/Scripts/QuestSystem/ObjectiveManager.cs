@@ -77,9 +77,27 @@ public class ObjectiveManager : MonoBehaviour
         //StartNextObjective();
     }
 
+
     IEnumerator UndisplayObjective(GameObject listedObjective, Objective completedObjective)
     {
-        yield return new WaitForSeconds(0.5f);
+        //<S> WITH </S> DOES NOT WORK DINAMICALLY. IT DOES NOT UPDATE THE UI TEXT 
+        //string initialText = description.text; //we need this because <s> modifies the length of the string at run time
+        //string textBeforeIndex = "";
+        //for (int i = 0; i < initialText.Length; i++)
+        //{
+
+        //    //string textBeforeIndex = initialText.Substring(0, i);
+        //    textBeforeIndex += initialText[i];
+        //    string textAfterIndex = initialText.Substring(i);
+
+        //    description.text = "<s>" + textBeforeIndex + "</s>" + textAfterIndex;
+        //    print(description.text);
+
+        //    yield return new WaitForSeconds(0.5f);
+        //}
+
+       
+        yield return new WaitForSeconds(2.5f);
         listedObjective.SetActive(false);
         print(currentObjectiveIndex);
         completedObjective.isCompleted = false;
@@ -118,51 +136,6 @@ public class ObjectiveManager : MonoBehaviour
 
     }
 
-    //public List<Objective> GetActiveObjectivesOf(FamilyMember familyMember)
-    //{
-    //    List<Objective> objectivesOfMember = new List<Objective>();
-
-
-    //}
-
-    //private void StartNextObjective()
-    //{
-    //    //Check if there is a completed objective saved in PlayerPrefs. If it is, start a new random objective
-    //    int lastSavedCurrentObjective = PlayerPrefs.GetInt(currentObjectiveKey,-1);
-    //    print("lastSavedCurrentObjective " + lastSavedCurrentObjective);
-
-
-
-
-    //    if (lastSavedCurrentObjective < 0 && SceneManager.GetActiveScene().buildIndex == 1)
-    //    {
-
-    //        int objectiveIndex = Random.Range(0, objectives.Count);
-
-    //        print("start new objective " + objectiveIndex);
-    //        currentObjectiveIndex = objectiveIndex;
-    //        PlayerPrefs.SetInt(currentObjectiveKey, currentObjectiveIndex);
-    //    }
-    //    else 
-    //        currentObjectiveIndex = lastSavedCurrentObjective;
-
-    //    print(currentObjectiveIndex + " " + lastSavedCurrentObjective);
-
-    //    if (currentObjectiveIndex > -1 && currentObjectiveIndex < objectives.Count)
-    //    {
-
-    //        Objective nextObjective = objectives[currentObjectiveIndex];
-
-    //        DisplayObjective(nextObjective);
-
-    //        nextObjective.ActivateObjective();
-    //        //Debug.Log($"Objective Started: {nextObjective.description}");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("All objectives completed!");
-    //    }
-    //}
 
     private void DisplayObjective(Objective objective)
     {
@@ -182,71 +155,11 @@ public class ObjectiveManager : MonoBehaviour
         activeObjectivesAtOnce++;
     }
 
-    //void Start()
-    //{
-    //    objectives[objectiveIndex].ActivateObjective();
-
-    //    //foreach (var objective in objectives)
-    //    //{
-    //    //    objective.StartObjective();
-    //    //    //objectiveUI.DisplayObjective(objective);
-    //    //}
-    //}
-
-    //    public void CompleteObjective(Objective objective)
-    //    {
-    //        if (!objective.isCompleted)
-    //        {
-    //            objective.DeactivateObjective();
-    //            objectiveIndex++;
-
-    //            //Start the next objective
-    //            objectives[objectiveIndex].ActivateObjective();
-    //            //objectiveUI.RemoveObjective(objective);
-    //        }
-    //    }
-
-
-    //private void OnDisable()
-    //{
-    //    SaveSystem.SaveObjectives(this);
-    //}
-
-
+  
 
     public void LoadData(ObjectiveDataToSave data)
     {
-        //ObjectiveDataToSave data = SaveSystem.LoadData<ObjectiveDataToSave>();
-        //foreach (Objective obj in objectives)
-        //    obj.isActive = false;
-
-
-        //foreach (MemberObjectives familyMember in familyMembers)
-        //{
-
-        //    if (familyMember.possibleObjectives is null)
-        //    {
-        //        print("possible objectives is null");
-        //    }
-        //    //foreach (Objective objective in familyMember.possibleObjectives)
-        //    //{
-        //    //    if (objective.isActive)
-        //    //    {
-        //    //        activeobjectives.Add(objective);
-        //    //        print("take health " + objective.healthTaken);
-        //    //        familyMember.TakeHealth(objective.healthTaken);
-
-        //    //        //DisplayObjective(objective);
-        //    //    }
-        //    //}
-        //    objectives.AddRange(familyMember.possibleObjectives);
-        //    foreach (Objective obj in objectives)
-        //    {
-        //        obj.isActive = false;
-        //    }
-        //    print("objectives added to objective manager");
-        //}
-
+    
 
         foreach (Objective obj in objectives)
         {

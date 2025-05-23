@@ -11,6 +11,9 @@ public class HomeEntrance : MonoBehaviour
     [SerializeField] bool useFadeOutAtBeggining;
     [SerializeField] float beginLoadTime;
     [SerializeField] string nextSceneName;
+    [SerializeField] string message;
+
+
 
     private void OnEnable()
     {
@@ -83,5 +86,8 @@ public class HomeEntrance : MonoBehaviour
         fadeImage.gameObject.SetActive(false);
     }
 
-   
+   public string GetMessage()
+    {
+        return message;
+    }
 }
