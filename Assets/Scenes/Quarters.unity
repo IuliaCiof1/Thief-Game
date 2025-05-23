@@ -6972,6 +6972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 414382772}
+  - component: {fileID: 414382773}
   m_Layer: 0
   m_Name: Camera Setup
   m_TagString: Untagged
@@ -6997,6 +6998,18 @@ Transform:
   - {fileID: 1792237294}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &414382773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414382771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49be99d4d0ba94445af7098cf30869f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &419529625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26368,7 +26381,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9203e4d1bc283bf4cace4015c77864ab, type: 2}
   - {fileID: 11400000, guid: bd930567a5433a44588c6135e5ff50d3, type: 2}
   - {fileID: 11400000, guid: 6fc47f97ccb6f7a47ae0543e406aa9e9, type: 2}
-  - {fileID: 11400000, guid: d869795f75c858d459537add263ab96b, type: 2}
   - {fileID: 11400000, guid: f7d8399c25a1cfb43a231ee95ef0a1cf, type: 2}
   ownedWallMaterials:
   - {fileID: 11400000, guid: 77ab6d87ec660104d80ce7f599edf6ec, type: 2}

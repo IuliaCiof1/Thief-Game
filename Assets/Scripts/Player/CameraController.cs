@@ -30,6 +30,9 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+
+        
+
         cameraRotation = virtualCamera.transform.rotation;
 
         objectsColliding = new List<GameObject>();
@@ -179,4 +182,7 @@ public class CameraController : MonoBehaviour
 
         }
     }
+
+    
+
 }

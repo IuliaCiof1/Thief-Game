@@ -22,6 +22,8 @@ public class FurnitureUI : MonoBehaviour
 
     public PlayerInput playerInput;
 
+    CursorController cursorController;
+
     //void Start()
     //{
 
@@ -36,7 +38,7 @@ public class FurnitureUI : MonoBehaviour
     private void Start()
     {
 
-       
+        cursorController = FindFirstObjectByType<CursorController>();
 
         changeInputMaps = FindObjectOfType<ChangeInputMaps>();
 
@@ -105,6 +107,7 @@ public class FurnitureUI : MonoBehaviour
 
     public void OpenFurnitureUI()
     {
+        cursorController.CursorVisibility(true);
 
         changeInputMaps.ChangeToFurnitureMap();
         uiButtons.SetActive(false);
@@ -121,7 +124,7 @@ public class FurnitureUI : MonoBehaviour
 
     public void CloseFurnitureUI()
     {
-
+        cursorController.CursorVisibility(false);
         //changeInputMaps.ChangeToGameplayMap();
 
         uiButtons.SetActive(true);
