@@ -39,6 +39,9 @@ protected GameObject inspectionPoint;
     [SerializeField]GameObject[] VisitedGoals;
     GameObject lastGoalVisited;
 
+    bool onRoad;
+    [SerializeField] float avoidDistance;
+
     public bool GetIsInspecting()
     {
         
@@ -133,7 +136,60 @@ protected GameObject inspectionPoint;
             animator.SetBool("Inspect", true);
 
         Walk();
+
+        if (onRoad)
+            Avoid();
         //AvoidPlayer();
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("collision");
+        if (other.gameObject.CompareTag("Road"))
+        {
+            onRoad = true;
+            print("collision with road" + gameObject.name);
+            gameObject.layer = LayerMask.NameToLayer("AvoidedByVehicles");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Road"))
+        {
+            onRoad = false;
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+    }
+
+
+    void Avoid()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position + new Vector3(0, 1), transform.forward * avoidDistance, Color.yellow, 1f);
+        //Debug.DrawRay(transform.position + new Vector3(0, 1), transform.forward, Color.yellow, avoidDistance);
+        if (Physics.Raycast(transform.position + new Vector3(0, 1), transform.forward, out hit, avoidDistance))
+        {
+            
+            if (hit.transform.TryGetComponent<VehicleAI>(out VehicleAI vehicleAI))
+            {
+                print(gameObject.name + " hit " + hit.transform.name);
+                agent.isStopped = true;
+                isInspecting = true;
+            }
+            else
+            {
+                isInspecting = false;
+                agent.isStopped = false;
+            }
+        }
+        else
+        {
+            isInspecting = false;
+            agent.isStopped = false;
+        }
     }
 
     void AvoidPlayer()

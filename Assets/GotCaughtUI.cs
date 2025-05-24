@@ -12,6 +12,7 @@ public class GotCaughtUI : MonoBehaviour
     private void OnEnable()
     {
         moneyText.text = $"- {PlayerStats.money}$";
-        reputationText.text = $"- {PlayerStats.reputation}";
+        print("reputation "+ PlayerStats.Instance.GetReputationLoss());
+        reputationText.text = $"- {PlayerStats.Instance.GetReputationLoss()}";
     }
 }

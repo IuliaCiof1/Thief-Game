@@ -35,10 +35,10 @@ public class InventoryUI : MonoBehaviour
                 newSlot = slotContainer.GetChild(item.GetSiblingIndex()) as RectTransform;
 
             newSlot.GetChild(0).GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().sprite;
-            print("rect sizes " + slotContainer.sizeDelta.y + " " + newSlot.sizeDelta.y);
+            
 
         }
-        print("itemindex " + itemIndex);
+       
         //Check for any unused inventory slots
         if (slotContainer.childCount > inventory.transform.childCount)
         {

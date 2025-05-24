@@ -21,6 +21,13 @@ public class VehicleAI : MonoBehaviour
     [SerializeField] int obstacleMinDistance = 6;
     [SerializeField] int obstacleDetectionAngle = 15;
 
+    [SerializeField] float rayOffset;
+    [SerializeField] Vector3 distance;
+
+    public bool obstacleDetected { get; set; }
+
+    Collider[] obstacles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +53,21 @@ public class VehicleAI : MonoBehaviour
        
         if (ObstacleDetected())
         {
-            float normalizedDistance = (Vector3.Distance(hit.transform.position, transform.position) - obstacleMinDistance) / (obstacleMaxDistance - obstacleMinDistance);
+
+            Transform closestObstacle = obstacles[0].transform;
+            float distance = Mathf.Infinity;
+            foreach(Collider obstacle in obstacles)
+            {
+
+
+                if (!obstacle.transform.IsChildOf(gameObject.transform) && Vector3.Distance(obstacle.transform.position, transform.position) < distance)
+                {
+                    //print("avoid " + obstacle.gameObject.name);
+                    closestObstacle = obstacle.transform;
+                }
+            }
+
+            float normalizedDistance = (Vector3.Distance(closestObstacle.position, transform.position) - obstacleMinDistance) / (obstacleMaxDistance - obstacleMinDistance);
             agent.speed = agentMaxSpeed * normalizedDistance;
         }
         else
@@ -60,19 +81,38 @@ public class VehicleAI : MonoBehaviour
 
     bool ObstacleDetected()
     {
-        //Draw rays
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * obstacleMaxDistance, Color.yellow);
-        Debug.DrawRay(transform.position, Quaternion.AngleAxis(obstacleDetectionAngle, transform.up) * transform.forward * obstacleMaxDistance, Color.yellow);
-        Debug.DrawRay(transform.position, Quaternion.AngleAxis(-obstacleDetectionAngle, transform.up) * transform.forward * obstacleMaxDistance, Color.yellow);
+        ////Draw rays
+        //Debug.DrawRay(transform.position + rayOffset, transform.TransformDirection(Vector3.forward) * obstacleMaxDistance, Color.yellow);
+        //Debug.DrawRay(transform.position + rayOffset, Quaternion.AngleAxis(obstacleDetectionAngle, transform.up) * transform.forward * obstacleMaxDistance, Color.yellow);
+        //Debug.DrawRay(transform.position + rayOffset, Quaternion.AngleAxis(-obstacleDetectionAngle, transform.up) * transform.forward * obstacleMaxDistance, Color.yellow);
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, obstacleMaxDistance, avoidMask) //forward ray
-           || Physics.Raycast(transform.position, Quaternion.AngleAxis(obstacleDetectionAngle, transform.up) * transform.forward, out hit, obstacleMaxDistance, avoidMask) //angled rays
-           || Physics.Raycast(transform.position, Quaternion.AngleAxis(-obstacleDetectionAngle, transform.up) * transform.forward, out hit, obstacleMaxDistance, avoidMask))
-        {
+        //if (Physics.Raycast(transform.position+rayOffset, transform.TransformDirection(Vector3.forward), out hit, obstacleMaxDistance, avoidMask) //forward ray
+        //   || Physics.Raycast(transform.position + rayOffset, Quaternion.AngleAxis(obstacleDetectionAngle, transform.up) * transform.forward, out hit, obstacleMaxDistance, avoidMask) //angled rays
+        //   || Physics.Raycast(transform.position + rayOffset, Quaternion.AngleAxis(-obstacleDetectionAngle, transform.up) * transform.forward, out hit, obstacleMaxDistance, avoidMask))
+        //{
+        //    return true;
+        //}
+
+        obstacles = Physics.OverlapBox(transform.position + transform.forward * rayOffset, distance, transform.rotation, avoidMask);
+        
+        //Gizmos.matrix = transform.localToWorldMatrix;
+        //Gizmos.DrawWireCube(Vector3.zero, distance*2);
+
+        if (obstacles.Length > 0)
             return true;
-        }
 
         return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        //Gizmos.matrix = transform.localToWorldMatrix;
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(transform.position + transform.forward * rayOffset, transform.rotation, Vector3.one);
+        Gizmos.matrix = rotationMatrix;
+
+        Gizmos.DrawWireCube(Vector3.zero, distance * 2);
+        //Gizmos.DrawWireCube(transform.position + rayOffset, distance*2);
     }
 
     void SetNewDestination()

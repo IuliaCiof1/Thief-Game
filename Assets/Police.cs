@@ -17,9 +17,16 @@ public class Police : MonoBehaviour
 
     Vector3 initialPolicePosition;
 
+     Animator animator;
+
+    CursorController cursorController;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
+        cursorController = FindFirstObjectByType<CursorController>();
+
         initialPolicePosition = transform.position;
         ResetPolice();
     }
@@ -44,9 +51,13 @@ public class Police : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
 
-            if (Vector3.Distance(agent.transform.position, player.transform.position) < 0.5f)
+            if (Vector3.Distance(agent.transform.position, player.transform.position) < 1.5f)
             {
-                player.enabled = false;
+                agent.isStopped = true;
+                animator.SetBool("Inspect", true);
+                //player.enabled = false;
+                player.stopMovement = true;
+                cursorController.CursorVisibility(true);
                 gotCaughtUI.SetActive(true);
             }
         }
@@ -57,6 +68,8 @@ public class Police : MonoBehaviour
         //Get the closest goal location to the player
         float shortestDistance = Mathf.Infinity;
         float thisDistance;
+
+        animator.SetBool("Inspect", false);
 
         GameObject closestGoal = null;
 
@@ -93,9 +106,11 @@ public class Police : MonoBehaviour
         print("fines paid");
         ResetPolice();
         PlayerStats.RemoveMoney(PlayerStats.money);
-        PlayerStats.RemoveReputation(20);
+        PlayerStats.Instance.RemoveReputation();
 
         gotCaughtUI.SetActive(false);
-        player.enabled = true;
+        //player.enabled = true;
+        player.stopMovement = false;
+        cursorController.CursorVisibility(false);
     }
 }

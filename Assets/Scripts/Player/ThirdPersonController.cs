@@ -20,8 +20,10 @@ public class ThirdPersonController : MonoBehaviour
 
 
 
-float gravity = 9.8f;
-private float vSpeed = 0; // current vertical velocity
+    float gravity = 9.8f;
+    private float vSpeed = 0; // current vertical velocity
+
+    public bool stopMovement { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +40,23 @@ private float vSpeed = 0; // current vertical velocity
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 velocity;
+
         float xDir = Input.GetAxis("Horizontal");
         float zDir = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(xDir, 0, zDir);
 
-        if (move != Vector3.zero)
+        //Gravity
+        velocity = move.normalized * movementSpeed;
+
+        if (stopMovement)
+        {
+            velocity = Vector2.zero;
+           // animator.SetTrigger("Idle");
+        }
+
+        if (velocity != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move.normalized);
 
@@ -52,7 +64,7 @@ private float vSpeed = 0; // current vertical velocity
             animator.gameObject.transform.rotation = Quaternion.Slerp(animator.gameObject.transform.rotation, targetRotation, rotationSpeed);
 
             animator.SetTrigger("RunForward");
-           
+
         }
         else if (!playerActions.actionInProgress)
         {
@@ -64,16 +76,21 @@ private float vSpeed = 0; // current vertical velocity
         Vector3 platformDelta = Vector3.zero;
         Quaternion rotationDelta = Quaternion.identity;
 
-        //Gravity
-        Vector3 vel =  move.normalized * movementSpeed;
+       
         if (chController.isGrounded)
         {
             vSpeed = 0; // grounded character has vSpeed = 0...   
         }
-  
+
         // apply gravity acceleration to vertical speed:
         vSpeed -= gravity * Time.deltaTime;
-        vel.y = vSpeed;
+        velocity.y = vSpeed;
+
+        //if (stopMovement)
+        //{
+        //    velocity = Vector2.zero;
+        //    animator.SetTrigger("Idle");
+        //}
 
         if (inTram)
         {
@@ -86,7 +103,7 @@ private float vSpeed = 0; // current vertical velocity
             platformDelta = currentPlatform.position - lastPlatformPosition;
 
             // Calculate delta rotation
-             rotationDelta = currentPlatform.rotation * Quaternion.Inverse(lastPlatformRotation);
+            rotationDelta = currentPlatform.rotation * Quaternion.Inverse(lastPlatformRotation);
 
             // Rotate player's position around platform pivot
             Vector3 localOffset = transform.position - currentPlatform.position;
@@ -98,7 +115,8 @@ private float vSpeed = 0; // current vertical velocity
 
             // Apply movement
             Vector3 movement = newPosition - transform.position;
-            chController.Move(movement + move.normalized * movementSpeed * Time.deltaTime + platformDelta);
+            //chController.Move(movement + move.normalized * movementSpeed * Time.deltaTime + platformDelta);
+            chController.Move(movement + velocity * Time.deltaTime + platformDelta);
 
             // Update for next frame
             lastPlatformPosition = currentPlatform.position;
@@ -106,7 +124,7 @@ private float vSpeed = 0; // current vertical velocity
 
         }
         else
-            chController.Move(Time.deltaTime  * vel);
+            chController.Move(Time.deltaTime * velocity);
 
         //Vector3 rotation = new Vector3(0, Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime*180, 0);
         // print(rotation);
@@ -124,7 +142,12 @@ private float vSpeed = 0; // current vertical velocity
 
         //chController.Move(move.normalized * Time.deltaTime * movementSpeed);
 
+        
+
     }
+
+   
+
     //private void OnCollisionEnter(Collision hit)
     //{
     //    print("collide with sth " + hit.gameObject.name);

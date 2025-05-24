@@ -340,12 +340,16 @@ public class PlayerActions : MonoBehaviour
             }
             if (currentTarget.TryGetComponent(out TramStation tramStation))
             {
+                print("current target tram station");
                 if (tramStation.IsTramInStation())
                 {
+                    print("Tram is indexer station");
                     if (tramStation.IsTramInStation() != null)
                     {
+                        print("in station");
                         if (thirdPersonController.inTram)
                         {
+                            print("get off");
                            // inTram = false;
                             tramStation.GetOff();
                         }

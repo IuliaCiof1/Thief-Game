@@ -10,6 +10,17 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] int maxReputation;
     public static int maxReputation_{ get; private set; }
+    [SerializeField] int reputationLoss = 20;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public int GetReputationLoss()
+    {
+        return reputationLoss;
+    }
 
     public static int GetMaxReputation()
     {
@@ -51,9 +62,9 @@ public class PlayerStats : MonoBehaviour
     }
 
     //Return true if player has enough money or false otherwise
-    public static void RemoveReputation(int amount)
+    public void RemoveReputation()
     {
-        reputation -= amount;
+        reputation -= reputationLoss;
 
        
     }

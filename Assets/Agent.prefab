@@ -148,6 +148,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 4
 --- !u!195 &6752842579585510962
 NavMeshAgent:
   m_ObjectHideFlags: 0

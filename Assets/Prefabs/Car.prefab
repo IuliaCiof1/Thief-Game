@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7709847613304623435}
   - component: {fileID: 393154264184127819}
   - component: {fileID: 9173671914046654635}
+  - component: {fileID: 4493120322543089789}
   m_Layer: 15
   m_Name: Car
   m_TagString: Untagged
@@ -54,6 +55,11 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
+  obstacleMaxDistance: 10
+  obstacleMinDistance: 6
+  obstacleDetectionAngle: 15
+  rayOffset: 1.72
+  distance: {x: 0.8, y: 0.7, z: 1.09}
 --- !u!195 &9173671914046654635
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -76,6 +82,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
+--- !u!65 &4493120322543089789
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326880568070770988}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.467708, y: 2.2582545, z: 3.895342}
+  m_Center: {x: -0.0049756155, y: 1.0470787, z: -1.57}
 --- !u!1001 &8864796252776836700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,6 +211,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8983453067255567206, guid: e230bdb5805d4fb4d82d6df00f834400, type: 3}
+      propertyPath: m_Size.y
+      value: 2.2582545
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983453067255567206, guid: e230bdb5805d4fb4d82d6df00f834400, type: 3}
+      propertyPath: m_Size.z
+      value: 3.895342
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983453067255567206, guid: e230bdb5805d4fb4d82d6df00f834400, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983453067255567206, guid: e230bdb5805d4fb4d82d6df00f834400, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0049756155
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983453067255567206, guid: e230bdb5805d4fb4d82d6df00f834400, type: 3}
+      propertyPath: m_Center.y
+      value: 1.0470787
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983453067255567206, guid: e230bdb5805d4fb4d82d6df00f834400, type: 3}
+      propertyPath: m_Center.z
+      value: -0.14619067
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -219,7 +270,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1.288528, z: 2.930869}
   m_Center: {x: -3.811311e-15, y: 0.7880063, z: -0.07}

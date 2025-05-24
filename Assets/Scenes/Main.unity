@@ -177,6 +177,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -294,6 +298,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &3651467
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +994,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -1102,6 +1111,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &16467149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,6 +1205,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -1311,6 +1325,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &22101459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,6 +1590,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -1688,6 +1707,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &24948778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2209,6 +2229,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -2322,6 +2346,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &42269141 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9621cb9e9a80d254ea832fb58bce8d12, type: 3}
@@ -2603,6 +2628,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -2720,6 +2749,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &61590374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,6 +3099,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -3182,6 +3216,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &72873774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3344,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -3422,6 +3461,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &75533860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,6 +3650,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -3723,6 +3767,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &83149959
 GameObject:
   m_ObjectHideFlags: 0
@@ -4691,6 +4736,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -4804,6 +4853,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &111559915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 246bcb60ae5be3744a4ea86bab749f44, type: 3}
@@ -5378,7 +5428,7 @@ GameObject:
   - component: {fileID: 130800566}
   - component: {fileID: 130800567}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Road_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5442,6 +5492,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -5558,6 +5612,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &134089449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6799,6 +6854,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -6912,6 +6971,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &168579785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f6674c1362ba984468bc1e71a2323d66, type: 3}
@@ -6931,6 +6991,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -7051,6 +7115,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &172744266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7061,6 +7126,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -7177,6 +7246,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &173566435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8179,9 +8249,11 @@ GameObject:
   m_Component:
   - component: {fileID: 191403502}
   - component: {fileID: 191403503}
+  - component: {fileID: 191403504}
+  - component: {fileID: 191403505}
   m_Layer: 0
   m_Name: Road
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8253,7 +8325,55 @@ MonoBehaviour:
   m_GenerateLinks: 0
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
-  m_AffectedAgents: f2652fae00000000
+  m_AffectedAgents: 00000000
+--- !u!65 &191403504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191403501}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 115.51177, y: 0.72546387, z: 113.799805}
+  m_Center: {x: 37.15916, y: -0.08, z: -37.078766}
+--- !u!54 &191403505
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191403501}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &192862222
 GameObject:
   m_ObjectHideFlags: 0
@@ -8608,6 +8728,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -8721,6 +8845,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &197025284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 246bcb60ae5be3744a4ea86bab749f44, type: 3}
@@ -8965,6 +9090,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -9078,6 +9207,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &205171164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7025139636090063294, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -9632,6 +9762,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -9745,6 +9879,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &222536900
 GameObject:
   m_ObjectHideFlags: 0
@@ -9902,6 +10037,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -10019,6 +10158,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &224810831
 GameObject:
   m_ObjectHideFlags: 0
@@ -10048,7 +10188,7 @@ Transform:
   m_GameObject: {fileID: 224810831}
   serializedVersion: 2
   m_LocalRotation: {x: 0.49059954, y: -0, z: -0, w: 0.87138516}
-  m_LocalPosition: {x: 10.2, y: 9.509245, z: -10.06058}
+  m_LocalPosition: {x: -5.82, y: 9.509246, z: -10.38058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10540,6 +10680,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -10653,6 +10797,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &240983946
 GameObject:
   m_ObjectHideFlags: 0
@@ -10858,6 +11003,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -10975,6 +11124,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!224 &247425124 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 854129618100304165, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
@@ -11318,7 +11468,7 @@ Transform:
   m_GameObject: {fileID: 251683044}
   serializedVersion: 2
   m_LocalRotation: {x: 0.49059954, y: -0, z: -0, w: 0.87138516}
-  m_LocalPosition: {x: 10.2, y: 9.509245, z: -10.06058}
+  m_LocalPosition: {x: -5.82, y: 9.509246, z: -10.38058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11532,6 +11682,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -11645,6 +11799,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &259866755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6fa84eac5cd79414d88798e1272d1e4a, type: 3}
@@ -12025,6 +12180,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -12138,6 +12297,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &268896532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12148,6 +12308,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -12264,6 +12428,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &271049290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12433,6 +12598,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -12546,6 +12715,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &272884378
 GameObject:
   m_ObjectHideFlags: 0
@@ -13398,6 +13568,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -13511,6 +13685,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &291854369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14784,6 +14959,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -14897,6 +15076,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &318861885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14907,6 +15087,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -15023,6 +15207,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &319215038
 GameObject:
   m_ObjectHideFlags: 0
@@ -15356,6 +15541,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -15473,6 +15662,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &321739825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16090,6 +16280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxReputation: 0
+  reputationLoss: 20
 --- !u!114 &343120655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18256,6 +18447,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -18369,6 +18564,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &411614576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18681,6 +18877,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -18798,6 +18998,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &415824392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18808,6 +19009,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -18924,6 +19129,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &416606789
 GameObject:
   m_ObjectHideFlags: 0
@@ -19063,6 +19269,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -19176,6 +19386,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &421175462
 GameObject:
   m_ObjectHideFlags: 0
@@ -20336,6 +20547,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -20449,6 +20664,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &466441810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20935,6 +21151,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -21052,6 +21272,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &477773541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21484,6 +21705,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -21597,6 +21822,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &489799918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21906,6 +22132,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -22019,6 +22249,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &496321109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22837,6 +23068,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -22958,6 +23193,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &519682723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22968,6 +23204,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -23084,6 +23324,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &520672622
 GameObject:
   m_ObjectHideFlags: 0
@@ -24006,6 +24247,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -24119,6 +24364,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &533452845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24129,6 +24375,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -24257,6 +24507,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &535896451
 GameObject:
   m_ObjectHideFlags: 0
@@ -24373,6 +24624,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -24486,6 +24741,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &536475857
 GameObject:
   m_ObjectHideFlags: 0
@@ -25140,6 +25396,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -25297,6 +25557,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &558497260
 GameObject:
   m_ObjectHideFlags: 0
@@ -26591,6 +26852,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -26704,6 +26969,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &600889769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26943,6 +27209,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -27056,6 +27326,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &605852445
 GameObject:
   m_ObjectHideFlags: 0
@@ -27903,6 +28174,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -28016,6 +28291,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &638637474
 GameObject:
   m_ObjectHideFlags: 0
@@ -28328,6 +28604,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -28441,6 +28721,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &642986851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28821,6 +29102,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -28934,6 +29219,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &669043958
 GameObject:
   m_ObjectHideFlags: 0
@@ -29714,6 +30000,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -29827,6 +30117,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &699223549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30007,6 +30298,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -30120,6 +30415,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &703726483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30130,6 +30426,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -30246,6 +30546,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &705282346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30256,6 +30557,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -30372,6 +30677,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -30965,6 +31271,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -31076,6 +31386,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!114 &728225072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31096,6 +31407,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 0
 --- !u!1 &728717648
 GameObject:
   m_ObjectHideFlags: 0
@@ -31183,6 +31495,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -31299,6 +31615,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &732231577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2077276264247555884, guid: 5426e7f86b5b74ec0a38dd992399a5b0, type: 3}
@@ -31584,6 +31901,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -31701,6 +32022,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &737455687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31858,6 +32180,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -31971,6 +32297,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &744357421
 GameObject:
   m_ObjectHideFlags: 0
@@ -33958,6 +34285,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -34071,6 +34402,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &801056013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34241,6 +34573,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -34354,6 +34690,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &808566110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34907,6 +35244,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -35020,6 +35361,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &816034516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37421,6 +37763,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -37534,6 +37880,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &881003273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37544,6 +37891,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -37660,6 +38011,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &885460389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38034,6 +38386,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -38151,6 +38507,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &893305388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38235,6 +38592,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -38351,6 +38712,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &895591224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39068,6 +39430,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -39181,6 +39547,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &921507774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4370792754970456, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
@@ -39196,6 +39563,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -39316,6 +39687,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &922717226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39562,6 +39934,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -39679,6 +40055,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &932823100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 2509cc5763ca17f4598bf61fd585a93e, type: 3}
@@ -41664,6 +42041,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -41777,6 +42158,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &975869113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1d53359c70324d14c989d7058b50ec6b, type: 3}
@@ -43397,6 +43779,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -43510,6 +43896,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1031780892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45069,6 +45456,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -45182,6 +45573,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &1083830000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2381535635912440035, guid: ebbdd35fb5dc6423d9d2886143119140, type: 3}
@@ -45683,6 +46075,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -45796,6 +46192,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1104543049
 GameObject:
   m_ObjectHideFlags: 0
@@ -50691,6 +51088,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -50804,6 +51205,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1224245253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51966,6 +52368,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -52083,6 +52489,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1250976508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52752,6 +53159,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -52869,6 +53280,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1266774161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53138,6 +53550,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -53251,6 +53667,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1277581860
 GameObject:
   m_ObjectHideFlags: 0
@@ -54866,6 +55283,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -54979,6 +55400,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1321082778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55063,6 +55485,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -55179,6 +55605,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1325722675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56159,6 +56586,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 349168495}
     m_Modifications:
+    - target: {fileID: 211168923674157029, guid: 08d82fdbc6e4c4edf856d7490d6a66f6, type: 3}
+      propertyPath: m_Size.x
+      value: 11.666152
+      objectReference: {fileID: 0}
+    - target: {fileID: 211168923674157029, guid: 08d82fdbc6e4c4edf856d7490d6a66f6, type: 3}
+      propertyPath: m_Size.z
+      value: 9.812288
+      objectReference: {fileID: 0}
+    - target: {fileID: 211168923674157029, guid: 08d82fdbc6e4c4edf856d7490d6a66f6, type: 3}
+      propertyPath: m_Center.x
+      value: 0.03829746
+      objectReference: {fileID: 0}
+    - target: {fileID: 211168923674157029, guid: 08d82fdbc6e4c4edf856d7490d6a66f6, type: 3}
+      propertyPath: m_Center.z
+      value: -0.61869967
+      objectReference: {fileID: 0}
     - target: {fileID: 471507599072125308, guid: 08d82fdbc6e4c4edf856d7490d6a66f6, type: 3}
       propertyPath: m_Name
       value: commercial-building-office
@@ -56567,6 +57010,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -56680,6 +57127,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &1356390918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6141942053271025379, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -58162,6 +58610,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -58275,6 +58727,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1380865018
 GameObject:
   m_ObjectHideFlags: 0
@@ -58549,6 +59002,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -58662,6 +59119,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1387933702
 GameObject:
   m_ObjectHideFlags: 0
@@ -59394,6 +59852,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -59507,6 +59969,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1418895920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61380,6 +61843,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -61493,6 +61960,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1464225426
 GameObject:
   m_ObjectHideFlags: 0
@@ -61731,6 +62199,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -61844,6 +62316,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1473481696
 GameObject:
   m_ObjectHideFlags: 0
@@ -63667,6 +64140,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -63780,6 +64257,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1521396693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7d8f57ee17aa0c47934989334bd93fe, type: 3}
@@ -63950,6 +64428,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -64067,6 +64549,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1523300561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65104,6 +65587,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -65217,6 +65704,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1545649747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65867,6 +66355,26 @@ PrefabInstance:
       propertyPath: goalLocations.Array.data[3]
       value: 
       objectReference: {fileID: 520672622}
+    - target: {fileID: 5050324786826155397, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518610870547417422, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: m_Size.x
+      value: 9.410898
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518610870547417422, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518610870547417422, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: m_Center.x
+      value: 0.12992755
+      objectReference: {fileID: 0}
+    - target: {fileID: 6518610870547417422, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: m_Center.z
+      value: 1.8500005
+      objectReference: {fileID: 0}
     - target: {fileID: 7107650084828753072, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
       propertyPath: pocket
       value: 
@@ -65915,6 +66423,10 @@ PrefabInstance:
       propertyPath: goalLocations.Array.data[3]
       value: 
       objectReference: {fileID: 520672622}
+    - target: {fileID: 8210726757868917779, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8570603281427095830, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
       propertyPath: lane
       value: 
@@ -66095,6 +66607,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -66208,6 +66724,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1564220804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66292,6 +66809,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -66408,6 +66929,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1567326257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67857,6 +68379,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -67970,6 +68496,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1624872386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68761,6 +69288,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -68874,6 +69405,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1645822735
 GameObject:
   m_ObjectHideFlags: 0
@@ -70600,6 +71132,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -70713,6 +71249,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1703323349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71185,6 +71722,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -71298,6 +71839,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1715649599
 GameObject:
   m_ObjectHideFlags: 0
@@ -71563,6 +72105,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -71680,6 +72226,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1720725270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71690,6 +72237,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -71806,6 +72357,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1723053034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72482,6 +73034,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -72595,6 +73151,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1751781030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73688,6 +74245,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -73801,6 +74362,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1783585155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73811,6 +74373,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -73927,6 +74493,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1788113480
 GameObject:
   m_ObjectHideFlags: 0
@@ -74861,6 +75428,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -74974,6 +75545,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1808606401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75070,6 +75642,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -75190,6 +75766,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1816457876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75409,6 +75986,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -75522,6 +76103,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!4 &1827142012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 983044977561993578, guid: 9d4e6742bea7e4995b4059e8cfa22a21, type: 3}
@@ -75846,6 +76428,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -75963,6 +76549,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1831093172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76621,6 +77208,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -76734,6 +77325,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1844783088
 GameObject:
   m_ObjectHideFlags: 0
@@ -76832,6 +77424,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -76952,6 +77548,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1854269670
 GameObject:
   m_ObjectHideFlags: 0
@@ -78055,6 +78652,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -78168,6 +78769,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1879296213
 GameObject:
   m_ObjectHideFlags: 0
@@ -79541,6 +80143,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -79654,6 +80260,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1924772729
 GameObject:
   m_ObjectHideFlags: 0
@@ -79983,6 +80590,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -80096,6 +80707,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1929447220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80331,6 +80943,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -80444,6 +81060,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1949561327
 GameObject:
   m_ObjectHideFlags: 0
@@ -80646,6 +81263,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -80759,6 +81380,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1959195110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80942,7 +81564,7 @@ Transform:
   m_GameObject: {fileID: 1963058895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.2, y: 0.1, z: -5.76}
+  m_LocalPosition: {x: -5.82, y: 0.1, z: -6.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81107,6 +81729,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -81220,6 +81846,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &1973238595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81675,6 +82302,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -81788,6 +82419,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &1992680173
 GameObject:
   m_ObjectHideFlags: 0
@@ -84383,6 +85015,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -84496,6 +85132,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &2079031269
 GameObject:
   m_ObjectHideFlags: 0
@@ -84783,6 +85420,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -84896,6 +85537,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &2082602106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84906,6 +85548,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -85022,6 +85668,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &2091986364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85032,6 +85679,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -85148,6 +85799,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &2093605100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85474,6 +86126,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -85587,6 +86243,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &2101595949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86348,6 +87005,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -86461,6 +87122,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &2119550453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86985,6 +87647,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -87098,6 +87764,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1001 &2130940003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87182,6 +87849,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -87298,6 +87969,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &2135298633
 GameObject:
   m_ObjectHideFlags: 0
@@ -87756,6 +88428,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
+      propertyPath: avoidDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498438757266198404, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
       propertyPath: goalLocations.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -87869,6 +88545,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 2
 --- !u!1 &2146783089
 GameObject:
   m_ObjectHideFlags: 0
@@ -88426,6 +89103,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tram
       objectReference: {fileID: 0}
+    - target: {fileID: 2536764864010466496, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7870088602884956631, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.53
@@ -88466,14 +89147,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8210726757868917779, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8570603281427095830, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
       propertyPath: lane
       value: 
       objectReference: {fileID: 1298255168}
+    - target: {fileID: 8570603281427095830, guid: 6cb6ae0caeb8ea6488029ca7f0d771de, type: 3}
+      propertyPath: rayOffset.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -70,6 +70,8 @@ GameObject:
   - component: {fileID: 8210726757868917779}
   - component: {fileID: 6626846219185510197}
   - component: {fileID: 1322400700959514675}
+  - component: {fileID: 5799250743297247760}
+  - component: {fileID: 8167787060776774988}
   m_Layer: 15
   m_Name: Tram
   m_TagString: Untagged
@@ -139,6 +141,8 @@ MonoBehaviour:
   obstacleMaxDistance: 10
   obstacleMinDistance: 6
   obstacleDetectionAngle: 15
+  rayOffset: 4.68
+  distance: {x: 1.91, y: 1.66, z: 1.74}
 --- !u!65 &8210726757868917779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,8 +162,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1481237, y: 0.2374773, z: 6.517376}
-  m_Center: {x: -0.008508205, y: 0.34095156, z: -2.1003284}
+  m_Size: {x: 3.1481237, y: 0.2374773, z: 8.160228}
+  m_Center: {x: -0.008508205, y: 0.34095156, z: -1.2789025}
 --- !u!114 &6626846219185510197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +206,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5799250743297247760
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536764864010466496}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 65271
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.20787144, y: 2.7346725, z: 9.731007}
+  m_Center: {x: 1.76, y: 1.5895491, z: -2.1332111}
+--- !u!65 &8167787060776774988
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536764864010466496}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 65271
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.20787144, y: 2.7346725, z: 9.731007}
+  m_Center: {x: -1.73, y: 1.5895491, z: -2.1332111}
 --- !u!1001 &1068383379944357578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -355,6 +401,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 0
 --- !u!4 &5666767555418299769 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4645408140327199667, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -513,6 +560,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 0
 --- !u!4 &8247118533743749721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4645408140327199667, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -671,6 +719,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 0
 --- !u!4 &8941712628952665049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4645408140327199667, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -821,6 +870,7 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 0
 --- !u!4 &8939155959924176616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4645408140327199667, guid: 2fda8524571f9274ca86b8f3f57aabf1, type: 3}
@@ -1066,10 +1116,7 @@ PrefabInstance:
       addedObject: {fileID: 7877791675643139755}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1590068c02d5a4c46a4674e9a744a7bb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5050324786826155397}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1590068c02d5a4c46a4674e9a744a7bb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6518610870547417422}
+      addedObject: {fileID: 2219379340616314755}
   m_SourcePrefab: {fileID: 100100000, guid: 1590068c02d5a4c46a4674e9a744a7bb, type: 3}
 --- !u!4 &4749457145223120879 stripped
 Transform:
@@ -1123,7 +1170,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.15110753, y: 2.7346725, z: 3.796264}
   m_Center: {x: -3.41, y: 1.5895491, z: 0.05}
---- !u!65 &5050324786826155397
+--- !u!65 &2219379340616314755
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1136,35 +1183,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 65271
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 9.427599, y: 2.7346725, z: 0.18594524}
-  m_Center: {x: 0.121576525, y: 1.5895491, z: -1.7551652}
---- !u!65 &6518610870547417422
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5378044183003487573}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
     m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 65271
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.427599, y: 2.7346725, z: 0.18594524}
-  m_Center: {x: 0.121576525, y: 1.5895491, z: 1.85}
+  m_Size: {x: 1.3871396, y: 3.8134353, z: 3.5056076}
+  m_Center: {x: -4.4399176, y: 1.4067177, z: -0.03340721}
 --- !u!1 &7058111748854482368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6372386368715102780, guid: 1590068c02d5a4c46a4674e9a744a7bb, type: 3}
@@ -1328,3 +1354,4 @@ MonoBehaviour:
   initialInspectionPoints: []
   ItemsInPocket: []
   VisitedGoals: []
+  avoidDistance: 0

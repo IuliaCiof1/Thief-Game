@@ -7,12 +7,15 @@ public class NPC : AIControl
 {
     CrowdManager crowdManager_;
     DeadZone deadzone;
+
+    //bool onRoad;
+
     //// Start is called before the first frame update
     void Start()
     {
         base.Start();
         deadzone = FindObjectOfType<DeadZone>();
-
+        gameObject.layer = LayerMask.NameToLayer("Default");
         //crowdManager_ = FindAnyObjectByType<CrowdManager>();
         //if (crowdManager_ is null)
         //{
@@ -21,6 +24,46 @@ public class NPC : AIControl
         //crowdManager = crowdManager_;
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    print("collision");
+    //    if (other.gameObject.CompareTag("Road"))
+    //    {
+    //        onRoad = true;
+    //        print("collision with road" + gameObject.name);
+    //        gameObject.layer = LayerMask.NameToLayer("AvoidedByVehicles");
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Road"))
+    //    {
+    //        onRoad = false;
+    //        gameObject.layer = LayerMask.NameToLayer("Default");
+    //    }
+    //}
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+
+    //    if (collision.gameObject.CompareTag("Road"))
+    //    {
+    //        print("collsision with road");
+    //        gameObject.layer = LayerMask.NameToLayer("AvoidedByVehicles");
+    //    }
+    //}
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Road"))
+    //    {
+    //        gameObject.layer = LayerMask.NameToLayer("Default");
+    //    }
+    //}
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +71,8 @@ public class NPC : AIControl
 
         //isInspecting = GetIsInspecting();
       
+        
+
         if (deadzoneStarted)
         {
             
@@ -43,6 +88,9 @@ public class NPC : AIControl
                 deadzone.transform.localScale += Vector3.one * Time.deltaTime * crowdManager.GrowingSpeed;
             }
         }
+
+
+
     }
 
 
