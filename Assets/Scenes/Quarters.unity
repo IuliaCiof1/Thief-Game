@@ -12451,7 +12451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 561575126724938838, guid: e8a5e4d0c2424434cb9b4ba39b40a954, type: 3}
       propertyPath: m_text
-      value: Paint (I)
+      value: Paint (Y)
       objectReference: {fileID: 0}
     - target: {fileID: 561575126724938838, guid: e8a5e4d0c2424434cb9b4ba39b40a954, type: 3}
       propertyPath: m_fontSize
@@ -27172,6 +27172,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9116145077002568236, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
+      propertyPath: slotContainer
+      value: 
+      objectReference: {fileID: 1456815295}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -27191,6 +27195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1456815295 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3366173098238654834, guid: 1aca850ea842fad4d905b5951863f737, type: 3}
+  m_PrefabInstance: {fileID: 1456815293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1465435394
 GameObject:
   m_ObjectHideFlags: 0
