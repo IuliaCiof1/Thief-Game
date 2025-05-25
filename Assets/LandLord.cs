@@ -14,6 +14,10 @@ public class LandLord:AIControl
 
     bool enteredBuilding;
 
+    [SerializeField] AudioClip[] sounds;
+    [Range(0f,1f)]
+    [SerializeField] float volume;
+
     //NavMeshAgent agent;
     //bool isInspecting;
     //Animator animator;
@@ -44,6 +48,8 @@ public class LandLord:AIControl
             agent.transform.position = enterLocation.transform.position;
             agent.SetDestination(waitLocation.transform.position);
             ResetAgentSpeed();
+
+            
         }
     }
 
@@ -66,6 +72,9 @@ public class LandLord:AIControl
     {
         if (!isInspecting && agent.remainingDistance < 0.1f && !agent.pathPending)
         {
+           if(enteredBuilding)
+                SoundFXManager.instance.PlayRandomSoundFXClip(sounds, transform, volume);
+
             agent.speed = 0;
             isInspecting = true;
             animator.SetBool("Inspect", true);
@@ -94,6 +103,8 @@ public class LandLord:AIControl
         isInspecting = false;
         animator.SetBool("Inspect", false);
         print("stop wait");
+
+        SoundFXManager.instance.PlayRandomSoundFXClip(sounds, transform, volume);
     }
    
 

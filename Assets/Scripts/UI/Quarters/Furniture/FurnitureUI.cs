@@ -13,8 +13,9 @@ public class FurnitureUI : MonoBehaviour
     [SerializeField] private GameObject furniturePanel;
     [SerializeField] private GameObject topCamera;
     [SerializeField] private GameObject furnitureSlotPrefab;
-    [SerializeField] private GameObject uiButtons;
-    [SerializeField] private GameObject objectivesUI;
+   
+    
+    [SerializeField] private GameObject[] uiToHide;
 
     BuildingManager buildingManager;
     public ChangeInputMaps changeInputMaps;
@@ -110,8 +111,9 @@ public class FurnitureUI : MonoBehaviour
         cursorController.CursorVisibility(true);
 
         changeInputMaps.ChangeToFurnitureMap();
-        uiButtons.SetActive(false);
-        objectivesUI.SetActive(false);
+        foreach(GameObject ui in uiToHide)
+            ui.SetActive(false);
+        //objectivesUI.SetActive(false);
 
         furniturePanel.SetActive(true);
 
@@ -127,8 +129,10 @@ public class FurnitureUI : MonoBehaviour
         cursorController.CursorVisibility(false);
         //changeInputMaps.ChangeToGameplayMap();
 
-        uiButtons.SetActive(true);
-        objectivesUI.SetActive(true);
+        foreach (GameObject ui in uiToHide)
+            ui.SetActive(true);
+        
+        //objectivesUI.SetActive(true);
         DeselectObjects();
 
         furniturePanel.SetActive(false);

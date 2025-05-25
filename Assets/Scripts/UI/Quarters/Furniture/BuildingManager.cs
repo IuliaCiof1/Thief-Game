@@ -193,6 +193,7 @@ public class BuildingManager : MonoBehaviour
             furniture.SetActive(true);
 
             furniture.GetComponent<Outline>().enabled = false;
+            furniture.GetComponent<Collider>().isTrigger = false;
         }
 
         //Load walls paint

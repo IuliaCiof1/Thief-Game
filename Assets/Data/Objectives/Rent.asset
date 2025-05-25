@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Rent Due
   description: Pay the rent to your landlord or you will get evicted.
   isCompleted: 0
-  isActive: 0
+  isActive: 1
   itemRequierd: 0
   objectNeeded: {fileID: 0}
   moneyNeeded: 40
@@ -24,4 +24,4 @@ MonoBehaviour:
   id: 005
   member: landlord
   objectiveCooldown: 3
-  leftCooldown: 3
+  leftCooldown: 0
