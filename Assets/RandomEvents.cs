@@ -22,6 +22,9 @@ public class RandomEvents: MonoBehaviour
 
     private void Awake()
     {
+        if (PlayerPrefs.GetInt("tutorialEnabled") == 1)
+            return;
+
         int isEvent = Random.Range(0, 10);
         if (isEvent < eventChance)
         {

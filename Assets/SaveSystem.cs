@@ -238,6 +238,16 @@ public static class SaveSystem
         }
     }
 
+    public static bool DoesFileExist()
+    {
+        string path = Path.Combine(Application.persistentDataPath, saveFileName);
+
+        if (File.Exists(path))
+            return true;
+
+        return false;
+    }
+
     public static void DeleteSaveFile()
     {
         File.Delete(Path.Combine(Application.persistentDataPath, saveFileName));

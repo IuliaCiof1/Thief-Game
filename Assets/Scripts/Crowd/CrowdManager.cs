@@ -6,6 +6,8 @@ public class CrowdManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> goalLocations; // Walking destinations
     [SerializeField] private List<GameObject> inspectionPoints; // Inspection locations (e.g., windows)
+    [SerializeField] private GameObject goalLocationsParent; // Walking destinations
+    [SerializeField] private GameObject inspectionPointsParent;
 
     [Header("Animator parameters")]
     [SerializeField] private Vector2 walkOffsetRange = new Vector2(0f, 2f);
@@ -30,6 +32,9 @@ public class CrowdManager : MonoBehaviour
 
     [SerializeField] float avoidDistance;
     [SerializeField] Transform agentsContainer;
+
+    [SerializeField] AudioClip[] audioClips;
+
     public ThirdPersonController player { get; private set; }
 
     public List<GameObject> GoalLocations { get { return goalLocations; } private set { } }
@@ -45,13 +50,22 @@ public class CrowdManager : MonoBehaviour
     public float FleeRadius { get { return fleeRadius; } private set { } }
     public float AvoidDistance { get { return avoidDistance; } private set { } }
     public Transform AgentsContainer { get { return agentsContainer; } private set { } }
+    public AudioClip[] AudioClips { get { return audioClips; } }
+
 
     //Awake runs before all start methods. We use this to make sure the goalLocations and inspectionPoints are all initialised first
     void Awake()
     {
         //Finds all goal point and inspection points in the scene
-        goalLocations.AddRange(GameObject.FindGameObjectsWithTag("goal"));
+
+        //goalLocations.AddRange(GameObject.FindGameObjectsWithTag("goal"));
+        foreach (Transform child in goalLocationsParent.transform)
+        {
+            goalLocations.Add(child.gameObject);
+        }
+
         inspectionPoints.AddRange(GameObject.FindGameObjectsWithTag("inspection"));
+        
         player = FindAnyObjectByType<ThirdPersonController>();
     }
 

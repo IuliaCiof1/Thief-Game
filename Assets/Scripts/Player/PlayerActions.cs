@@ -42,6 +42,8 @@ public class PlayerActions : MonoBehaviour
      GameObject playerInventory;
     ObjectiveManager objectiveManager;
 
+    //public static event Action StartPickpocket;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -186,7 +188,7 @@ public class PlayerActions : MonoBehaviour
                 }
                 else if (thirdPersonController.inTram && collider.TryGetComponent(out Tram tram))
                 {
-                    print("in tram");   
+                    print("in tram");
                     TramStation tramStation_ = tram.GetTramStation();
                     if (tramStation_ != null)
                     {
@@ -205,7 +207,10 @@ public class PlayerActions : MonoBehaviour
                 }
 
                 else
+                {
+                    currentTarget = null;
                     showKeyboardHint = false;
+                }
             }
             
 
@@ -227,7 +232,7 @@ public class PlayerActions : MonoBehaviour
             keyboardHintPanel.SetActive(true);
 
         //steal action
-        if (Input.GetKeyDown(KeyCode.E) && currentTarget)
+        if (Input.GetKeyDown(KeyCode.E) && currentTarget && !TutorialMain.uiActive)
         {
             
             StopAllCoroutines();
@@ -256,6 +261,9 @@ public class PlayerActions : MonoBehaviour
                    
                     animator.ResetTrigger("Idle");
                     animator.SetTrigger("Steal");
+
+
+                    TutorialMain.OnPickpocket?.Invoke();
                 }
                 else if (isStealing)
                 {
@@ -421,6 +429,8 @@ public class PlayerActions : MonoBehaviour
         
         thirdPersonController.enabled = true;
         animator.ResetTrigger("Idle");
+
+        TutorialMain.OnClosePickpocket?.Invoke();
     }
 
 

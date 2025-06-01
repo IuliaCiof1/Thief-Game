@@ -20,11 +20,13 @@ public class CursorController : MonoBehaviour
     {
         if (!visibiliy)
         {
+            print("cursor visibility off");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
+            print("cursor visibility on");
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }

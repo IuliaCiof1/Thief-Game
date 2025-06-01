@@ -42,6 +42,9 @@ protected GameObject inspectionPoint;
     bool onRoad;
     [SerializeField] float avoidDistance;
 
+ 
+
+
     public bool GetIsInspecting()
     {
         
@@ -66,6 +69,7 @@ protected GameObject inspectionPoint;
         defaultSpeed = agent.speed;
         //Get values from CrowdManager
         crowdManager = FindAnyObjectByType<CrowdManager>();
+        //crowdManager = GetComponentInParent<CrowdManager>();
         if (crowdManager == null)
         {
             Debug.LogError("No CrowdManager found in the scene!");
@@ -76,9 +80,8 @@ protected GameObject inspectionPoint;
         initialInspectionPoints = new List<GameObject>(crowdManager.InspectionPoints);
         inspectionPoints.AddRange(initialInspectionPoints);
 
-        goalLocations = new List<GameObject>(crowdManager.GoalLocations);
-
-
+       goalLocations = new List<GameObject>(crowdManager.GoalLocations);
+       
         //if (!transform.GetChild(0).TryGetComponent<Animator>(out animator))
         //{
         //    Debug.LogError("No Animator found on first child of crowd agent");
@@ -418,12 +421,13 @@ protected GameObject inspectionPoint;
 
         NavMeshPath path = new NavMeshPath();
 
-
+        NavMeshHit hit;
         foreach (GameObject point in goalLocations)
         {
             
             if (point != VisitedGoals[0] && point != VisitedGoals[1] )
             {
+                
                //calculate the distance of the path the agent would take to another points, not just the distance between two points which can be shorter.
                 if(NavMesh.CalculatePath(transform.position, point.transform.position, agent.areaMask, path))
                 {

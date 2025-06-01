@@ -80,14 +80,14 @@ public class TramStation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("tram in station enter");
+        
         if (other.TryGetComponent<Tram>(out Tram tram_))
             tram = tram_;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        print("tram in station exit");
+       
         if (other.TryGetComponent<Tram>(out Tram tram_))
             tram = null;
     }

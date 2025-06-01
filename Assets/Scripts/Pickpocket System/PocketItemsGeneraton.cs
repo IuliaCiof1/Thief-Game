@@ -8,13 +8,15 @@ public class PocketItemsGeneraton : MonoBehaviour
     [SerializeField] GameObject pocket;
     //[SerializeField] Sprite[] itemSprites;
     [SerializeField] PocketItemSO[] pocketItemSOs;
-    [SerializeField] GameObject agentsParent;
+    //[SerializeField] GameObject agentsParent;
+    NPC[] agents;
     [SerializeField] Vector2Int minMaxNumberOfItems;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Transform agent in agentsParent.transform)
+        agents = FindObjectsOfType<NPC>();
+        foreach(NPC agent in agents)
         {
             int numberOfItems = Random.Range(minMaxNumberOfItems.x, minMaxNumberOfItems.y);
 

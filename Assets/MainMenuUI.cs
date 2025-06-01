@@ -2,18 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-  
 
-    public void ContinueGame()
+    [SerializeField] Toggle tutorialToggle;
+    [SerializeField] Button continueButton;
+
+    private void Start()
     {
-        SceneManager.LoadScene("Main");
+        if (!SaveSystem.DoesFileExist())
+            continueButton.interactable = false;
     }
+
+    //public void ContinueGame()
+    //{
+    //    GetComponent<HomeEntrance>().GoHome();
+    //    /SceneManager.LoadScene("Main");
+    //}
 
     public void NewGame()
     {
         SaveSystem.DeleteSaveFile();
+
+        if (tutorialToggle.isOn)
+        {
+            print("tutorial enabled");
+            PlayerPrefs.SetInt("tutorialEnabled", 1);
+        }
+        else
+        {
+            print("tutorial disabled");
+            PlayerPrefs.SetInt("tutorialEnabled", 0);
+        }
+        
     }
 }

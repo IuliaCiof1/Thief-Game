@@ -45,7 +45,7 @@ public class Tram : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("train enter");
+   
         if(other.TryGetComponent<TramStation>(out TramStation tramStation_) && !alreadyStopped)
         {
             tramStation = tramStation_;
@@ -63,7 +63,7 @@ public class Tram : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        print("train exit");
+        
         if (other.TryGetComponent<TramStation>(out TramStation tramStation_))
         {
             tramStation = null;

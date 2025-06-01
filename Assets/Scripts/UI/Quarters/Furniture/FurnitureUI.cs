@@ -108,6 +108,7 @@ public class FurnitureUI : MonoBehaviour
 
     public void OpenFurnitureUI()
     {
+        TutorialMain.OnFurniture?.Invoke();
         cursorController.CursorVisibility(true);
 
         changeInputMaps.ChangeToFurnitureMap();

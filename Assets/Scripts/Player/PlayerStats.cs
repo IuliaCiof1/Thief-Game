@@ -14,7 +14,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        
     }
 
     public int GetReputationLoss()
@@ -64,6 +68,7 @@ public class PlayerStats : MonoBehaviour
     //Return true if player has enough money or false otherwise
     public void RemoveReputation()
     {
+        print("REMOVE REPUTATION");
         reputation -= reputationLoss;
 
        

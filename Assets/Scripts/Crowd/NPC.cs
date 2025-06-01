@@ -8,14 +8,18 @@ public class NPC : AIControl
     CrowdManager crowdManager_;
     DeadZone deadzone;
 
+     AudioClip[] audioClips;
+
     //bool onRoad;
 
     //// Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         base.Start();
+
         deadzone = FindObjectOfType<DeadZone>();
         gameObject.layer = LayerMask.NameToLayer("Default");
+        audioClips = crowdManager.AudioClips;
         //crowdManager_ = FindAnyObjectByType<CrowdManager>();
         //if (crowdManager_ is null)
         //{
@@ -96,6 +100,7 @@ public class NPC : AIControl
 
     public void StartDeadzoe()
     {
+        print("flee" + gameObject.name);
         //crowdManager.DeadzoneObject.SetActive(true);
         if (crowdManager is null)
         {
@@ -122,13 +127,17 @@ public class NPC : AIControl
 
     public void FleeFromPosition(Vector3 position)
     {
+
+       
+
         // print("crowd manager "+crowdManager);
         if (crowdManager is null)
         {
-            print("crowd manager is null");
+            print(gameObject.name+" crowd manager is null");
 
             return;
         }
+        SoundFXManager.instance.PlayRandomSoundFXClip(audioClips, transform, 0.2f);
 
         if (Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
         {

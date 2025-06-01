@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Police : MonoBehaviour
 {
-    [SerializeField] CrowdManager crowdManager;
+    [SerializeField]CrowdManager crowdManager;
     NavMeshAgent agent;
     [SerializeField] float minimumDistanceFromPlayer;
     [SerializeField] ThirdPersonController player;
@@ -19,11 +19,14 @@ public class Police : MonoBehaviour
 
      Animator animator;
 
-    CursorController cursorController;
+    bool isCaught;
+
+    [SerializeField] CursorController cursorController;
 
     // Start is called before the first frame update
     void Start()
     {
+        crowdManager = FindAnyObjectByType<CrowdManager>();
         animator = GetComponentInChildren<Animator>();
         cursorController = FindFirstObjectByType<CursorController>();
 
@@ -33,6 +36,7 @@ public class Police : MonoBehaviour
 
     void ResetPolice()
     {
+        print("police reset");
         transform.position = initialPolicePosition;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 0;
@@ -41,6 +45,7 @@ public class Police : MonoBehaviour
         policeModel.SetActive(false);
         agent.enabled = false;
         catchPlayer = false;
+        isCaught = false;
     }
 
     // Update is called once per frame
@@ -51,8 +56,9 @@ public class Police : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
 
-            if (Vector3.Distance(agent.transform.position, player.transform.position) < 1.5f)
+            if (Vector3.Distance(agent.transform.position, player.transform.position) < 1.5f && !isCaught)
             {
+                isCaught = true;
                 agent.isStopped = true;
                 animator.SetBool("Inspect", true);
                 //player.enabled = false;
@@ -75,19 +81,20 @@ public class Police : MonoBehaviour
 
         foreach(GameObject goalLocation in crowdManager.GoalLocations)
         {
-          
+            print("go police1 "+goalLocation.name);
             thisDistance = Vector3.Distance(goalLocation.transform.position, player.transform.position);
 
             if (thisDistance > minimumDistanceFromPlayer && thisDistance<shortestDistance)
             {
+                print("go police1 " + goalLocation.name + " is close");
                 shortestDistance = thisDistance;
                 closestGoal = goalLocation;
             }
         }
-
+        
         if (closestGoal)
         {
-            
+            print("go police");
             print(closestGoal.name);
             transform.position = closestGoal.transform.position;
             catchPlayer = true;
@@ -104,6 +111,7 @@ public class Police : MonoBehaviour
     public void PayFines()
     {
         print("fines paid");
+        cursorController.CursorVisibility(false);
         ResetPolice();
         PlayerStats.RemoveMoney(PlayerStats.money);
         PlayerStats.Instance.RemoveReputation();
@@ -111,6 +119,6 @@ public class Police : MonoBehaviour
         gotCaughtUI.SetActive(false);
         //player.enabled = true;
         player.stopMovement = false;
-        cursorController.CursorVisibility(false);
+       
     }
 }

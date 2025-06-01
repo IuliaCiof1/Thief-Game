@@ -8,10 +8,10 @@ public class PocketItem : MonoBehaviour
     Transform hand;
     Rigidbody rb;
     Transform initialParent;
-    [SerializeField] float addedForce = 500;
-    bool isFalling = false;
+    //[SerializeField] float addedForce = 500;
+    //bool isFalling = false;
     Vector3 velocity = Vector3.zero;
-    [SerializeField] float gravity = -9.8f;
+    //[SerializeField] float gravity = -9.8f;
     [SerializeField] Animator animator;
 
     PlayerStats playerStats;
@@ -87,7 +87,7 @@ public class PocketItem : MonoBehaviour
             //transform.localPosition = Vector3.zero;
             rb.isKinematic = false;
             gameObject.SetActive(false);
-
+            TutorialMain.OnItemCollected?.Invoke();
         }
     }
 
