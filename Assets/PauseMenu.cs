@@ -5,7 +5,9 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuUI;
+    [SerializeField] GameObject sureQuitGameUI;
     CursorController cursorController;
+    bool iniCursorVisibility;
 
     private void Start()
     {
@@ -26,12 +28,21 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
 
         if (pauseMenuUI.activeSelf)
+        {
+            cursorController.CursorVisibility(pauseMenuUI.activeSelf);
             Time.timeScale = 0;
+        }
         else
+        {
+            sureQuitGameUI.SetActive(false);
+            cursorController.SetToPreveousCursorState();
             Time.timeScale = 1;
+        }
 
-        cursorController.CursorVisibility(pauseMenuUI.activeSelf);
+        
     }
+
+    
 
     public void QuitGame()
     {

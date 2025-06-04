@@ -19,6 +19,7 @@ public class PocketItem : MonoBehaviour
     public int Value { get; set; }
 
     public PocketItemSO pocketItemSO { get; set; }
+    public NPC npc;
     Inventory inventory;
 
     // Start is called before the first frame update
@@ -66,10 +67,10 @@ public class PocketItem : MonoBehaviour
         transform.SetParent(initialParent);
     }
 
-    private void AddToInventory()
-    {
-        Instantiate(pocketItemSO.ownedObjectPrefab, inventory.transform);
-    }
+    //private void AddToInventory()
+    //{
+    //    Instantiate(pocketItemSO.ownedObjectPrefab, inventory.transform);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -78,15 +79,24 @@ public class PocketItem : MonoBehaviour
             animator.SetTrigger("PutInBag");
             playerStats.AddMoiney(Value);
 
-            if (pocketItemSO.canBeOwned)
+            if (pocketItemSO.canBeOwned && !inventory.CheckIfItemExists(pocketItemSO.ownedObjectPrefab.name))
             {
-                AddToInventory();
+                inventory.AddToInventory(pocketItemSO.ownedObjectPrefab);
             }
             //Destroy(gameObject);
             //transform.SetParent(initialParent);
             //transform.localPosition = Vector3.zero;
             rb.isKinematic = false;
             gameObject.SetActive(false);
+
+            for (int i = npc.ItemsInPocket.Count - 1; i >= 0; i--)
+            {
+                if (npc.ItemsInPocket[i] == pocketItemSO)
+                {
+                    npc.ItemsInPocket.RemoveAt(i);
+                }
+            }
+
             TutorialMain.OnItemCollected?.Invoke();
         }
     }

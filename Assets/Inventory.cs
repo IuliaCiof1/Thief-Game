@@ -34,6 +34,23 @@ public class Inventory : MonoBehaviour
     }
 
 
+    public bool CheckIfItemExists(string itemName)
+    {
+        foreach (Transform item in transform)
+        {
+            if (item.name.Contains(itemName))
+                return true;
+        }
+
+        return false;
+    }
+
+    public void AddToInventory(GameObject item)
+    {
+        Instantiate(item, transform);
+    }
+
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.I))

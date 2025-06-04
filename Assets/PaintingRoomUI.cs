@@ -30,17 +30,18 @@ public class PaintingRoomUI : MonoBehaviour
     [SerializeField] private GameObject furniturePanel;
     [SerializeField] private GameObject topCamera;
     [SerializeField] private GameObject furnitureSlotPrefab;
-    [SerializeField] private GameObject uiButtons;
-
+   // [SerializeField] private GameObject uiButtons;
+    [SerializeField] private GameObject[] uiToHide;
     BuildingManager buildingManager;
     public ChangeInputMaps changeInputMaps;
     PlayerControls controls;
 
     public PlayerInput playerInput;
-
+    CursorController cursorController;
 
     private void Start()
     {
+        cursorController = FindFirstObjectByType<CursorController>();
 
         changeInputMaps = FindObjectOfType<ChangeInputMaps>();
 
@@ -110,10 +111,11 @@ public class PaintingRoomUI : MonoBehaviour
 
     public void OpenFurnitureUI()
     {
-
+        cursorController.CursorVisibility(true);
         changeInputMaps.ChangeToFurnitureMap();
-        uiButtons.SetActive(false);
-
+        //uiButtons.SetActive(false);
+        foreach (GameObject ui in uiToHide)
+            ui.SetActive(false);
         furniturePanel.SetActive(true);
 
         //stop camera rotation
@@ -125,11 +127,13 @@ public class PaintingRoomUI : MonoBehaviour
 
     public void CloseFurnitureUI()
     {
-
+        cursorController.CursorVisibility(false);
         changeInputMaps.ChangeToGameplayMap();
 
-        uiButtons.SetActive(true);
-        
+        //uiButtons.SetActive(true);
+        foreach (GameObject ui in uiToHide)
+            ui.SetActive(true);
+
         furniturePanel.SetActive(false);
         topCamera.SetActive(false);
         //Camera.main.GetComponent<CinemachineBrain>().enabled = true;

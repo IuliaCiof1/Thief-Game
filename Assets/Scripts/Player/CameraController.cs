@@ -85,7 +85,7 @@ public class CameraController : MonoBehaviour
 
     public void SetCollisionCamera()
     {
-        RotateCamera(Quaternion.Euler(80, 0, 0));
+        RotateCamera(Quaternion.Euler(85, 0, 0));
         collisionMode = true;
     }
 

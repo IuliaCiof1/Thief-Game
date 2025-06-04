@@ -42,7 +42,7 @@ public class TutorialMain : MonoBehaviour
         WarpToStage(0);
         ShowPanel(currentStage);
         uiActive = true;
-        Time.timeScale = 0f;
+        
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main"))
         {
             OnPickpocket += HandlePickpocket;
