@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becfdf99587b58442a05be3c83241bb7, type: 3}
   m_Name: Prop_TeddyBear_03
   m_EditorClassIdentifier: 
+  id: 18
   previewImage: {fileID: 21300000, guid: a27a41fdb3bbbe841924cb57329b9de5, type: 3}
   objectPrefab: {fileID: 3450298599585574458, guid: d9baeae2867fd15458a1169a85a03c65, type: 3}
   value: 5

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becfdf99587b58442a05be3c83241bb7, type: 3}
   m_Name: chair_A
   m_EditorClassIdentifier: 
+  id: 3
   previewImage: {fileID: 21300000, guid: c46cb456b88163144b4e62f78ba636f8, type: 3}
   objectPrefab: {fileID: 8654535429383734468, guid: 669f22354259fcf41a691671e98d011d, type: 3}
   value: 5

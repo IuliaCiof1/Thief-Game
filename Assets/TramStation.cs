@@ -42,6 +42,8 @@ public class TramStation : MonoBehaviour
 
         //player.lastPlatformPosition = tram.transform.position;
         //player.lastPlatformRotation = tram.transform.rotation;
+        PlayerStats.BuyWithMoney(ticketPrice);
+
         tram.SwitchTramRoof();
 
         player.gameObject.SetActive(false);

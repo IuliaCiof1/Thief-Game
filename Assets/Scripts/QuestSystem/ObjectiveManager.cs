@@ -164,6 +164,7 @@ public class ObjectiveManager : MonoBehaviour
         foreach (Objective obj in objectives)
         {
             obj.isActive = false;
+            obj.leftCooldown = 0;
         }
 
 
@@ -178,17 +179,22 @@ public class ObjectiveManager : MonoBehaviour
 
         Debug.Log("ObjectiveManager:: Loading data objectives");
 
-        for (int i = 0; i < data.activeoOjectivesID.Count; i++)
+        for (int i = 0; i < data.objectives.Count; i++)
         {
-            Debug.Log("ObjectiveManager:: active objective: "+data.activeoOjectivesID[i]);
+            Debug.Log("ObjectiveManager:: active objective: "+data.objectives[i]);
             foreach (Objective obj in objectives)
             {
-                Debug.Log("ObjectiveManager:: objective: " + obj.name);
-                if (obj.id == data.activeoOjectivesID[i])
+                
+                if (obj.id == data.objectives[i].id)
                 {
+                    Debug.Log("ObjectiveManager:: objective: " + obj.name +" "+ data.objectives[i].leftCooldown);
                     DisplayObjective(obj);
-                    obj.isActive = true;
-                    activeobjectives.Add(obj);
+                    obj.isActive = data.objectives[i].isActive;
+                    obj.leftCooldown = data.objectives[i].leftCooldown;
+
+                    if(obj.isActive)
+                        activeobjectives.Add(obj);
+
                     print("objective " + obj.name + " " + obj.isActive);
                     break;
                 }

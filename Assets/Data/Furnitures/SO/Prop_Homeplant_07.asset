@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becfdf99587b58442a05be3c83241bb7, type: 3}
   m_Name: Prop_Homeplant_07
   m_EditorClassIdentifier: 
+  id: 13
   previewImage: {fileID: 21300000, guid: 25af77c0e1b9ea243926525275b36843, type: 3}
   objectPrefab: {fileID: 5993454007641146218, guid: 428c9e048670d41409fc36f382f3ffed, type: 3}
   value: 10

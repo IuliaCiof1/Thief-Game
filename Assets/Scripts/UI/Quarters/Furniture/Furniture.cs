@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Furniture : MonoBehaviour
 {
-    public string idSO;
+    //public string idSO;
+    public FurnitureSO furnitureSO;
+   public bool isPending { get;  set; }
     // Start is called before the first frame update
     void Start()
     {

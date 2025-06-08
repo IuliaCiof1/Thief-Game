@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becfdf99587b58442a05be3c83241bb7, type: 3}
   m_Name: Prop_Shelve_05
   m_EditorClassIdentifier: 
+  id: 15
   previewImage: {fileID: 21300000, guid: f3ec23d73b4f9d448bb45d8620c45d28, type: 3}
   objectPrefab: {fileID: 7978599620215229691, guid: 4e8bec9e0431db34593062b1f19b14c2, type: 3}
   value: 70

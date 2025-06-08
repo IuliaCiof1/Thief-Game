@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class EndingUI : MonoBehaviour
 {
     [SerializeField] TMP_Text textUI;
+    [SerializeField] GameObject UI;
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeDuration;
 
@@ -23,6 +24,10 @@ public class EndingUI : MonoBehaviour
 
     void HandleEnding(string endText)
     {
+        PlayerPrefs.SetInt("endingReached", 1);
+        FindFirstObjectByType<CursorController>().CursorVisibility(true);
+        
+        UI.SetActive(true);
         textUI.text = endText;
 
 
@@ -50,5 +55,6 @@ public class EndingUI : MonoBehaviour
 
             yield return null;
         }
+        Time.timeScale = 0f;
     }
 }

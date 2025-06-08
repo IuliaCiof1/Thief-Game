@@ -41,8 +41,8 @@ protected GameObject inspectionPoint;
 
     bool onRoad;
     [SerializeField] float avoidDistance;
+    float avoidTimer = 0f;
 
- 
 
 
     public bool GetIsInspecting()
@@ -134,25 +134,28 @@ protected GameObject inspectionPoint;
                 StartCoroutine(InspectEnvironment());
             }
         }
+
         
-        if(isInspecting)
-            animator.SetBool("Inspect", true);
+
 
         Walk();
 
         if (onRoad)
             Avoid();
+
+        if (isInspecting)
+            animator.SetBool("Inspect", true);
         //AvoidPlayer();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        print("collision");
+        
         if (other.gameObject.CompareTag("Road"))
         {
             onRoad = true;
-            print("collision with road" + gameObject.name);
+            
             gameObject.layer = LayerMask.NameToLayer("AvoidedByVehicles");
         }
     }
@@ -170,17 +173,34 @@ protected GameObject inspectionPoint;
 
     void Avoid()
     {
+        bool goBack = false;
+
         RaycastHit hit;
         Debug.DrawRay(transform.position + new Vector3(0, 1), transform.forward * avoidDistance, Color.yellow, 1f);
         //Debug.DrawRay(transform.position + new Vector3(0, 1), transform.forward, Color.yellow, avoidDistance);
-        if (Physics.Raycast(transform.position + new Vector3(0, 1), transform.forward, out hit, avoidDistance))
+        if (!goBack && Physics.Raycast(transform.position + new Vector3(0, 1), transform.forward, out hit, avoidDistance))
         {
-            
+            //avoid vehicles
             if (hit.transform.TryGetComponent<VehicleAI>(out VehicleAI vehicleAI))
             {
-                print(gameObject.name + " hit " + hit.transform.name);
+                
                 agent.isStopped = true;
                 isInspecting = true;
+                //
+              //if the npc stays too much time in front of a vehicle, go back to the preveous goal, to avoid stuck traffic
+                    avoidTimer += Time.deltaTime;
+                if (avoidTimer >= 4f)
+                {
+                    Debug.Log("Inspection took too long. Returning to previous goal.");
+                    isInspecting = false;
+                    agent.isStopped = false;
+                    avoidTimer = 0f;
+                    agent.SetDestination(VisitedGoals[1].transform.position);
+                    goBack = true;
+                }
+                   
+                
+
             }
             else
             {

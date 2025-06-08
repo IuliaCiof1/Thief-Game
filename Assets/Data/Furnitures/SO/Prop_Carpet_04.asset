@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becfdf99587b58442a05be3c83241bb7, type: 3}
   m_Name: Prop_Carpet_04
   m_EditorClassIdentifier: 
+  id: 8
   previewImage: {fileID: 21300000, guid: b61836d4b46206b4286205ca73a4ed3e, type: 3}
   objectPrefab: {fileID: 598496721509532076, guid: 2abab2c9aacb209419cc562a9b2901e5, type: 3}
   value: 30

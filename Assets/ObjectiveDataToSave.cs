@@ -5,17 +5,34 @@ using UnityEngine;
 [System.Serializable]
 public class ObjectiveDataToSave
 {
-   public List<string>activeoOjectivesID;
+
+    [System.Serializable]
+    public struct ObjectiveData
+    {
+        public string id;
+        public bool isActive;
+        public int leftCooldown;
+    }
+
+    //public List<string>activeoOjectivesID;
+    public List<ObjectiveData>objectives;
 
 
     public ObjectiveDataToSave(ObjectiveManager objectiveManager)
     {
-        activeoOjectivesID = new List<string>();
+        objectives = new List<ObjectiveData>();
+
        
-        foreach (Objective obj in objectiveManager.activeobjectives)
+        foreach (Objective obj in objectiveManager.objectives)
         {
-           
-            activeoOjectivesID.Add(obj.id);
+
+            ObjectiveData objectiveData;
+            objectiveData.isActive = obj.isActive;
+            objectiveData.id = obj.id;
+            objectiveData.leftCooldown = obj.leftCooldown;
+            Debug.Log("ObjectiveDataToSave:: " + obj.leftCooldown + " " + objectiveData.leftCooldown);
+
+            objectives.Add(objectiveData);
             //obj.isActive = false;
         }
     }

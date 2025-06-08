@@ -17,7 +17,7 @@ public class CheckObjectPlacement : MonoBehaviour
         if(other.TryGetComponent<Furniture>(out Furniture furniture)
             || other.TryGetComponent<Wall>(out Wall wall))
         {
-            print(other.gameObject.name);
+            
             buildingManager.CanPlace = false;
            
         }

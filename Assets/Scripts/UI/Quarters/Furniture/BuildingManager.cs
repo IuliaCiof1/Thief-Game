@@ -96,7 +96,7 @@ public class BuildingManager : MonoBehaviour
         
         if (pendingObject != null)
         {
-            print(pendingObject.GetComponent<MeshRenderer>().material.name);
+            
            
             pendingObject.transform.position = position;
             pendingObject.GetComponent<Collider>().isTrigger = true;
@@ -106,7 +106,15 @@ public class BuildingManager : MonoBehaviour
 
     }
 
+    public void DestroyPendingObject()
+    {
+        if (pendingObject != null)
+        {
+            Destroy(pendingObject.gameObject);
+            pendingObject = null;
+        }
 
+    }
     //Update is called once per frame
     void FixedUpdate()
     {
@@ -123,7 +131,7 @@ public class BuildingManager : MonoBehaviour
 
         Ray ray = topCamera.ScreenPointToRay(screenPosition);
 
-        if (Physics.Raycast(ray, out hit, 1000, layerMask))
+        if (Physics.Raycast(ray, out hit, 10000, layerMask))
         {
             position = hit.point;
         }
@@ -132,29 +140,51 @@ public class BuildingManager : MonoBehaviour
     public void SelectObject(int index)
     {
         print("trys to buy furniture");
-        if (ownedObjects[index].value <= PlayerStats.money)
-        {
+        //if (ownedObjects[index].value <= PlayerStats.money)
+        //{
             print("buys furnitre");
             pendingObject = Instantiate(ownedObjects[index].objectPrefab, position, transform.rotation, gameObject.transform);
+        
             pendingObject.transform.Rotate(Vector3.up, rotateAmount + 0.1f);
             initialMaterial = pendingObject.GetComponent<MeshRenderer>().material;
-            pendingObject.GetComponent<Furniture>().idSO = index.ToString();
+        //pendingObject.GetComponent<Furniture>().idSO = index.ToString();
+        Furniture furniture = pendingObject.GetComponent<Furniture>();
+            furniture.furnitureSO = ownedObjects[index];
+        furniture.isPending = true;
             pendingObject.SetActive(true);
 
-            PlayerStats.BuyWithMoney(ownedObjects[index].value);
-            PlayerStats.AddReputation(ownedObjects[index].reputation);
-        }
+        PlayerStats.BuyWithMoney(ownedObjects[index].value);
+        PlayerStats.AddReputation(ownedObjects[index].reputation);
+        //}
 
     }
 
+    public bool CheckIfAffordFurniture(int index)
+    {
+        print("check if afford" + ownedObjects[index] + " " + ownedObjects[index].value);
+        if (ownedObjects[index].value <= PlayerStats.money)
+        {
+            return true;
+        }
 
-
+        return false;
+    }
     public void PlaceObject()
     {
-        pendingObject.GetComponent<Collider>().isTrigger = false;
-        pendingObject.GetComponent<MeshRenderer>().material = initialMaterial;
+        Furniture pendingFurniture = pendingObject.GetComponent<Furniture>();
 
-        pendingObject = null;
+        //if (pendingFurniture.furnitureSO.value <= PlayerStats.money)
+        //{
+            pendingObject.GetComponent<Collider>().isTrigger = false;
+            pendingObject.GetComponent<MeshRenderer>().material = initialMaterial;
+
+            pendingObject = null;
+
+            pendingFurniture.isPending = false;
+
+            //PlayerStats.BuyWithMoney(pendingFurniture.furnitureSO.value);
+            //PlayerStats.AddReputation(pendingFurniture.furnitureSO.reputation);
+        //}
     }
 
     public void RotateObject()
@@ -181,19 +211,49 @@ public class BuildingManager : MonoBehaviour
         }
         foreach (FurnitureDataToSave.FurnitureTransformData transformData in data.furnitureDatasList)
         {
-            GameObject furniture = Instantiate(
-                ownedObjects[Int32.Parse(transformData.id)].objectPrefab,
-                new Vector3(transformData.furniturePosition[0], transformData.furniturePosition[1], transformData.furniturePosition[2]),
-                Quaternion.Euler(transformData.furnitureRotation[0], transformData.furnitureRotation[1] + 0.1f, transformData.furnitureRotation[2]),
-                gameObject.transform
-                );
+            GameObject furniture;
+            foreach (FurnitureSO furnitureSO in ownedObjects)
+            {
+                if (furnitureSO.id == transformData.id)
+                {
+                    furniture = Instantiate(
+                       furnitureSO.objectPrefab,
+                       new Vector3(transformData.furniturePosition[0], transformData.furniturePosition[1], transformData.furniturePosition[2]),
+                       Quaternion.Euler(transformData.furnitureRotation[0], transformData.furnitureRotation[1] + 0.1f, transformData.furnitureRotation[2]),
+                       gameObject.transform);
+
+                    furniture.GetComponent<Furniture>().furnitureSO = furnitureSO;
+                    furniture.SetActive(true);
+
+                    furniture.GetComponent<Outline>().enabled = false;
+                    furniture.GetComponent<Collider>().isTrigger = false;
+
+                    break;
+                }
+
+            }
+
+            //GameObject furniture = Instantiate(
+            //    ownedObjects[Int32.Parse(transformData.id)].objectPrefab,
+            //    new Vector3(transformData.furniturePosition[0], transformData.furniturePosition[1], transformData.furniturePosition[2]),
+            //    Quaternion.Euler(transformData.furnitureRotation[0], transformData.furnitureRotation[1] + 0.1f, transformData.furnitureRotation[2]),
+            //    gameObject.transform
+            //    );
 
             print("loaded rotation " + transformData.furnitureRotation[1]);
-            furniture.GetComponent<Furniture>().idSO = transformData.id.ToString();
-            furniture.SetActive(true);
+            //furniture.GetComponent<Furniture>().idSO = transformData.id.ToString();
+            //foreach (FurnitureSO furnitureSO in ownedObjects)
+            //{
+            //    if (furnitureSO.id == transformData.id.ToString())
+            //        furniture.GetComponent<Furniture>().furnitureSO = furnitureSO;
 
-            furniture.GetComponent<Outline>().enabled = false;
-            furniture.GetComponent<Collider>().isTrigger = false;
+            //}
+              //  furniture.GetComponent<Furniture>().furnitureSO = transformData.;
+            
+            //furniture.SetActive(true);
+
+            //furniture.GetComponent<Outline>().enabled = false;
+            //furniture.GetComponent<Collider>().isTrigger = false;
         }
 
         //Load walls paint

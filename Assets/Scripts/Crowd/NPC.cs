@@ -137,7 +137,7 @@ public class NPC : AIControl
 
             return;
         }
-        SoundFXManager.instance.PlayRandomSoundFXClip(audioClips, transform, 0.2f);
+        SoundFXManager.instance.PlayRandomSoundFXClip(audioClips, transform, 0.02f);
 
         if (Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
         {

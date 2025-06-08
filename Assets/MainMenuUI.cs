@@ -12,7 +12,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        if (!SaveSystem.DoesFileExist())
+        if (!SaveSystem.DoesFileExist() || PlayerPrefs.GetInt("endingReached", 0)==1)
             continueButton.interactable = false;
     }
 

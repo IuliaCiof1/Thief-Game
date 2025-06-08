@@ -7,17 +7,22 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] RectTransform inventorySlot;
     [SerializeField] RectTransform slotContainer;
+    [SerializeField] RectTransform emptyContainer;
+    [SerializeField] GameObject inventoryDisplay;
 
     private void Start()
     {
-        slotContainer.gameObject.SetActive(false);
+        inventoryDisplay.SetActive(false);
     }
 
     public void DisplayInventory(Inventory inventory)
     {
+        
         RectTransform newSlot;
 
-        slotContainer.gameObject.SetActive(true);
+        inventoryDisplay.SetActive(true);
+
+        //slotContainer.gameObject.SetActive(true);
 
 
         int itemIndex = 0;
@@ -38,7 +43,12 @@ public class InventoryUI : MonoBehaviour
             
 
         }
-       
+
+        if(itemIndex>0)
+            emptyContainer.gameObject.SetActive(false);
+        else
+            emptyContainer.gameObject.SetActive(true);
+
         //Check for any unused inventory slots
         if (slotContainer.childCount > inventory.transform.childCount)
         {
@@ -54,8 +64,8 @@ public class InventoryUI : MonoBehaviour
 
     public void UndisplayInventory()
     {
-        if (slotContainer != null)
-            slotContainer.gameObject.SetActive(false);
+        if (inventoryDisplay != null)
+            inventoryDisplay.SetActive(false);
         else
             print("slot container null"+gameObject.name);
     }

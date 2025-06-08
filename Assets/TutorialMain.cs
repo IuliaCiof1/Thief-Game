@@ -53,6 +53,8 @@ public class TutorialMain : MonoBehaviour
             print("subscribe to handleonclosehome");
             OnCloseHome += HandleOnCloseHome;
         }
+
+        Time.timeScale = 0f;
     }
 
     private void UnsubscribeFromEvents()
@@ -62,6 +64,9 @@ public class TutorialMain : MonoBehaviour
         OnBeginPickpocket -= HandleBeginPickpocket;
         OnClosePickpocket -= HandleClosePickpocket;
         OnFinishTutorial -= FinishTutorial;
+        OnFurniture -= HandleFurniture;
+        OnBeginFurniture -= HandleBeginFurniture;
+        OnCloseHome -= HandleOnCloseHome;
     }
 
     private void OnDisable()
@@ -83,6 +88,7 @@ public class TutorialMain : MonoBehaviour
             OnFinishTutorial?.Invoke();
             OnCloseHome?.Invoke();
             OnBeginFurniture?.Invoke();
+            
         }
     }
 
@@ -113,13 +119,16 @@ public class TutorialMain : MonoBehaviour
         WarpToStage(1);
         AdvanceToStage(4);
         Time.timeScale = 1f;
+       
+        uiActive = false;
         OnClosePickpocket -= HandleClosePickpocket;
-        OnFinishTutorial += FinishTutorial;
+        //OnFinishTutorial += FinishTutorial;
     }
 
     void FinishTutorial()
     {
         //PlayerPrefs.SetInt("tutorialEnabled", 0);
+        
         EnableTutorialObjects(false);
         UnsubscribeFromEvents();
     }
@@ -164,7 +173,7 @@ public class TutorialMain : MonoBehaviour
 
         foreach (Transform obj in objectsToDisable)
         {
-            
+           
             obj.gameObject.SetActive(!value);
         }
     }

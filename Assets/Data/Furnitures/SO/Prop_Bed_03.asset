@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becfdf99587b58442a05be3c83241bb7, type: 3}
   m_Name: Prop_Bed_03
   m_EditorClassIdentifier: 
+  id: 6
   previewImage: {fileID: 21300000, guid: dca4241eba9c76344934d67af9ea7ef2, type: 3}
   objectPrefab: {fileID: 8622937261509324401, guid: e07a6aed3fc54d1469e9046b00838c18, type: 3}
   value: 200

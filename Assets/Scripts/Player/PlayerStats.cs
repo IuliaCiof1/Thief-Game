@@ -66,10 +66,10 @@ public class PlayerStats : MonoBehaviour
     }
 
     //Return true if player has enough money or false otherwise
-    public void RemoveReputation()
+    public void RemoveReputation(int amount)
     {
         print("REMOVE REPUTATION");
-        reputation -= reputationLoss;
+        reputation -= amount;
 
        
     }

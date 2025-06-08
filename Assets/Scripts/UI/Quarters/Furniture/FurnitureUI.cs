@@ -101,6 +101,7 @@ public class FurnitureUI : MonoBehaviour
             print("add listener");
             int capturedIndex = i; // Capture the current value of i
             slot.GetComponent<Button>().onClick.AddListener(() => buildingManager.SelectObject(capturedIndex));
+            slot.GetComponent<Button>().onClick.AddListener(() => RefreshInteraction());
         }
 
     }
@@ -108,6 +109,7 @@ public class FurnitureUI : MonoBehaviour
 
     public void OpenFurnitureUI()
     {
+        RefreshInteraction();
         TutorialMain.OnFurniture?.Invoke();
         cursorController.CursorVisibility(true);
 
@@ -121,8 +123,23 @@ public class FurnitureUI : MonoBehaviour
         //stop camera rotation
         //Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         topCamera.SetActive(true);
+
+       
+
     }
 
+    public void RefreshInteraction()
+    {
+        //Disables interactivity of the button if the player cannot afford the furniture
+        foreach (Transform slot in furniturePanel.GetComponentInChildren<GridLayoutGroup>().transform)
+        {
+            print(slot.GetSiblingIndex());
+            if (!buildingManager.CheckIfAffordFurniture(slot.GetSiblingIndex()))
+                slot.GetComponent<Button>().interactable = false;
+            else
+                slot.GetComponent<Button>().interactable = true;
+        }
+    }
 
 
     public void CloseFurnitureUI()
@@ -139,8 +156,11 @@ public class FurnitureUI : MonoBehaviour
         furniturePanel.SetActive(false);
         topCamera.SetActive(false);
 
+        buildingManager.DestroyPendingObject();
+
         changeInputMaps.ChangeToGameplayMap();
         //Camera.main.GetComponent<CinemachineBrain>().enabled = true;
+
 
     }
 

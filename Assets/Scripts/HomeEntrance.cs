@@ -48,7 +48,7 @@ public class HomeEntrance : MonoBehaviour
 
         while (timer < fadeDuration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             color.a = Mathf.Clamp01(timer / fadeDuration);
             fadeImage.color = color;
             yield return null;
@@ -65,6 +65,8 @@ public class HomeEntrance : MonoBehaviour
 
     IEnumerator FadeOutImage()
     {
+        print("fade out image");
+
         fadeImage.gameObject.SetActive(true);
 
         float timer = 0f;
@@ -73,11 +75,12 @@ public class HomeEntrance : MonoBehaviour
         color.a = 1;
         fadeImage.color = color;
 
-        yield return new WaitForSeconds(beginLoadTime);
+        yield return new WaitForSecondsRealtime(beginLoadTime);
 
         while (timer < fadeDuration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
+            
             color.a = Mathf.Clamp01(1 - (timer / fadeDuration));
             fadeImage.color = color;
             yield return null;

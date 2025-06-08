@@ -20,6 +20,7 @@ public class Police : MonoBehaviour
      Animator animator;
 
     bool isCaught;
+    [SerializeField] int reputationLoss = 20;
 
     [SerializeField] CursorController cursorController;
 
@@ -114,7 +115,7 @@ public class Police : MonoBehaviour
         cursorController.CursorVisibility(false);
         ResetPolice();
         PlayerStats.RemoveMoney(PlayerStats.money);
-        PlayerStats.Instance.RemoveReputation();
+        PlayerStats.Instance.RemoveReputation(reputationLoss);
 
         gotCaughtUI.SetActive(false);
         //player.enabled = true;

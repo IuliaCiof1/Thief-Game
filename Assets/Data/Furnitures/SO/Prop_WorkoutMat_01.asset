@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becfdf99587b58442a05be3c83241bb7, type: 3}
   m_Name: Prop_WorkoutMat_01
   m_EditorClassIdentifier: 
+  id: 19
   previewImage: {fileID: 21300000, guid: 787f9d3524c7beb43af6e4c2d17990ac, type: 3}
   objectPrefab: {fileID: 1667034424758203732, guid: 467c2cec9df8e7c4bad10d2d3d5d4515, type: 3}
   value: 20
