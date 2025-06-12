@@ -188,6 +188,7 @@ public class TutorialMain : MonoBehaviour
 
     private void HandleBeginFurniture()
     {
+        PlayerStats.Instance.AddMoiney(5);
         OnBeginFurniture -= HandleBeginFurniture;
         AdvanceToStage(2);
         OnFurniture += HandleFurniture;

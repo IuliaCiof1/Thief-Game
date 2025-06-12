@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class CoinCollectArea : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] AudioClip collectSound;
 
-    // Update is called once per frame
-    void Update()
+   public void PlayCollectSoud()
     {
-        
+        SoundFXManager.instance.PlaySoundFXClip(collectSound, transform, 1f);
     }
 }

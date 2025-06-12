@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
+  m_Color: {r: 0.51, g: 0.51, b: 0.51, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1024,6 +1024,7 @@ MonoBehaviour:
   slotContainer: {fileID: 3366173098238654834}
   emptyContainer: {fileID: 135022847256484110}
   inventoryDisplay: {fileID: 3924497047606291528}
+  offset: 9.5
 --- !u!1 &3025757250790071913
 GameObject:
   m_ObjectHideFlags: 0

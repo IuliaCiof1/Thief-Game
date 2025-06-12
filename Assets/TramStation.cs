@@ -8,7 +8,8 @@ public class TramStation : MonoBehaviour
     [SerializeField] int ticketPrice;
     [SerializeField] Tram tram;
     ThirdPersonController player;
-    Transform playerParent;
+    Transform iniPlayerParent;
+    Quaternion iniPlayerRotation;
     [SerializeField] CameraController cameraController;
 
     private void Start()
@@ -17,7 +18,8 @@ public class TramStation : MonoBehaviour
         tram = null;
         //tram = FindObjectOfType<Tram>();
         player = FindObjectOfType<ThirdPersonController>();
-        playerParent = player.transform.parent;
+        iniPlayerParent = player.transform.parent;
+        iniPlayerRotation = player.transform.rotation;
     }
 
     public Tram IsTramInStation()
@@ -36,13 +38,18 @@ public class TramStation : MonoBehaviour
 
     public void GetTram()
     {
+        print("get tram!!");
         //if (PlayerStats.BuyWithMoney(ticketPrice))
         //{
         //    player.transform.SetParent(tram.transform);
 
         //player.lastPlatformPosition = tram.transform.position;
         //player.lastPlatformRotation = tram.transform.rotation;
-        PlayerStats.BuyWithMoney(ticketPrice);
+        if (!PlayerStats.Instance.BuyWithMoney(ticketPrice))
+        {
+            print("no money");
+            return;
+        }
 
         tram.SwitchTramRoof();
 
@@ -71,6 +78,8 @@ public class TramStation : MonoBehaviour
         player.gameObject.SetActive(false);
         player.transform.position = transform.position;
         player.gameObject.SetActive(true);
+        player.transform.SetParent(iniPlayerParent);
+        player.transform.rotation = iniPlayerRotation;
         cameraController.ResetCamera();
         player.inTram = false;
     }

@@ -17,6 +17,6 @@ public class ReputationUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        reputationStats.text = PlayerStats.reputation.ToString();
+        reputationStats.text = PlayerStats.Instance.reputation.ToString();
     }
 }

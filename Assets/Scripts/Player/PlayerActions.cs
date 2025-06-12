@@ -7,6 +7,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System;
 
+
+
 public class PlayerActions : MonoBehaviour
 {
     [SerializeField] CameraController cameraController;
@@ -16,13 +18,13 @@ public class PlayerActions : MonoBehaviour
 
 
     bool isStealing = false;
-    bool inTram = false;
+    //bool inTram = false;
 
     ThirdPersonController thirdPersonController;
 
 
     [SerializeField] private Transform rayPosition;
-    [SerializeField] private float radius;
+    [SerializeField] private float radius = 0.6f;
     private GameObject currentTarget;
 
 
@@ -39,9 +41,12 @@ public class PlayerActions : MonoBehaviour
 
     public static event Action OnStealUIDisable;
 
-     GameObject playerInventory;
+     Inventory playerInventory;
     ObjectiveManager objectiveManager;
 
+    [SerializeField] float maxDistance = 1.24f;
+    [SerializeField] LayerMask obstructionLayers;
+    TramStation tramStation_ = null;
     //public static event Action StartPickpocket;
 
     // Start is called before the first frame update
@@ -49,11 +54,45 @@ public class PlayerActions : MonoBehaviour
     {
         thirdPersonController = GetComponent<ThirdPersonController>();
         keyboardHintPanel = keyboardHintText.transform.parent.gameObject;
-        playerInventory = FindAnyObjectByType<Inventory>().gameObject;
+        playerInventory = FindAnyObjectByType<Inventory>();
         objectiveManager = FindAnyObjectByType<ObjectiveManager>();
     }
 
+    private void OnDrawGizmos()
+    {
+        if (rayPosition == null) return;
 
+        Vector3 direction = rayPosition.forward;
+        Vector3 start = rayPosition.position;
+        Vector3 end = start + direction.normalized * maxDistance;
+
+        Gizmos.color = Color.red;
+
+        // Start and end spheres
+        Gizmos.DrawWireSphere(start, radius);
+        Gizmos.DrawWireSphere(end, radius);
+
+        // Connecting lines to form the "cylinder"
+        Vector3 up = Vector3.up * radius;
+        Vector3 right = Vector3.right * radius;
+
+        Gizmos.DrawLine(start + up, end + up);
+        Gizmos.DrawLine(start - up, end - up);
+        Gizmos.DrawLine(start + right, end + right);
+        Gizmos.DrawLine(start - right, end - right);
+    }
+
+    //private void DebugDrawSphereCast(Vector3 origin, Vector3 direction, float radius, float distance, Color color)
+    //{
+    //    Vector3 end = origin + direction.normalized * distance;
+
+    //    // Draw the central ray
+    //    Debug.DrawLine(origin, end, color);
+
+    //    // Draw circles at start and end to represent the sphere
+    //    DebugExtension.DrawCircle(origin, Vector3.up, color, radius);
+    //    DebugExtension.DrawCircle(end, Vector3.up, color, radius);
+    //}
 
     void GetTarget()
     {
@@ -61,76 +100,84 @@ public class PlayerActions : MonoBehaviour
         //Camera.main.transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, distance)
         // Physics.Raycast(rayPosition.position, rayPosition.forward, out RaycastHit hitInfo, distance)
 
-        Collider[] colliders = Physics.OverlapSphere(rayPosition.position, radius);
+        //Collider[] colliders = Physics.OverlapSphere(rayPosition.position, radius);
 
 
-        foreach (Collider collider in colliders)
+        //foreach (Collider collider in colliders)
+        //{
+        bool targetFound = false;
+
+        Vector3 direction = rayPosition.forward;
+
+        // Store all hits in an array
+        RaycastHit[] hits = Physics.SphereCastAll(rayPosition.position, radius, direction, maxDistance, ~0);
+        //DebugDrawSphereCast(rayPosition.position, direction, radius, maxDistance, Color.red);
+        foreach (RaycastHit hit in hits)
         {
-            if (!actionInProgress)
+            Collider collider = hit.collider;
+            Vector3 targetPos = hit.collider.bounds.center;
+            Vector3 origin = rayPosition.position;
+            Vector3 dir = (targetPos - origin).normalized;
+            float distanceToTarget = Vector3.Distance(origin, targetPos);
+            Debug.DrawLine(origin, targetPos, Color.green, 0.1f);
+            // Linecast to see if target is obstructed
+            if (!Physics.Linecast(origin, targetPos, obstructionLayers))
             {
-                //showKeyboardHint = false;
 
-
-
-                if (collider.TryGetComponent(out NPC npc) && npc.isInspecting)
+                if (!actionInProgress)
                 {
-                    currentTarget = collider.gameObject;
+                    //showKeyboardHint = false;
 
-                    showKeyboardHint = true;
-                    keyboardHintText.text = "<size=26><sprite=64></size>  Pickpocket";
 
-                    break;
-                }
-                else if (collider.TryGetComponent(out HomeEntrance homeEntrance))
-                {
-                    currentTarget = collider.gameObject;
 
-                    showKeyboardHint = true;
-                    keyboardHintText.text = "<size=26><sprite=64></size>  " + homeEntrance.GetMessage();
-
-                    break;
-                }
-                else if (collider.TryGetComponent(out LandLord landlord))
-                {
-
-                    foreach (Objective objective in landlord.GetComponent<MemberObjectives>().possibleObjectives)
+                    if (collider.TryGetComponent(out NPC npc) && npc.isInspecting)
                     {
-                        if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                        currentTarget = collider.gameObject;
+
+                        showKeyboardHint = true;
+                        keyboardHintText.text = "<size=26><sprite=64></size>  Pickpocket";
+
+                        return;
+                        break;
+                    }
+                    else if (collider.TryGetComponent(out HomeEntrance homeEntrance))
+                    {
+                        currentTarget = collider.gameObject;
+
+                        showKeyboardHint = true;
+                        keyboardHintText.text = "<size=26><sprite=64></size>  " + homeEntrance.GetMessage();
+                        targetFound = true;
+                        return;
+                        break;
+                    }
+                    else if (collider.TryGetComponent(out LandLord landlord))
+                    {
+
+                        foreach (Objective objective in landlord.GetComponent<MemberObjectives>().possibleObjectives)
                         {
+                            if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
+                            {
 
-                            currentTarget = collider.gameObject;
+                                currentTarget = collider.gameObject;
 
-                            showKeyboardHint = true;
-                            keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
+                                showKeyboardHint = true;
+                                keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
 
-                            return;
+                                return;
+                            }
                         }
                     }
-                }
-                else if (collider.TryGetComponent(out MemberObjectives familyMember))
-                {
-
-
-                    bool itemFound = false;
-
-
-                    foreach (Objective objective in familyMember.possibleObjectives)
+                    else if (collider.TryGetComponent(out MemberObjectives familyMember))
                     {
-                        if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                        print("player actions :: member objective");
+
+                        bool itemFound = false;
+
+
+                        foreach (Objective objective in familyMember.possibleObjectives)
                         {
-                            itemFound = true;
-
-
-                            currentTarget = collider.gameObject;
-
-                            showKeyboardHint = true;
-                            keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
-
-                            return;
-                        }
-                        foreach (Transform item in playerInventory.transform)
-                        {
-                            if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
+                            print("player actions :: " + objective.name);
+                            if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                             {
                                 itemFound = true;
 
@@ -138,82 +185,107 @@ public class PlayerActions : MonoBehaviour
                                 currentTarget = collider.gameObject;
 
                                 showKeyboardHint = true;
-                                keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
+                                keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
 
+                                return;
+                            }
+                            foreach (InventoryItem item in playerInventory.ownedItems)
+                            {
+                                print("player actions :: take item " +item.name);
+                                if (objective.isActive && item.Equals(objective.objectNeeded))
+                                {
+                                    print("player actions :: item found " + item.name);
+                                    itemFound = true;
+
+
+                                    currentTarget = collider.gameObject;
+
+                                    showKeyboardHint = true;
+                                    keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
+
+                                    return;
+                                }
+
+
+                            }
+                        }
+                        if (itemFound)
+                        {
+                            return;
+                            break;
+                        }
+
+
+                    }
+                    else if (collider.TryGetComponent(out Shop shop))
+                    {
+                        currentTarget = collider.gameObject;
+
+                        showKeyboardHint = true;
+                        keyboardHintText.text = "<size=26><sprite=64></size>  Buy " + shop.GetGoodsName() + " for " + shop.GetGoodsPrice() + "$";
+                        return;
+                        break;
+                    }
+                    else if (collider.TryGetComponent(out TramStation tramStation))
+                    {
+                        if (tramStation.IsTramInStation() != null)
+                        {
+                            //if (collider.TryGetComponent(out Tram tram))
+                            //{
+
+                            //    currentTarget = collider.gameObject;
+                            //    showKeyboardHint = true;
+                            //    keyboardHintText.text = "<size=26><sprite=64></size>  Get Off ";
+                            //}
+
+                            if (!thirdPersonController.inTram)
+                            {
+                                print("tram in station");
+                                //tramStation_ = tramStation;
+                                currentTarget = collider.gameObject;
+
+                                showKeyboardHint = true;
+                                keyboardHintText.text = "<size=26><sprite=64></size>  Buy tram ticket for " + tramStation.GetTicketPrice() + "$";
                                 return;
                             }
 
 
                         }
+
+
                     }
-                    if (itemFound)
-                        break;
-
-
-                }
-                else if (collider.TryGetComponent(out Shop shop))
-                {
-                    currentTarget = collider.gameObject;
-
-                    showKeyboardHint = true;
-                    keyboardHintText.text = "<size=26><sprite=64></size>  Buy " + shop.GetGoodsName() + " for " + shop.GetGoodsPrice() + "$";
-
-                    break;
-                }
-                else if (collider.TryGetComponent(out TramStation tramStation))
-                {
-                    if (tramStation.IsTramInStation() != null)
+                    else if (thirdPersonController.inTram)
                     {
-                        //if (collider.TryGetComponent(out Tram tram))
-                        //{
+                        
+                        //collider.TryGetComponent(out Tram tram);
 
-                        //    currentTarget = collider.gameObject;
-                        //    showKeyboardHint = true;
-                        //    keyboardHintText.text = "<size=26><sprite=64></size>  Get Off ";
-                        //}
-
-                        if (!inTram)
+                        if (thirdPersonController.currentPlatform.TryGetComponent<Tram>(out Tram tram))
                         {
-                            currentTarget = collider.gameObject;
+                            tramStation_ = tram.GetTramStation();
+                            if (tramStation_ != null)
+                            {
+                             
 
-                            showKeyboardHint = true;
-                            keyboardHintText.text = "<size=26><sprite=64></size>  Buy tram ticket for " + tramStation.GetTicketPrice() + "$";
+                                currentTarget = tramStation_.gameObject;
+
+                                showKeyboardHint = true;
+                                keyboardHintText.text = "<size=26><sprite=64></size>  Get Off";
+                                return;
+                            }
+                            
                         }
+                       
 
-
+                       
                     }
 
-
-                    break;
-                }
-                else if (thirdPersonController.inTram && collider.TryGetComponent(out Tram tram))
-                {
-                    print("in tram");
-                    TramStation tramStation_ = tram.GetTramStation();
-                    if (tramStation_ != null)
-                    {
-                        print("tramstation not null");
-
-                        currentTarget = tramStation_.gameObject;
-
-                        showKeyboardHint = true;
-                        keyboardHintText.text = "<size=26><sprite=64></size>  Get Off";
-
-                    }
-                    else
-                        print("tramstation null");
-
-                    break;
+                   //NO target found
+                        currentTarget = null;
+                        showKeyboardHint = false;
+                    
                 }
 
-                else
-                {
-                    currentTarget = null;
-                    showKeyboardHint = false;
-                }
             }
-            
-
         }
 
 
@@ -226,7 +298,7 @@ public class PlayerActions : MonoBehaviour
     {
         GetTarget();
 
-        if(!showKeyboardHint)
+        if (!showKeyboardHint)
             keyboardHintPanel.SetActive(false);
         else
             keyboardHintPanel.SetActive(true);
@@ -253,12 +325,14 @@ public class PlayerActions : MonoBehaviour
                     //cameraController.RotateCamera(Quaternion.identity);
                     pocketItemsGeneraton.CreateItems(npc);
                    
+                    if(!thirdPersonController.inTram)
                         cameraController.SetStealCamera();
+                    
                     //cameraController.ToggleComponent<CinemachineFollowZoom>(true);
                     stealCanvas.SetActive(true);
 
-                    thirdPersonController.enabled = false;
-                   
+                    //thirdPersonController.enabled = false;
+                    thirdPersonController.stopMovement = true;
                     animator.ResetTrigger("Idle");
                     animator.SetTrigger("Steal");
 
@@ -287,9 +361,9 @@ public class PlayerActions : MonoBehaviour
 
 
                 Objective objective = landlord.GetComponent<MemberObjectives>().possibleObjectives[0];
-                if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                 {
-                    PlayerStats.BuyWithMoney(objective.moneyNeeded);
+                    PlayerStats.Instance.BuyWithMoney(objective.moneyNeeded);
                     landlord.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
                     landlord.Leave();
                     objectiveManager.HandleObjectiveCompleted(objective);
@@ -305,9 +379,9 @@ public class PlayerActions : MonoBehaviour
                 for (int i = 0; i < familyMember.possibleObjectives.Count; i++)
                 {
                     Objective objective = familyMember.possibleObjectives[i];
-                    if (!objective.itemRequierd && objective.isActive && PlayerStats.money >= objective.moneyNeeded)
+                    if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                     {
-                        PlayerStats.BuyWithMoney(objective.moneyNeeded);
+                        PlayerStats.Instance.BuyWithMoney(objective.moneyNeeded);
                         familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
                         objectiveManager.HandleObjectiveCompleted(objective);
                         showKeyboardHint = false;
@@ -315,7 +389,7 @@ public class PlayerActions : MonoBehaviour
                         actionInProgress = false;
                         return;
                     }
-                    foreach (Transform item in playerInventory.transform)
+                    foreach (InventoryItem item in playerInventory.ownedItems)
                     {
 
                         if (objective.isActive && item.name.Contains(objective.objectNeeded.name))
@@ -329,8 +403,10 @@ public class PlayerActions : MonoBehaviour
                             showKeyboardHint = false;
 
                             actionInProgress = false;
-                           
-                            Destroy(item.gameObject);
+
+                            playerInventory.RemoveFromInventory(item);
+
+                           // Destroy(item.gameObject);
                             
                             return;
                         }
@@ -363,7 +439,9 @@ public class PlayerActions : MonoBehaviour
                         }
                         else
                         {
+                            print("player actions:: get tram");
                             //inTram = true;
+                            //thirdPersonController.inTram = true;
                             tramStation.GetTram();
                         }
                     }
@@ -418,7 +496,7 @@ public class PlayerActions : MonoBehaviour
     {
         actionInProgress = false;
         OnStealUIDisable?.Invoke();
-
+        print("pocket item disable ui!!!!");
         yield return new WaitForSeconds(0);
         
         stealCanvas.SetActive(false);
@@ -426,18 +504,19 @@ public class PlayerActions : MonoBehaviour
             cameraController.SetTramCamera();
         else
             cameraController.ResetCamera();
-        
-        thirdPersonController.enabled = true;
+
+        //thirdPersonController.enabled = true;
+        thirdPersonController.stopMovement = false;
         animator.ResetTrigger("Idle");
 
         TutorialMain.OnClosePickpocket?.Invoke();
     }
 
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, radius);
+    //}
 
 }

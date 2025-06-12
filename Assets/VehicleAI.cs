@@ -28,9 +28,13 @@ public class VehicleAI : MonoBehaviour
 
     Collider[] obstacles;
 
+    Vector3 initialLocation;
+    float avoidTimer;
+
     // Start is called before the first frame update
     void Start()
     {
+        initialLocation = transform.position;
         avoidMask = avoidMask | playerMask; //combine avoid mask with player mask
 
         foreach (Transform goal in lane.transform)
@@ -50,13 +54,14 @@ public class VehicleAI : MonoBehaviour
     void Update()
     {
 
-       
+
         if (ObstacleDetected())
         {
+            avoidTimer += Time.deltaTime;
 
             Transform closestObstacle = obstacles[0].transform;
             float distance = Mathf.Infinity;
-            foreach(Collider obstacle in obstacles)
+            foreach (Collider obstacle in obstacles)
             {
 
 
@@ -69,9 +74,21 @@ public class VehicleAI : MonoBehaviour
 
             float normalizedDistance = (Vector3.Distance(closestObstacle.position, transform.position) - obstacleMinDistance) / (obstacleMaxDistance - obstacleMinDistance);
             agent.speed = agentMaxSpeed * normalizedDistance;
+
+            //If vehicle stays too long in one plays, respawn it
+            if (avoidTimer >= 10)
+            {
+                agent.enabled = false;
+                transform.position = initialLocation;
+                agent.enabled = true;
+                agent.SetDestination(goals[0].position);
+            }
         }
         else
+        {
+            avoidTimer = 0;
             agent.speed = Mathf.Lerp(agent.speed, agentMaxSpeed, Time.deltaTime * 1); //slowly accelerate
+        }
 
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {

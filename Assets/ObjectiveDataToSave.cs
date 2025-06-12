@@ -30,7 +30,7 @@ public class ObjectiveDataToSave
             objectiveData.isActive = obj.isActive;
             objectiveData.id = obj.id;
             objectiveData.leftCooldown = obj.leftCooldown;
-            Debug.Log("ObjectiveDataToSave:: " + obj.leftCooldown + " " + objectiveData.leftCooldown);
+            Debug.Log("ObjectiveDataToSave:: " + obj.id + " " + obj.name);
 
             objectives.Add(objectiveData);
             //obj.isActive = false;

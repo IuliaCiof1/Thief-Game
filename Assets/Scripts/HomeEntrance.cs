@@ -13,7 +13,7 @@ public class HomeEntrance : MonoBehaviour
     [SerializeField] string nextSceneName;
     [SerializeField] string message;
 
-
+    ThirdPersonController player;
 
     private void OnEnable()
     {
@@ -27,7 +27,7 @@ public class HomeEntrance : MonoBehaviour
 
     private void Start()
     {
-        
+        player = FindFirstObjectByType<ThirdPersonController>();
       if(useFadeOutAtBeggining)
             StartCoroutine(FadeOutImage());
        
@@ -45,6 +45,8 @@ public class HomeEntrance : MonoBehaviour
         fadeImage.gameObject.SetActive(true);
         float timer = 0f;
         Color color = fadeImage.color;
+
+        player.stopMovement = true;
 
         while (timer < fadeDuration)
         {
@@ -65,6 +67,7 @@ public class HomeEntrance : MonoBehaviour
 
     IEnumerator FadeOutImage()
     {
+        player.stopMovement = true;
         print("fade out image");
 
         fadeImage.gameObject.SetActive(true);
@@ -87,6 +90,10 @@ public class HomeEntrance : MonoBehaviour
         }
 
         fadeImage.gameObject.SetActive(false);
+        if (PlayerPrefs.GetInt("tutorialEnabled", 0) == 1)
+           Time.timeScale = 0f;
+
+        player.stopMovement = false;
     }
 
    public string GetMessage()

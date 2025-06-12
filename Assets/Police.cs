@@ -24,6 +24,8 @@ public class Police : MonoBehaviour
 
     [SerializeField] CursorController cursorController;
 
+    bool callPolice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +54,10 @@ public class Police : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print(agent.remainingDistance);
+        //Get the closest location to the player once the player is not in tram anymore
+        if (callPolice && !player.inTram)
+            GetClosestLocation();
+
         if (catchPlayer)
         {
             agent.SetDestination(player.transform.position);
@@ -68,9 +73,11 @@ public class Police : MonoBehaviour
                 gotCaughtUI.SetActive(true);
             }
         }
+
+        
     }
 
-    public void CallPolice()
+    void GetClosestLocation()
     {
         //Get the closest goal location to the player
         float shortestDistance = Mathf.Infinity;
@@ -80,19 +87,19 @@ public class Police : MonoBehaviour
 
         GameObject closestGoal = null;
 
-        foreach(GameObject goalLocation in crowdManager.GoalLocations)
+        foreach (GameObject goalLocation in crowdManager.GoalLocations)
         {
-            print("go police1 "+goalLocation.name);
+            print("go police1 " + goalLocation.name);
             thisDistance = Vector3.Distance(goalLocation.transform.position, player.transform.position);
 
-            if (thisDistance > minimumDistanceFromPlayer && thisDistance<shortestDistance)
+            if (thisDistance > minimumDistanceFromPlayer && thisDistance < shortestDistance)
             {
                 print("go police1 " + goalLocation.name + " is close");
                 shortestDistance = thisDistance;
                 closestGoal = goalLocation;
             }
         }
-        
+
         if (closestGoal)
         {
             print("go police");
@@ -107,6 +114,15 @@ public class Police : MonoBehaviour
         }
         else
             Debug.LogWarning("Police.cs: CallPolice: Couldn't find closest goal to the player");
+
+        callPolice = false;
+    }
+
+    public void CallPolice()
+    {
+        callPolice = true;
+
+
     }
 
     public void PayFines()
@@ -114,7 +130,7 @@ public class Police : MonoBehaviour
         print("fines paid");
         cursorController.CursorVisibility(false);
         ResetPolice();
-        PlayerStats.RemoveMoney(PlayerStats.money);
+        PlayerStats.Instance.RemoveMoney(PlayerStats.Instance.money);
         PlayerStats.Instance.RemoveReputation(reputationLoss);
 
         gotCaughtUI.SetActive(false);

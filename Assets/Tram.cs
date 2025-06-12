@@ -40,6 +40,12 @@ public class Tram : MonoBehaviour
 
     public TramStation GetTramStation()
     {
+        if(tramStation is null)
+        {
+            print("tram not in station");
+        }
+        else
+        print("tram in station " + tramStation.name);
         return tramStation;
     }
 

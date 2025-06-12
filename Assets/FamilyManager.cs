@@ -36,7 +36,7 @@ public class FamilyManager : MonoBehaviour
         if (deadMembers == 3)
             EndingManager.Trigger(EndingManager.EndingType.allDead);
 
-        if (PlayerStats.reputation >= PlayerStats.maxReputation_) {
+        if (PlayerStats.Instance.reputation >= PlayerStats.maxReputation_) {
             if (deadMembers > 0)
                 EndingManager.Trigger(EndingManager.EndingType.reputationWithDeaths);
             else

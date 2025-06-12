@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,13 +11,13 @@ public class SpeechBubble : MonoBehaviour
     public float rotationMultiplier = 2f;  // Adjust sensitivity
     [SerializeField]TextMeshPro text;
     [SerializeField] SpriteRenderer bubbleBackround;
-
+    [SerializeField] CinemachineVirtualCamera camera;
     bool showBubble;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        camera = FindAnyObjectByType<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class SpeechBubble : MonoBehaviour
         {
             //transform.GetChild(0).gameObject.SetActive(true);
           
-            float cameraZ = Camera.main.transform.position.z;
+            float cameraZ = camera.transform.position.z;
 
             // Get the difference in Z position
             float zDifference = cameraZ - transform.position.z;

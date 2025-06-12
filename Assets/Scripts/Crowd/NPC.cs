@@ -10,6 +10,8 @@ public class NPC : AIControl
 
      AudioClip[] audioClips;
 
+    ThirdPersonController player;
+
     //bool onRoad;
 
     //// Start is called before the first frame update
@@ -17,6 +19,7 @@ public class NPC : AIControl
     {
         base.Start();
 
+        player = FindFirstObjectByType<ThirdPersonController>();
         deadzone = FindObjectOfType<DeadZone>();
         gameObject.layer = LayerMask.NameToLayer("Default");
         audioClips = crowdManager.AudioClips;
@@ -139,7 +142,8 @@ public class NPC : AIControl
         }
         SoundFXManager.instance.PlayRandomSoundFXClip(audioClips, transform, 0.02f);
 
-        if (Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
+        //NPC should run when player is not in tram
+        if (!player.inTram && Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
         {
             //print(gameObject.name + " i detectio radius");
             agent.ResetPath();

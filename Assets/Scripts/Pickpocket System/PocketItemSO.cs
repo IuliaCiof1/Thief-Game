@@ -9,5 +9,5 @@ public class PocketItemSO : ScriptableObject
     public int value;
 
     public bool canBeOwned;
-    public GameObject ownedObjectPrefab;
+    public InventoryItem ownedObject;
 }

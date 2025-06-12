@@ -7,6 +7,7 @@ public class SaveDataScript : MonoBehaviour
     BuildingManager buildingManager;
     ObjectiveManager objectiveManager;
     FamilyManager familyManager;
+    Inventory inventory;
 
     public static SaveDataScript Instance;
 
@@ -26,6 +27,7 @@ public class SaveDataScript : MonoBehaviour
         buildingManager = FindAnyObjectByType<BuildingManager>();
         objectiveManager = FindAnyObjectByType<ObjectiveManager>();
         familyManager = FindAnyObjectByType<FamilyManager>();
+        inventory = FindAnyObjectByType<Inventory>();
         //SaveSystem.Load();
 
         GameData loadedData = SaveSystem.Load();
@@ -33,6 +35,7 @@ public class SaveDataScript : MonoBehaviour
         {
             FurnitureDataToSave furnitureData = loadedData.furnitureData;
             ObjectiveDataToSave objectiveData = loadedData.objectiveData;
+            InventoryDataToSave inventoryData = loadedData.inventoryData;
 
             if (buildingManager != null)
                 buildingManager.LoadFurniture(furnitureData);
@@ -40,6 +43,8 @@ public class SaveDataScript : MonoBehaviour
                 familyManager.LoadData();
             if (objectiveManager != null)
                 objectiveManager.LoadData(objectiveData);
+            if (inventory != null)
+                inventory.LoadData(inventoryData);
 
         }
         //else
@@ -71,7 +76,7 @@ public class SaveDataScript : MonoBehaviour
     {
         print("save");
 
-        SaveSystem.Save(buildingManager, objectiveManager);
+        SaveSystem.Save(buildingManager, objectiveManager,inventory);
         yield return new WaitForSeconds(1.5f); //wait until file is written
         
         //foreach(Objective obj in objectiveManager.objectives)

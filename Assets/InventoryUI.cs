@@ -9,6 +9,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] RectTransform slotContainer;
     [SerializeField] RectTransform emptyContainer;
     [SerializeField] GameObject inventoryDisplay;
+    [SerializeField] float offset;
 
     private void Start()
     {
@@ -27,19 +28,20 @@ public class InventoryUI : MonoBehaviour
 
         int itemIndex = 0;
 
-        foreach (Transform item in inventory.transform)
+        //add the slots to ui inventory
+        foreach (InventoryItem item in inventory.ownedItems)
         {
             itemIndex++;
 
-            if (slotContainer.childCount - 1 < item.GetSiblingIndex())
+            if (slotContainer.childCount - 1 < inventory.ownedItems.IndexOf(item))
             {
                 newSlot = Instantiate(inventorySlot, slotContainer);
-                slotContainer.sizeDelta = new Vector2(slotContainer.sizeDelta.x, slotContainer.sizeDelta.y + newSlot.sizeDelta.y);
+                slotContainer.sizeDelta = new Vector2(slotContainer.sizeDelta.x, slotContainer.sizeDelta.y + newSlot.sizeDelta.y + offset);
             }
             else
-                newSlot = slotContainer.GetChild(item.GetSiblingIndex()) as RectTransform;
+                newSlot = slotContainer.GetChild(inventory.ownedItems.IndexOf(item)) as RectTransform;
 
-            newSlot.GetChild(0).GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().sprite;
+            newSlot.GetChild(0).GetComponent<Image>().sprite = item.sprite;
             
 
         }
@@ -55,7 +57,7 @@ public class InventoryUI : MonoBehaviour
             for (int i = slotContainer.childCount - 1; i >= itemIndex; i--)
             {
                 print(i);
-                slotContainer.sizeDelta = new Vector2(slotContainer.sizeDelta.x, slotContainer.sizeDelta.y - inventorySlot.sizeDelta.y);
+                slotContainer.sizeDelta = new Vector2(slotContainer.sizeDelta.x, slotContainer.sizeDelta.y - inventorySlot.sizeDelta.y - offset);
                 Destroy(slotContainer.GetChild(i).gameObject);
             }
         }

@@ -39,23 +39,27 @@ public class PocketItem : MonoBehaviour
     }
 
 
-    private void OnDisable()
-    {
-        PlayerActions.OnStealUIDisable -= HandleStealUIDisable;
-    }
+    //private void OnDisable()
+    //{
+    //   // HandleStealUIDisable();
+    //    PlayerActions.OnStealUIDisable -= HandleStealUIDisable;
+
+    //}
 
     void HandleStealUIDisable()
     {
-        print(gameObject.name + " handle steal ui disable");
-
+        //print(gameObject.name + " handle steal ui disable");
+        print("pocket item disable ui");
         transform.SetParent(initialParent);
         transform.localPosition = Vector3.zero;
         rb.isKinematic = false;
         gameObject.SetActive(false);
+        
     }
 
     public void GrabItem(Transform parent)
     {
+        //print("steal:: grab item");
         transform.SetParent(parent);
        rb.isKinematic = true;
         transform.SetAsFirstSibling();
@@ -65,6 +69,11 @@ public class PocketItem : MonoBehaviour
     {
         rb.isKinematic = false;
         transform.SetParent(initialParent);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerActions.OnStealUIDisable -= HandleStealUIDisable;
     }
 
     //private void AddToInventory()
@@ -77,11 +86,13 @@ public class PocketItem : MonoBehaviour
         if(other.TryGetComponent<CoinCollectArea>(out CoinCollectArea coinCollect))
         {
             animator.SetTrigger("PutInBag");
-            playerStats.AddMoiney(Value);
+            coinCollect.PlayCollectSoud();
+            //playerStats.AddMoiney(Value);
+            PlayerStats.Instance.AddMoiney(Value);
 
-            if (pocketItemSO.canBeOwned && !inventory.CheckIfItemExists(pocketItemSO.ownedObjectPrefab.name))
+            if (pocketItemSO.canBeOwned && !inventory.CheckIfItemExists(pocketItemSO.ownedObject.id))
             {
-                inventory.AddToInventory(pocketItemSO.ownedObjectPrefab);
+                inventory.AddToInventory(pocketItemSO.ownedObject);
             }
             //Destroy(gameObject);
             //transform.SetParent(initialParent);

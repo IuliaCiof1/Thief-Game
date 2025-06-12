@@ -15,14 +15,14 @@ MonoBehaviour:
   title: Someone is Hungry
   description: Your eldest child  is hungry. Get her some food or she might die of
     starvation.
-  isCompleted: 1
-  isActive: 0
+  isCompleted: 0
+  isActive: 1
   itemRequierd: 1
-  objectNeeded: {fileID: 5488972324912657813, guid: ebc57b4db2acf4d48a1f13cf2dc5dac7, type: 3}
+  objectNeeded: {fileID: 11400000, guid: d56011899a1f94343b4c82e5aabe6380, type: 2}
   moneyNeeded: 0
   healthTaken: 3
   objectiveEventName: 
   id: 002
   member: child1
-  objectiveCooldown: 3
+  objectiveCooldown: 2
   leftCooldown: 0

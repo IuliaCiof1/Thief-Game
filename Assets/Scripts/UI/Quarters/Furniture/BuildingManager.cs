@@ -153,8 +153,8 @@ public class BuildingManager : MonoBehaviour
         furniture.isPending = true;
             pendingObject.SetActive(true);
 
-        PlayerStats.BuyWithMoney(ownedObjects[index].value);
-        PlayerStats.AddReputation(ownedObjects[index].reputation);
+        PlayerStats.Instance.BuyWithMoney(ownedObjects[index].value);
+        PlayerStats.Instance.AddReputation(ownedObjects[index].reputation);
         //}
 
     }
@@ -162,7 +162,7 @@ public class BuildingManager : MonoBehaviour
     public bool CheckIfAffordFurniture(int index)
     {
         print("check if afford" + ownedObjects[index] + " " + ownedObjects[index].value);
-        if (ownedObjects[index].value <= PlayerStats.money)
+        if (ownedObjects[index].value <= PlayerStats.Instance.money)
         {
             return true;
         }

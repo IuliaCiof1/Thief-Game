@@ -23,5 +23,5 @@ MonoBehaviour:
   objectiveEventName: 
   id: 005
   member: landlord
-  objectiveCooldown: 3
+  objectiveCooldown: 2
   leftCooldown: 0

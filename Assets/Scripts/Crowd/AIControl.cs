@@ -42,8 +42,10 @@ protected GameObject inspectionPoint;
     bool onRoad;
     [SerializeField] float avoidDistance;
     float avoidTimer = 0f;
+    float respawnTimer = 0f;
 
 
+    bool goBack;
 
     public bool GetIsInspecting()
     {
@@ -93,10 +95,11 @@ protected GameObject inspectionPoint;
         inspectionTime = crowdManager.InspectionCooldown;
         lastGoalVisited = goalLocations[0];
         ResetAgentSpeed();
+        goBack = false;
         //NavMesh.CalculatePath(Vector3.zero, Vector3.forward * 5, NavMesh.AllAreas, new NavMeshPath());
-       // StartCoroutine(DelayedStart(Random.Range(0f, 1.5f)));
+        // StartCoroutine(DelayedStart(Random.Range(0f, 1.5f)));
         //SetNewDestination();
-        
+
         //InvokeRepeating("InspectionPointSearch", 2.0f, Random.Range(crowdManager.InspectionCooldown, crowdManager.InspectionCooldown+2));
     }
 
@@ -173,7 +176,7 @@ protected GameObject inspectionPoint;
 
     void Avoid()
     {
-        bool goBack = false;
+        //goBack = false;
 
         RaycastHit hit;
         Debug.DrawRay(transform.position + new Vector3(0, 1), transform.forward * avoidDistance, Color.yellow, 1f);
@@ -184,19 +187,33 @@ protected GameObject inspectionPoint;
             if (hit.transform.TryGetComponent<VehicleAI>(out VehicleAI vehicleAI))
             {
                 
-                agent.isStopped = true;
-                isInspecting = true;
+               
                 //
               //if the npc stays too much time in front of a vehicle, go back to the preveous goal, to avoid stuck traffic
                     avoidTimer += Time.deltaTime;
+                respawnTimer += Time.deltaTime;
                 if (avoidTimer >= 4f)
                 {
-                    Debug.Log("Inspection took too long. Returning to previous goal.");
+                    Debug.Log("Inspection took too long. Returning to previous goal. " + gameObject.name);
                     isInspecting = false;
                     agent.isStopped = false;
                     avoidTimer = 0f;
                     agent.SetDestination(VisitedGoals[1].transform.position);
                     goBack = true;
+                }
+                //if(respawnTimer>=10f)
+                //{
+                //    isInspecting = false;
+                //    agent.isStopped = false;
+                //    avoidTimer = 0f;
+                //    respawnTimer = 0;
+                //    agent.SetDestination(VisitedGoals[1].transform.position);
+                //    goBack = true;
+                //}
+                else
+                {
+                    agent.isStopped = true;
+                    isInspecting = true;
                 }
                    
                 
@@ -362,6 +379,7 @@ protected GameObject inspectionPoint;
             agent.isStopped = false;
             animator.SetBool("Inspect", false);
             // ResetAgentSpeed();
+            goBack = false;
             SetNewDestination();
         }
         else if (agent.pathPending)

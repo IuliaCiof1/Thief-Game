@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Weather is cold
   description: Your wife caught a cold. Buy medicine or it might get worse.
-  isCompleted: 1
-  isActive: 0
+  isCompleted: 0
+  isActive: 1
   itemRequierd: 1
-  objectNeeded: {fileID: 8591146905022585274, guid: 03485018700c50046a9226e1ad1cbb69, type: 3}
+  objectNeeded: {fileID: 11400000, guid: 9cd03f9fd158c67468b05cd7743bcdd1, type: 2}
   moneyNeeded: 0
   healthTaken: 7
   objectiveEventName: WifeCold
   id: 006
   member: wife
-  objectiveCooldown: 3
+  objectiveCooldown: 2
   leftCooldown: 0

@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: WifeUnhappy
   m_EditorClassIdentifier: 
   title: Happiness decreased
-  description: Your wife is unhappy. Buy some entertainment so she doesn't get bored
-  isCompleted: 1
+  description: Your wife is unhappy. Maybe some museum tickets will make her feel
+    better
+  isCompleted: 0
   isActive: 0
   itemRequierd: 1
-  objectNeeded: {fileID: 4030337183020701375, guid: 8e7d1a97e969f7a478d4891f9f84fe42, type: 3}
+  objectNeeded: {fileID: 11400000, guid: 08df421057672a648baa26aa562e64d3, type: 2}
   moneyNeeded: 0
   healthTaken: 2
   objectiveEventName: 
   id: 008
   member: wife
-  objectiveCooldown: 3
+  objectiveCooldown: 2
   leftCooldown: 0

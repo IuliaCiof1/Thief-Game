@@ -26,12 +26,95 @@ public class CameraController : MonoBehaviour
     float iniScreenY;
     CinemachineFramingTransposer vrCamCompFrameTransposer;
     CinemachineBasicMultiChannelPerlin vrCamCompPerlin;
+    //CinemachineCollider vrCamCompCollider;
     float iniAplitudeGain;
+    Vector3 iniTrackedOffset;
+    [SerializeField] GameObject player;
+
+    [SerializeField]Vector3 stealOffset;
+
+
+    
+
+    enum CameraMode { Initial, Collision, Steal, Tram }
+
+    struct CameraSettings
+    {
+        public float screenX;
+        public float screenY;
+        public float amplitudeGain;
+        public float softZoneHeight;
+        public float softZoneWidth;
+        public float biasX;
+        public float minFOV;
+        public Vector3 trackedOffset;
+        public Quaternion cameraRotation;
+        public CameraMode mode;  // add mode info here
+    }
+
+    CameraMode currentMode = CameraMode.Initial;
+
+    CameraSettings previousSettings;
+    bool hasSavedPreviousSettings = false;
+    private Stack<CameraSettings> cameraSettingsStack = new Stack<CameraSettings>();
+
+    void SaveCurrentCameraSettings(CameraMode mode)
+    {
+
+        CameraSettings currentSettings = new CameraSettings
+        {
+            screenX = vrCamCompFrameTransposer.m_ScreenX,
+            screenY = vrCamCompFrameTransposer.m_ScreenY,
+            amplitudeGain = vrCamCompPerlin.m_AmplitudeGain,
+            softZoneHeight = vrCamCompFrameTransposer.m_SoftZoneHeight,
+            softZoneWidth = vrCamCompFrameTransposer.m_SoftZoneWidth,
+            biasX = vrCamCompFrameTransposer.m_BiasX,
+            minFOV = vrCamCompZoom.m_MinFOV,
+            trackedOffset = vrCamCompFrameTransposer.m_TrackedObjectOffset,
+            cameraRotation = virtualCamera.transform.rotation,
+            mode = mode
+        };
+        print("camera controller mode SAVE" + mode.ToString());
+        cameraSettingsStack.Push(currentSettings);
+    }
+
+    void SaveCurrentCameraSettingsIfModeChanged(CameraMode newMode)
+    {
+        if (currentMode != newMode)
+        {
+            SaveCurrentCameraSettings(currentMode);
+            currentMode = newMode;
+           
+        }
+    }
+
+    void RestorePreviousCameraSettings()
+    {
+        if (cameraSettingsStack.Count == 0) { return; }
+
+        CameraSettings settings = cameraSettingsStack.Pop();
+
+        targetRotation = settings.cameraRotation;
+        isRotating = true;
+
+        vrCamCompFrameTransposer.m_ScreenX = settings.screenX;
+        vrCamCompFrameTransposer.m_ScreenY = settings.screenY;
+        vrCamCompPerlin.m_AmplitudeGain = settings.amplitudeGain;
+        vrCamCompFrameTransposer.m_SoftZoneHeight = settings.softZoneHeight;
+        vrCamCompFrameTransposer.m_SoftZoneWidth = settings.softZoneWidth;
+        vrCamCompFrameTransposer.m_BiasX = settings.biasX;
+        vrCamCompZoom.m_MinFOV = settings.minFOV;
+        vrCamCompFrameTransposer.m_TrackedObjectOffset = settings.trackedOffset;
+
+        currentMode = settings.mode;
+        print("ResetCamera:: camera controller restore to current settings "+currentMode.ToString());
+        
+    }
 
     private void Start()
     {
 
-        
+       
 
         cameraRotation = virtualCamera.transform.rotation;
 
@@ -45,7 +128,11 @@ public class CameraController : MonoBehaviour
         iniScreenX = vrCamCompFrameTransposer.m_ScreenX;
         iniScreenY = vrCamCompFrameTransposer.m_ScreenY;
         vrCamCompPerlin = vrCamComp.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //vrCamCompCollider = vrCamComp.GetComponent<CinemachineCollider>();
         iniAplitudeGain = vrCamCompPerlin.m_AmplitudeGain;
+        iniTrackedOffset = vrCamCompFrameTransposer.m_TrackedObjectOffset;
+
+       
     }
 
     private void Update()
@@ -69,49 +156,108 @@ public class CameraController : MonoBehaviour
 
     public void ResetCamera()
     {
-        targetRotation = cameraRotation;
-        isRotating = true;
+        ////targetRotation = cameraRotation;
+        ////isRotating = true;
 
-        collisionMode = false;
+        ////collisionMode = false;
+        //////vrCamCompCollider.enabled = false;
+        ////vrCamCompZoom.enabled = false;
+        ////vrCamCompFrameTransposer.m_ScreenX = iniScreenX;
+        ////vrCamCompFrameTransposer.m_ScreenY = iniScreenY;
+        ////vrCamCompPerlin.m_AmplitudeGain = iniAplitudeGain;
+        ////vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
+        ////vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
+        ////vrCamCompFrameTransposer.m_BiasX = 0;
+        ////vrCamCompZoom.m_MinFOV = 3;
+        ////vrCamCompFrameTransposer.m_TrackedObjectOffset = iniTrackedOffset;
+        //collisionMode = false;
+        //vrCamCompZoom.enabled = false;
+        RestorePreviousCameraSettings();
+       if(currentMode == CameraMode.Initial)
+        {
+            StopAllCoroutines();
+            print("camera controller reset to initial");
+            targetRotation = cameraRotation;
+            isRotating = true;
 
-        vrCamCompZoom.enabled = false;
-        vrCamCompFrameTransposer.m_ScreenX = iniScreenX;
-        vrCamCompFrameTransposer.m_ScreenY = iniScreenY;
-        vrCamCompPerlin.m_AmplitudeGain = iniAplitudeGain;
-        vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
-        vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
-        vrCamCompZoom.m_MinFOV = 3;
+            collisionMode = false;
+            //vrCamCompCollider.enabled = false;
+            vrCamCompZoom.enabled = false;
+            vrCamCompFrameTransposer.m_ScreenX = iniScreenX;
+            vrCamCompFrameTransposer.m_ScreenY = iniScreenY;
+            vrCamCompPerlin.m_AmplitudeGain = iniAplitudeGain;
+            vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
+            vrCamCompFrameTransposer.m_SoftZoneHeight = 0.8f;
+            vrCamCompFrameTransposer.m_BiasX = 0;
+            vrCamCompZoom.m_MinFOV = 3;
+            vrCamCompFrameTransposer.m_TrackedObjectOffset = iniTrackedOffset;
+        }
     }
 
     public void SetCollisionCamera()
     {
+        StopAllCoroutines();
+        SaveCurrentCameraSettingsIfModeChanged(CameraMode.Collision);
+        print("SetCollisionCamera:: camera controller save current settings");
         RotateCamera(Quaternion.Euler(85, 0, 0));
         collisionMode = true;
+        
     }
 
     public void SetStealCamera()
     {
+        StopAllCoroutines();
+        SaveCurrentCameraSettingsIfModeChanged(CameraMode.Steal);
+
         stealMode = true;
+        //vrCamCompCollider.enabled = true;
         //if (!collisionMode)
-            RotateCamera(Quaternion.Euler(30,0,0));
+        //vrCamCompFrameTransposer.m_TrackedObjectOffset -= new Vector3(8,0 ,0 );
+        vrCamCompFrameTransposer.m_TrackedObjectOffset = stealOffset;
+        RotateCamera(Quaternion.Euler(30,0,0));
         //else
         //    vrCamComp.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = 0.49f;
         //ToggleComponent<CinemachineFollowZoom>(true);
         vrCamCompZoom.enabled = true;
-        vrCamCompFrameTransposer.m_ScreenX = 0.46f;
+        vrCamCompFrameTransposer.m_ScreenX = 0.32f;
         vrCamCompFrameTransposer.m_ScreenY = 0.62f;
         vrCamCompPerlin.m_AmplitudeGain = 0.09f;
-
+        vrCamCompFrameTransposer.m_SoftZoneWidth = 0.20f;
+        vrCamCompFrameTransposer.m_BiasX = -0.5f;
+        //transform.LookAt(player.transform);
+        //vrCamCompFrameTransposer.m_ScreenX = Mathf.Lerp(vrCamCompFrameTransposer.m_ScreenX, 0.5f, Time.deltaTime * 5f);
+        StartCoroutine(SmoothRecenter(0.5f));
         //foreach (GameObject objectColliding in objectsColliding)
         //    objectColliding.SetActive(false);
 
-        
+
+    }
+
+    IEnumerator SmoothRecenter(float duration)
+    {
+        float t = 0;
+        float startX = vrCamCompFrameTransposer.m_ScreenX;
+        float startY = vrCamCompFrameTransposer.m_ScreenY;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float lerpT = t / duration;
+            vrCamCompFrameTransposer.m_ScreenX = Mathf.Lerp(startX, 0.34f, lerpT);
+            vrCamCompFrameTransposer.m_ScreenY = Mathf.Lerp(startY, 0.5f, lerpT);
+            yield return null;
+        }
+
+        vrCamCompFrameTransposer.m_ScreenX = 0.34f;
+        vrCamCompFrameTransposer.m_ScreenY = 0.5f;
     }
 
     public void SetTramCamera()
     {
         SetCollisionCamera();
-
+        vrCamCompFrameTransposer.m_TrackedObjectOffset = iniTrackedOffset;
+        vrCamCompFrameTransposer.m_ScreenX = iniScreenX;
+        vrCamCompFrameTransposer.m_ScreenY = 0.5f;
         vrCamCompFrameTransposer.m_SoftZoneHeight = 0.22f;
         vrCamCompFrameTransposer.m_SoftZoneHeight = 0.23f;
         vrCamCompZoom.m_MinFOV = 29;

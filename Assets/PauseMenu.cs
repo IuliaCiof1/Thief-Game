@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         cursorController = FindFirstObjectByType<CursorController>();
+        Time.timeScale = 1;
     }
 
     private void Update()

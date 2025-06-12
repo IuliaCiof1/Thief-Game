@@ -17,6 +17,6 @@ public class MoneyUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneyStats.text = PlayerStats.money + "$";
+        moneyStats.text = PlayerStats.Instance.money + "$";
     }
 }

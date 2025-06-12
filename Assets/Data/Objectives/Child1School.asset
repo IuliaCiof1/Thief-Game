@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58ecfda3d63bfe4d9796d552319ff59, type: 3}
+  m_Name: Child1School
+  m_EditorClassIdentifier: 
+  title: To know is to grow
+  description: Your eldest son needs to completed an asignment for school. Buy him
+    some books from the book store.
+  isCompleted: 0
+  isActive: 0
+  itemRequierd: 1
+  objectNeeded: {fileID: 11400000, guid: a106e079b5724354dbef4841329d805c, type: 2}
+  moneyNeeded: 0
+  healthTaken: 1
+  objectiveEventName: 
+  id: 015
+  member: child2
+  objectiveCooldown: 2
+  leftCooldown: 0

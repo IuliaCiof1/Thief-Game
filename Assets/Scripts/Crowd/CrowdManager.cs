@@ -34,6 +34,7 @@ public class CrowdManager : MonoBehaviour
     [SerializeField] Transform agentsContainer;
 
     [SerializeField] AudioClip[] audioClips;
+    [SerializeField] Transform failedNPCSpawn;
 
     public ThirdPersonController player { get; private set; }
 
@@ -51,7 +52,7 @@ public class CrowdManager : MonoBehaviour
     public float AvoidDistance { get { return avoidDistance; } private set { } }
     public Transform AgentsContainer { get { return agentsContainer; } private set { } }
     public AudioClip[] AudioClips { get { return audioClips; } }
-
+    public Transform FailedNPCSpawn { get { return failedNPCSpawn; } }
 
     //Awake runs before all start methods. We use this to make sure the goalLocations and inspectionPoints are all initialised first
     void Awake()

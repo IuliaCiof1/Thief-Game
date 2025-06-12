@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance { get; private set; } //singleton lazy instantion
-    public static int money { get; private set; }
-    public static int reputation { get; private set; }
+    public int money { get; private set; }
+    public int reputation { get; private set; }
 
     [SerializeField] int maxReputation;
     public static int maxReputation_{ get; private set; }
@@ -19,6 +19,11 @@ public class PlayerStats : MonoBehaviour
             Instance = this;
         }
         
+    }
+
+    public int GetMonney()
+    {
+        return money;
     }
 
     public int GetReputationLoss()
@@ -48,7 +53,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     //Return true if player has enough money or false otherwise
-    public static bool BuyWithMoney(int amount)
+    public  bool BuyWithMoney(int amount)
     {
         if (money - amount >= 0)
         {
@@ -60,7 +65,7 @@ public class PlayerStats : MonoBehaviour
 
     }
 
-    public static void AddReputation(int amount)
+    public void AddReputation(int amount)
     {
         reputation += amount;
     }
@@ -73,7 +78,7 @@ public class PlayerStats : MonoBehaviour
 
        
     }
-    public static void RemoveMoney(int amount)
+    public void RemoveMoney(int amount)
     {
         money -= amount;
 

@@ -26,31 +26,35 @@ public class ObjectiveManager : MonoBehaviour
     
 
     //Make sure that displaying objectives is made after game load
-    private void Start()
-    {
+    //private void Start()
+    //{
 
-        activeObjectivesAtOnce = 0;
-        //foreach (MemberObjectives familyMember in familyMembers)
-        //{
+    //    activeObjectivesAtOnce = 0;
+    //    //foreach (MemberObjectives familyMember in familyMembers)
+    //    //{
            
         
 
-        //    objectives.AddRange(familyMember.possibleObjectives);
-        //    print("objectives added to objective manager");
-        //}
+    //    //    objectives.AddRange(familyMember.possibleObjectives);
+    //    //    print("objectives added to objective manager");
+    //    //}
 
-        //StartNextObjective();
+    //    //StartNextObjective();
 
-        //foreach (Objective objective in activeobjectives)
-        //{
-        //    print("display objective "+objective.name);
-        //    DisplayObjective(objective);
-        //}
+    //    //foreach (Objective objective in activeobjectives)
+    //    //{
+    //    //    print("display objective "+objective.name);
+    //    //    DisplayObjective(objective);
+    //    //}
 
 
+    //}
+    void OnEnable()
+    {
+        activeObjectivesAtOnce = 0;
+        activeobjectives.Clear();
     }
 
-   
 
     public void HandleObjectiveCompleted(Objective completedObjective)
     {
@@ -187,13 +191,17 @@ public class ObjectiveManager : MonoBehaviour
                 
                 if (obj.id == data.objectives[i].id)
                 {
-                    Debug.Log("ObjectiveManager:: objective: " + obj.name +" "+ data.objectives[i].leftCooldown);
-                    DisplayObjective(obj);
+                    //Debug.Log("ObjectiveManager:: objective: " + obj.name +" "+ data.objectives[i].leftCooldown);
+                    
                     obj.isActive = data.objectives[i].isActive;
                     obj.leftCooldown = data.objectives[i].leftCooldown;
 
-                    if(obj.isActive)
+                    if (obj.isActive)
+                    {
+                        Debug.Log("ObjectiveManager:: objective: " + obj.name + " " + obj.id);
                         activeobjectives.Add(obj);
+                        DisplayObjective(obj);
+                    }
 
                     print("objective " + obj.name + " " + obj.isActive);
                     break;

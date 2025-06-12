@@ -38,9 +38,11 @@ public class PaintingRoomUI : MonoBehaviour
 
     public PlayerInput playerInput;
     CursorController cursorController;
+    ThirdPersonController player;
 
     private void Start()
     {
+        player = FindFirstObjectByType<ThirdPersonController>();
         cursorController = FindFirstObjectByType<CursorController>();
 
         changeInputMaps = FindObjectOfType<ChangeInputMaps>();
@@ -111,6 +113,7 @@ public class PaintingRoomUI : MonoBehaviour
 
     public void OpenFurnitureUI()
     {
+        player.stopMovement = true;
         cursorController.CursorVisibility(true);
         changeInputMaps.ChangeToFurnitureMap();
         //uiButtons.SetActive(false);
@@ -127,6 +130,7 @@ public class PaintingRoomUI : MonoBehaviour
 
     public void CloseFurnitureUI()
     {
+        player.stopMovement = false;
         cursorController.CursorVisibility(false);
         changeInputMaps.ChangeToGameplayMap();
 
@@ -143,7 +147,7 @@ public class PaintingRoomUI : MonoBehaviour
 
     public void PaintWalls(PaintSO paint)
     {
-        if(PlayerStats.BuyWithMoney(paint.value)){
+        if(PlayerStats.Instance.BuyWithMoney(paint.value)){
             List<Material> materialList = new List<Material>();
             materialList.Add(paint.paintMaterial);
 
@@ -153,7 +157,7 @@ public class PaintingRoomUI : MonoBehaviour
             }
 
 
-            PlayerStats.AddReputation(paint.reputation);
+            PlayerStats.Instance.AddReputation(paint.reputation);
             buildingManager.currentWallPaintID = paint.ID;
         }
     }

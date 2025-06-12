@@ -13,7 +13,7 @@ public class Objective: ScriptableObject
 
     //public FamilyMember familyMember;
     public bool itemRequierd;
-    public GameObject objectNeeded;
+    public InventoryItem objectNeeded;
     public int moneyNeeded;
     public float healthTaken;
 

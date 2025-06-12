@@ -115,7 +115,7 @@ public class Hand : MonoBehaviour
     {
 
         if (other.gameObject.TryGetComponent<PocketItem>(out PocketItem pocketItem))
-        {;
+        {
             if (isGrabbing && !CheckItemsInHand())
                 pocketItem.GrabItem(transform);
             else

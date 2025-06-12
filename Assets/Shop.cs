@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] GameObject goodsPrefab;
+    [SerializeField] InventoryItem goods;
     [SerializeField] int goodsPrice;
     Inventory inventory;
 
@@ -15,12 +15,12 @@ public class Shop : MonoBehaviour
 
     public void BuyGoods()
     {
-        if (!inventory.CheckIfItemExists(goodsPrefab.name))
+        if (!inventory.CheckIfItemExists(goods.id))
         {
 
-            if (PlayerStats.BuyWithMoney(goodsPrice))
+            if (PlayerStats.Instance.BuyWithMoney(goodsPrice))
             {
-                inventory.AddToInventory(goodsPrefab);
+                inventory.AddToInventory(goods);
                // GameObject goods = Instantiate(goodsPrefab, inventory);
 
 
@@ -44,19 +44,19 @@ public class Shop : MonoBehaviour
 
     public string GetGoodsName()
     {
-        if (!goodsPrefab)
+        if (!goods)
         {
             Debug.LogError("No goodsPrefab assigned to " + gameObject.name);
             return "";
         }
 
-        return goodsPrefab.name;
+        return goods.id;
 
     }
 
     public int GetGoodsPrice()
     {
-        if (!goodsPrefab)
+        if (!goods)
         {
             Debug.LogError("No goodsPrefab assigned to " + gameObject.name);
             return 0;
