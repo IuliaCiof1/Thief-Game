@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField] GameObject tombStone;
 
     bool healtLoaded;
-
+   
 
     public void LoadHealth()
     {
@@ -29,6 +29,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+
         //Set health to maxHealth if no data loaded
         if (!healtLoaded)
         {
@@ -36,7 +37,7 @@ public class Health : MonoBehaviour
             health = maxHealth;
         }
 
-        List <Objective> objectives = GetComponent<MemberObjectives>().possibleObjectives;
+        List <Objective> objectives = GetComponent<MemberObjectives>().activeObjective;
 
         foreach (Objective objective in objectives)
         {
@@ -60,6 +61,7 @@ public class Health : MonoBehaviour
             health = maxHealth;
 
         healthUI.SetSliderValueUI(health);
+        PlayerPrefs.SetFloat(gameObject.name, health);
     }
 
     public void TakeHealth(float amount)

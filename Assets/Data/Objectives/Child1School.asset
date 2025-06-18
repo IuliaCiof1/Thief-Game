@@ -15,7 +15,7 @@ MonoBehaviour:
   title: To know is to grow
   description: Your eldest son needs to completed an asignment for school. Buy him
     some books from the book store.
-  isCompleted: 0
+  isCompleted: 1
   isActive: 0
   itemRequierd: 1
   objectNeeded: {fileID: 11400000, guid: a106e079b5724354dbef4841329d805c, type: 2}
@@ -23,6 +23,6 @@ MonoBehaviour:
   healthTaken: 1
   objectiveEventName: 
   id: 015
-  member: child2
+  member: child1
   objectiveCooldown: 2
-  leftCooldown: 0
+  leftCooldown: 2

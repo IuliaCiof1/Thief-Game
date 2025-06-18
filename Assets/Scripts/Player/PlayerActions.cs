@@ -174,39 +174,42 @@ public class PlayerActions : MonoBehaviour
                         bool itemFound = false;
 
 
-                        foreach (Objective objective in familyMember.possibleObjectives)
+                        foreach (Objective objective in objectiveManager.activeobjectives)
                         {
-                            print("player actions :: " + objective.name);
-                            if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
+                            if (objective.member.ToLower().Contains(familyMember.gameObject.name.ToLower()))
                             {
-                                itemFound = true;
-
-
-                                currentTarget = collider.gameObject;
-
-                                showKeyboardHint = true;
-                                keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
-
-                                return;
-                            }
-                            foreach (InventoryItem item in playerInventory.ownedItems)
-                            {
-                                print("player actions :: take item " +item.name);
-                                if (objective.isActive && item.Equals(objective.objectNeeded))
+                                print("player actions :: " + objective.name);
+                                if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                                 {
-                                    print("player actions :: item found " + item.name);
                                     itemFound = true;
 
 
                                     currentTarget = collider.gameObject;
 
                                     showKeyboardHint = true;
-                                    keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
+                                    keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
 
                                     return;
                                 }
+                                foreach (InventoryItem item in playerInventory.ownedItems)
+                                {
+                                    print("player actions :: take item " + item.name + item.id + " " + objective.objectNeeded.id);
+                                    if (objective.isActive && item.id == objective.objectNeeded.id)
+                                    {
+                                        print("player actions :: item found " + item.name);
+                                        itemFound = true;
 
 
+                                        currentTarget = collider.gameObject;
+
+                                        showKeyboardHint = true;
+                                        keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
+
+                                        return;
+                                    }
+
+
+                                }
                             }
                         }
                         if (itemFound)
@@ -376,9 +379,9 @@ public class PlayerActions : MonoBehaviour
             if (currentTarget.TryGetComponent(out MemberObjectives familyMember))
             {
 
-                for (int i = 0; i < familyMember.possibleObjectives.Count; i++)
+                for (int i = 0; i < objectiveManager.activeobjectives.Count; i++)
                 {
-                    Objective objective = familyMember.possibleObjectives[i];
+                    Objective objective = objectiveManager.activeobjectives[i];
                     if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                     {
                         PlayerStats.Instance.BuyWithMoney(objective.moneyNeeded);

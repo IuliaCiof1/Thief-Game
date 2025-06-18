@@ -12,6 +12,7 @@ public class MemberObjectives : MonoBehaviour
 
     //[SerializeField] GameObject tombStone;
     ObjectiveManager objManager;
+    public List<Objective> activeObjective;
 
     public bool memberDead { get; private set; }
 
@@ -37,11 +38,18 @@ public class MemberObjectives : MonoBehaviour
                 else if (!obj.isActive)
                     obj.leftCooldown--;
 
-
+                if (obj.isActive)
+                    activeObjective.Add(obj);
             }
         }
 
-        objManager.StartNextObjective(possibleObjectives);
+        int random = UnityEngine.Random.Range(0, 2);
+        print("memberobjectives:: start " + gameObject.name);
+        if (random == 0)
+        {
+            print("memberobjectives:: start next objective " + gameObject.name);
+            objManager.StartNextObjective(possibleObjectives);
+        }
     }
 
     public void DisableObjectivesOfMember()
@@ -60,7 +68,8 @@ public class MemberObjectives : MonoBehaviour
                 objManager.HandleObjectiveCompleted(obj);
             }
         }
-        transform.GetChild(0).gameObject.SetActive(false);
+        // transform.GetChild(0).gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
         //gameObject.SetActive(false);
     }
         //private void Awake()
