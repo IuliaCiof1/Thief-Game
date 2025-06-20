@@ -58,10 +58,7 @@ public class LandLord:AIControl
 
     private void Update()
     {
-        
        // base.Update();
-
-        
         if (objectives.Count>0 && objectives[0].isActive)
         {
             EnterBuilding();

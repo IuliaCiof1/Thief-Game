@@ -56,13 +56,9 @@ public class MemberObjectives : MonoBehaviour
 
     public void OnMemberDeath()
     {
-
-        print("posible objective before death onmemberdeath"+gameObject.name);
-
         IsDead = true;
         foreach (var obj in activeObjectives.ToArray())
         {
-            print("posible objective before death " + obj.name + obj.isActive);
             if (obj.isActive)
                 objectiveManager.CompleteObjective(obj);
         }
