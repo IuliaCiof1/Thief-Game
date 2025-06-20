@@ -19,7 +19,6 @@ public class VehicleAI : MonoBehaviour
 
     [SerializeField] int obstacleMaxDistance = 10;
     [SerializeField] int obstacleMinDistance = 6;
-    [SerializeField] int obstacleDetectionAngle = 15;
 
     [SerializeField] float rayOffset;
     [SerializeField] Vector3 distance;
@@ -48,13 +47,8 @@ public class VehicleAI : MonoBehaviour
         agentMaxSpeed = agent.speed;
     }
 
-   
-
-    // Update is called once per frame
     void Update()
     {
-
-
         if (ObstacleDetected())
         {
             avoidTimer += Time.deltaTime;
@@ -63,16 +57,19 @@ public class VehicleAI : MonoBehaviour
             float distance = Mathf.Infinity;
             foreach (Collider obstacle in obstacles)
             {
-
-
-                if (!obstacle.transform.IsChildOf(gameObject.transform) && Vector3.Distance(obstacle.transform.position, transform.position) < distance)
+                if (!obstacle.transform.IsChildOf(gameObject.transform))
                 {
-                    //print("avoid " + obstacle.gameObject.name);
-                    closestObstacle = obstacle.transform;
+                    float dist = Vector3.Distance(obstacle.transform.position, transform.position);
+                    if (dist < distance)
+                    {
+                        distance = dist;
+                        closestObstacle = obstacle.transform;
+                    }
                 }
             }
 
-            float normalizedDistance = (Vector3.Distance(closestObstacle.position, transform.position) - obstacleMinDistance) / (obstacleMaxDistance - obstacleMinDistance);
+            float normalizedDistance = (Vector3.Distance(closestObstacle.position, transform.position) - obstacleMinDistance) 
+                / (obstacleMaxDistance - obstacleMinDistance);
             agent.speed = agentMaxSpeed * normalizedDistance;
 
             //If vehicle stays too long in one plays, respawn it
@@ -98,23 +95,9 @@ public class VehicleAI : MonoBehaviour
 
     bool ObstacleDetected()
     {
-        ////Draw rays
-        //Debug.DrawRay(transform.position + rayOffset, transform.TransformDirection(Vector3.forward) * obstacleMaxDistance, Color.yellow);
-        //Debug.DrawRay(transform.position + rayOffset, Quaternion.AngleAxis(obstacleDetectionAngle, transform.up) * transform.forward * obstacleMaxDistance, Color.yellow);
-        //Debug.DrawRay(transform.position + rayOffset, Quaternion.AngleAxis(-obstacleDetectionAngle, transform.up) * transform.forward * obstacleMaxDistance, Color.yellow);
-
-        //if (Physics.Raycast(transform.position+rayOffset, transform.TransformDirection(Vector3.forward), out hit, obstacleMaxDistance, avoidMask) //forward ray
-        //   || Physics.Raycast(transform.position + rayOffset, Quaternion.AngleAxis(obstacleDetectionAngle, transform.up) * transform.forward, out hit, obstacleMaxDistance, avoidMask) //angled rays
-        //   || Physics.Raycast(transform.position + rayOffset, Quaternion.AngleAxis(-obstacleDetectionAngle, transform.up) * transform.forward, out hit, obstacleMaxDistance, avoidMask))
-        //{
-        //    return true;
-        //}
-
-        obstacles = Physics.OverlapBox(transform.position + transform.forward * rayOffset, distance, transform.rotation, avoidMask);
-        
-        //Gizmos.matrix = transform.localToWorldMatrix;
-        //Gizmos.DrawWireCube(Vector3.zero, distance*2);
-
+        obstacles = Physics.OverlapBox(transform.position + transform.forward * rayOffset, 
+            distance, transform.rotation, avoidMask);
+      
         if (obstacles.Length > 0)
             return true;
 
@@ -123,13 +106,11 @@ public class VehicleAI : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        //Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.color = Color.blue; 
         Matrix4x4 rotationMatrix = Matrix4x4.TRS(transform.position + transform.forward * rayOffset, transform.rotation, Vector3.one);
         Gizmos.matrix = rotationMatrix;
 
         Gizmos.DrawWireCube(Vector3.zero, distance * 2);
-        //Gizmos.DrawWireCube(transform.position + rayOffset, distance*2);
     }
 
     void SetNewDestination()

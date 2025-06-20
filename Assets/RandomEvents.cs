@@ -16,8 +16,6 @@ public class RandomEvents: MonoBehaviour
     [SerializeField] int eventChance = 8;
 
     [SerializeField] RandomEvent[] randomEvents;
-
-
     [SerializeField] Image posterUI;
 
     private void Awake()
@@ -28,7 +26,7 @@ public class RandomEvents: MonoBehaviour
         int isEvent = Random.Range(0, 10);
         if (isEvent < eventChance)
         {
-            int eventIndex = Random.Range(-5, randomEvents.Length);
+            int eventIndex = Random.Range(0, randomEvents.Length);
 
             if (eventIndex > -1)
             {
@@ -36,7 +34,6 @@ public class RandomEvents: MonoBehaviour
                 posterUI.sprite = randomEvents[eventIndex].poster;
                 randomEvents[eventIndex].eventZone.SetActive(true);
             }
-            //eventZone[eventIndex].SetActive(true);
         }
     }
 

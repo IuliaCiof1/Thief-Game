@@ -12,8 +12,6 @@ public class Tram : MonoBehaviour
     [SerializeField] TramStation tramStation;
     [SerializeField] GameObject tramRoof;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         tramAgent = GetComponent<NavMeshAgent>();
@@ -23,12 +21,9 @@ public class Tram : MonoBehaviour
             NavMeshAgent agent;
             if (npc.TryGetComponent<NavMeshAgent>(out agent))
             {
-                //agents.Add(agent);
                 agent.updatePosition = false;
                 NPC aIControl = npc.GetComponent<NPC>();
-                aIControl.isInspecting = true;
-                //agent.transform.position -= transform.position;
-                //agent.Warp(npc.localPosition);
+                aIControl.isInspecting = true; 
             }
         }
     }
@@ -40,12 +35,6 @@ public class Tram : MonoBehaviour
 
     public TramStation GetTramStation()
     {
-        if(tramStation is null)
-        {
-            print("tram not in station");
-        }
-        else
-        print("tram in station " + tramStation.name);
         return tramStation;
     }
 
@@ -63,7 +52,6 @@ public class Tram : MonoBehaviour
 
     void LeaveStation()
     {
-       // alreadyStopped = false;
         tramAgent.isStopped = false;
     }
 
@@ -77,9 +65,4 @@ public class Tram : MonoBehaviour
         }
     }
 
-    //private void FixedUpdate()
-    //{
-    //    foreach(NavMeshAgent agent in agents)
-    //        agent.transform.position -= transform.position;
-    //}
 }

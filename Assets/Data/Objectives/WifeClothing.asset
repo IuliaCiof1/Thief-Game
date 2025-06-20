@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Warm Clothes
   description: Your wife needs new clothes to keep them warm
-  isCompleted: 0
   isActive: 0
   itemRequierd: 1
   objectNeeded: {fileID: 11400000, guid: 3e0d096c05eb28b4b977cce93b7adc0e, type: 2}

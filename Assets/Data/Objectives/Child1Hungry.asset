@@ -15,8 +15,7 @@ MonoBehaviour:
   title: Someone is Hungry
   description: Your eldest child  is hungry. Get her some food or she might die of
     starvation.
-  isCompleted: 0
-  isActive: 1
+  isActive: 0
   itemRequierd: 1
   objectNeeded: {fileID: 11400000, guid: d56011899a1f94343b4c82e5aabe6380, type: 2}
   moneyNeeded: 0

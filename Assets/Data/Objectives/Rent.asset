@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Rent Due
   description: Pay the rent to your landlord or you will get evicted.
-  isCompleted: 0
-  isActive: 1
+  isActive: 0
   itemRequierd: 0
   objectNeeded: {fileID: 0}
-  moneyNeeded: 40
+  moneyNeeded: 30
   healthTaken: 3
   objectiveEventName: 
   id: 005
   member: landlord
   objectiveCooldown: 2
-  leftCooldown: 0
+  leftCooldown: 2

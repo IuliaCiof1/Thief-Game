@@ -24,27 +24,11 @@ public class TramStation : MonoBehaviour
 
     public Tram IsTramInStation()
     {
-        print("is tram in sstation? ");
-
-
-        if (tram is null)
-        {
-            print("tram is null");
-            return null;
-        }
-        print(" tram.gameObject.name");
         return tram;
     }
 
     public void GetTram()
     {
-        print("get tram!!");
-        //if (PlayerStats.BuyWithMoney(ticketPrice))
-        //{
-        //    player.transform.SetParent(tram.transform);
-
-        //player.lastPlatformPosition = tram.transform.position;
-        //player.lastPlatformRotation = tram.transform.rotation;
         if (!PlayerStats.Instance.BuyWithMoney(ticketPrice))
         {
             print("no money");
@@ -54,22 +38,16 @@ public class TramStation : MonoBehaviour
         tram.SwitchTramRoof();
 
         player.gameObject.SetActive(false);
-        
         player.currentPlatform = tram.transform;
-
         player.transform.position = tram.transform.position;
         player.enabled = false;
-
         player.transform.SetParent(tram.transform);
         player.gameObject.SetActive(true);
         player.enabled = true;
-        
         player.transform.localPosition = Vector3.zero;
         player.inTram = true;
-        //Invoke("SetPlayerActive", 0.1f);
-        //cameraController.SetCollisionCamera();
+        
         cameraController.SetTramCamera();
-        //}
     }
 
     public void GetOff()
@@ -91,7 +69,6 @@ public class TramStation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.TryGetComponent<Tram>(out Tram tram_))
             tram = tram_;
     }

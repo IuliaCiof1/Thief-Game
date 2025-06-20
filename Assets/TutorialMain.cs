@@ -50,7 +50,6 @@ public class TutorialMain : MonoBehaviour
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Quarters"))
         {
-            print("subscribe to handleonclosehome");
             OnCloseHome += HandleOnCloseHome;
         }
 

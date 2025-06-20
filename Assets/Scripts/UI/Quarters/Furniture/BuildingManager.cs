@@ -16,10 +16,10 @@ public class BuildingManager : MonoBehaviour
     public string currentWallPaintID;
     public GameObject pendingObject { get; set; }
     private Vector3 position;
-    private RaycastHit hit;
+   
     [SerializeField] private LayerMask layerMask;
     [SerializeField] Camera topCamera;
-    [SerializeField] private PlayerInput playerInput;
+  
 
     [SerializeField] float rotateAmount = 45f;
     public bool CanPlace { get; set; }
@@ -28,7 +28,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private Material[] materials;
     public Material initialMaterial;
 
-    VirtualMouseInput virtualMouse;
+   // VirtualMouseInput virtualMouse;
     // Start is called before the first frame update
 
     ChangeInputMaps changeInputMaps;
@@ -37,7 +37,7 @@ public class BuildingManager : MonoBehaviour
     void Start()
     {
         CanPlace = true;
-        virtualMouse = FindObjectOfType<VirtualMouseInput>();
+       // virtualMouse = FindObjectOfType<VirtualMouseInput>();
 
         changeInputMaps = FindObjectOfType<ChangeInputMaps>();
         controls = changeInputMaps.controls;
@@ -93,17 +93,25 @@ public class BuildingManager : MonoBehaviour
 
     private void Update()
     {
-        
         if (pendingObject != null)
         {
-            
-           
             pendingObject.transform.position = position;
             pendingObject.GetComponent<Collider>().isTrigger = true;
             UpdateMaterials();
-
         }
+    }
 
+    void FixedUpdate()
+    {
+        Vector2 screenPosition;
+        screenPosition = (Input.mousePosition);
+
+        Ray ray = topCamera.ScreenPointToRay(screenPosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 10000, layerMask))
+        {
+            position = hit.point;
+        }
     }
 
     public void DestroyPendingObject()
@@ -112,28 +120,6 @@ public class BuildingManager : MonoBehaviour
         {
             Destroy(pendingObject.gameObject);
             pendingObject = null;
-        }
-
-    }
-    //Update is called once per frame
-    void FixedUpdate()
-    {
-        Vector2 screenPosition;
-        //if (playerInput.currentControlScheme == "Gamepad")
-        //{
-
-        //    screenPosition = playerInput.gameObject.GetComponent<GamepadCursor>().virtualMouse.position.value;
-
-        //}
-        //else { screenPosition = (Input.mousePosition); }
-
-        screenPosition = (Input.mousePosition);
-
-        Ray ray = topCamera.ScreenPointToRay(screenPosition);
-
-        if (Physics.Raycast(ray, out hit, 10000, layerMask))
-        {
-            position = hit.point;
         }
     }
 
@@ -173,18 +159,12 @@ public class BuildingManager : MonoBehaviour
     {
         Furniture pendingFurniture = pendingObject.GetComponent<Furniture>();
 
-        //if (pendingFurniture.furnitureSO.value <= PlayerStats.money)
-        //{
-            pendingObject.GetComponent<Collider>().isTrigger = false;
-            pendingObject.GetComponent<MeshRenderer>().material = initialMaterial;
+        pendingObject.GetComponent<Collider>().isTrigger = false;
+        pendingObject.GetComponent<MeshRenderer>().material = initialMaterial;
 
-            pendingObject = null;
+        pendingObject = null;
 
-            pendingFurniture.isPending = false;
-
-            //PlayerStats.BuyWithMoney(pendingFurniture.furnitureSO.value);
-            //PlayerStats.AddReputation(pendingFurniture.furnitureSO.reputation);
-        //}
+        pendingFurniture.isPending = false;  
     }
 
     public void RotateObject()
@@ -240,7 +220,7 @@ public class BuildingManager : MonoBehaviour
             //    gameObject.transform
             //    );
 
-            print("loaded rotation " + transformData.furnitureRotation[1]);
+          
             //furniture.GetComponent<Furniture>().idSO = transformData.id.ToString();
             //foreach (FurnitureSO furnitureSO in ownedObjects)
             //{
@@ -258,13 +238,13 @@ public class BuildingManager : MonoBehaviour
 
         //Load walls paint
         currentWallPaintID = data.wallPaintID;
-        print(data.wallPaintID);
+       
         List<Material> materialList = new List<Material>();
 
         foreach (PaintSO paint in ownedWallMaterials)
             if (paint.ID == currentWallPaintID)
             {
-                print("found paintso");
+              
                 materialList.Add(paint.paintMaterial);
                 break;
             }

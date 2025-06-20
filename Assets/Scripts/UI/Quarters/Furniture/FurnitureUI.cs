@@ -87,9 +87,6 @@ public class FurnitureUI : MonoBehaviour
     }
 
 
-
-
-
     public void UpdateFurnitureUI(FurnitureSO[] ownedFurniture)
     {
        
@@ -100,7 +97,6 @@ public class FurnitureUI : MonoBehaviour
             slot.transform.GetChild(1).GetComponent<TMP_Text>().text = "- "+ownedFurniture[i].value+"$";
             slot.transform.GetChild(2).GetComponent<TMP_Text>().text = "+ "+ownedFurniture[i].reputation;
 
-            print("add listener");
             int capturedIndex = i; // Capture the current value of i
             slot.GetComponent<Button>().onClick.AddListener(() => buildingManager.SelectObject(capturedIndex));
             slot.GetComponent<Button>().onClick.AddListener(() => RefreshInteraction());
@@ -119,16 +115,11 @@ public class FurnitureUI : MonoBehaviour
         changeInputMaps.ChangeToFurnitureMap();
         foreach(GameObject ui in uiToHide)
             ui.SetActive(false);
-        //objectivesUI.SetActive(false);
+    
 
         furniturePanel.SetActive(true);
 
-        //stop camera rotation
-        //Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         topCamera.SetActive(true);
-
-       
-
     }
 
     public void RefreshInteraction()

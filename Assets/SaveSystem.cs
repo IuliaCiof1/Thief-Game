@@ -11,66 +11,53 @@ public class GameData
     public ObjectiveDataToSave objectiveData;
     public InventoryDataToSave inventoryData;
 
-    public GameData(BuildingManager buildingManager, ObjectiveManager objectiveManager, Inventory inventory)
-    {
-        //if(buildingManager!=null)
-        //    furnitureData = new FurnitureDataToSave(buildingManager);
-        //objectiveData = new ObjectiveDataToSave(objectiveManager);
-    }
+    public GameData() {}
 }
 
 public static class SaveSystem
 {
     const string saveFileName = "saveddata.bin";
-
-
-    static ObjectiveManager objectiveManager_;
+    
     public static void Save(BuildingManager buildingManager, ObjectiveManager objectiveManager, Inventory inventory)
     {
-       
-
-        objectiveManager_ = objectiveManager;
-   
-
         string path = Path.Combine(Application.persistentDataPath, saveFileName);
         BinaryFormatter formatter = new BinaryFormatter();
 
         GameData data;
 
-        // Load existing file if it exists
+        //Check if there is an existing save file. If so, load the dat. 
         if (File.Exists(path))
         {
             FileStream loadStream = new FileStream(path, FileMode.Open);
             data = formatter.Deserialize(loadStream) as GameData;
             loadStream.Close();
         }
+        //Start with empty data if no save file exists
         else
         {
-            data = new GameData(null, null, null); // Start with empty data if no save exists
+            data = new GameData();
         }
 
-        // Only update parts that were passed
+        //Only update parts that are needed
         if (buildingManager != null)
             data.furnitureData = new FurnitureDataToSave(buildingManager);
 
         if (objectiveManager != null)
         {
-            Debug.Log("SaveSystem:: going to save the objectives");
+            Debug.Log("SaveSystem:: objective manager number of active obv " + objectiveManager.activeObjectives);
             data.objectiveData = new ObjectiveDataToSave(objectiveManager);
         }
-        else
-            Debug.Log("SaveSystem:: objective manager is null");
-
+   
         if (inventory != null)
             data.inventoryData = new InventoryDataToSave(inventory);
 
-        // Save everything back to file
+        //Save everything back to file
         FileStream saveStream = new FileStream(path, FileMode.Create);
         formatter.Serialize(saveStream, data);
         saveStream.Close();
         
-        Debug.LogWarning("Saved game data (partial or full) to: " + Application.persistentDataPath+ Path.Combine(Application.persistentDataPath, saveFileName));
-        
+        Debug.LogWarning("Saved game data (partial or full) to: " + 
+            Application.persistentDataPath+ Path.Combine(Application.persistentDataPath, saveFileName)); 
     }
 
    

@@ -21,7 +21,7 @@ public class LandLord:AIControl
     //NavMeshAgent agent;
     //bool isInspecting;
     //Animator animator;
-
+    public List<Objective> objectives;
     private void Awake()
     {
         player = FindObjectOfType<ThirdPersonController>();
@@ -33,6 +33,8 @@ public class LandLord:AIControl
     private void Start()
     {
         base.Start();
+
+        objectives = GetComponent<MemberObjectives>().activeObjectives;
         agent.SetDestination(enterLocation.transform.position);
     }
 
@@ -59,7 +61,7 @@ public class LandLord:AIControl
         
        // base.Update();
 
-        List<Objective> objectives = GetComponent<MemberObjectives>().possibleObjectives;
+        
         if (objectives.Count>0 && objectives[0].isActive)
         {
             EnterBuilding();

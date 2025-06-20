@@ -18,17 +18,12 @@ public class InventoryUI : MonoBehaviour
 
     public void DisplayInventory(Inventory inventory)
     {
-        
+        int itemIndex = 0;
         RectTransform newSlot;
 
         inventoryDisplay.SetActive(true);
 
-        //slotContainer.gameObject.SetActive(true);
-
-
-        int itemIndex = 0;
-
-        //add the slots to ui inventory
+        //Add the slots to ui inventory
         foreach (InventoryItem item in inventory.ownedItems)
         {
             itemIndex++;
@@ -42,8 +37,6 @@ public class InventoryUI : MonoBehaviour
                 newSlot = slotContainer.GetChild(inventory.ownedItems.IndexOf(item)) as RectTransform;
 
             newSlot.GetChild(0).GetComponent<Image>().sprite = item.sprite;
-            
-
         }
 
         if(itemIndex>0)

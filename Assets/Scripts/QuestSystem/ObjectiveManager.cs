@@ -7,168 +7,229 @@ using UnityEngine.SceneManagement;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    public List<Objective> objectives;
-    public List<Objective> activeobjectives;
-     int activeObjectivesAtOnce;
+    // public List<Objective> objectives;
+    // public List<Objective> activeobjectives;
+    //  int activeObjectivesAtOnce;
 
-   // public List<MemberObjectives> familyMembers;
-    //public ObjectiveUI objectiveUI;
-    private int currentObjectiveIndex;
+    //// public List<MemberObjectives> familyMembers;
+    // //public ObjectiveUI objectiveUI;
+    // private int currentObjectiveIndex;
 
 
-    [Header(header: "Objectives UI")]
-    [SerializeField] GameObject objectivePrefab;
-    [SerializeField] Transform objectiveContainer;
-    TMP_Text description;
+    // [Header(header: "Objectives UI")]
+    // [SerializeField] GameObject objectivePrefab;
+    // [SerializeField] Transform objectiveContainer;
+    // TMP_Text description;
 
-    string currentObjectiveKey = "currentObjective";
+    // string currentObjectiveKey = "currentObjective";
 
-    
 
-    //Make sure that displaying objectives is made after game load
-    //private void Start()
+
+    // //Make sure that displaying objectives is made after game load
+    // //private void Start()
+    // //{
+
+    // //    activeObjectivesAtOnce = 0;
+    // //    //foreach (MemberObjectives familyMember in familyMembers)
+    // //    //{
+
+
+
+    // //    //    objectives.AddRange(familyMember.possibleObjectives);
+    // //    //    print("objectives added to objective manager");
+    // //    //}
+
+    // //    //StartNextObjective();
+
+    // //    //foreach (Objective objective in activeobjectives)
+    // //    //{
+    // //    //    print("display objective "+objective.name);
+    // //    //    DisplayObjective(objective);
+    // //    //}
+
+
+    // //}
+    // void OnEnable()
+    // {
+    //     activeObjectivesAtOnce = 0;
+    //     activeobjectives.Clear();
+    // }
+
+
+    //public void HandleObjectiveCompleted(Objective completedObjective)
     //{
+    //    completedObjective.DeactivateObjective(); // Clean up
+    //    activeobjectives.Remove(completedObjective);
 
-    //    activeObjectivesAtOnce = 0;
-    //    //foreach (MemberObjectives familyMember in familyMembers)
-    //    //{
-           
-        
+    //    foreach (Transform objectiveUI in objectiveContainer)
+    //    {
+    //        description = objectiveUI.transform.GetChild(0).GetComponent<TMP_Text>();
+    //        if (description.text == completedObjective.description)
+    //        {
+    //            //description = objectiveContainer.GetChild(activeobjectives.Count - 1 - activeIndex).transform.GetChild(0).GetComponent<TMP_Text>();
+    //            description.text = "<s>" + description.text;
+    //            //completedObjective.DeactivateObjective(); // Clean up
+    //            //Invoke("DeleteObjectiveFromUIList", 0.5f);
+    //            StartCoroutine(UndisplayObjective(description.transform.parent.gameObject, completedObjective));
+    //            //currentObjectiveIndex++;
+    //            print("completed quest");
 
-    //    //    objectives.AddRange(familyMember.possibleObjectives);
-    //    //    print("objectives added to objective manager");
-    //    //}
-
+    //            //activeobjectives.Remove(completedObjective);
+    //        }
+    //    }
+    //    //objective.Complete();
     //    //StartNextObjective();
+    //}
 
-    //    //foreach (Objective objective in activeobjectives)
+
+    //IEnumerator UndisplayObjective(GameObject listedObjective, Objective completedObjective)
+    //{
+    //    //<S> WITH </S> DOES NOT WORK DINAMICALLY. IT DOES NOT UPDATE THE UI TEXT 
+    //    //string initialText = description.text; //we need this because <s> modifies the length of the string at run time
+    //    //string textBeforeIndex = "";
+    //    //for (int i = 0; i < initialText.Length; i++)
     //    //{
-    //    //    print("display objective "+objective.name);
-    //    //    DisplayObjective(objective);
+
+    //    //    //string textBeforeIndex = initialText.Substring(0, i);
+    //    //    textBeforeIndex += initialText[i];
+    //    //    string textAfterIndex = initialText.Substring(i);
+
+    //    //    description.text = "<s>" + textBeforeIndex + "</s>" + textAfterIndex;
+    //    //    print(description.text);
+
+    //    //    yield return new WaitForSeconds(0.5f);
     //    //}
 
+
+    //    yield return new WaitForSeconds(2.5f);
+    //    listedObjective.SetActive(false);
+    //    print(currentObjectiveIndex);
+    //    completedObjective.isCompleted = false;
 
     //}
-    void OnEnable()
+
+
+
+    // public void StartNextObjective(List<Objective> inactiveObjectives)
+    // {
+
+    //     if (SceneManager.GetActiveScene().name == "Quarters" && inactiveObjectives.Any() && activeObjectivesAtOnce<2)
+    //     {
+    //         print("active objectives at once" + activeObjectivesAtOnce);
+    //         int objectiveIndex = Random.Range(0, inactiveObjectives.Count);
+
+
+    //         currentObjectiveIndex = objectiveIndex;
+
+    //         Objective objective = inactiveObjectives[objectiveIndex];
+
+
+    //             DisplayObjective(objective);
+
+    //             activeobjectives.Add(objective);
+    //             objective.ActivateObjective();
+
+
+    //     }
+
+
+    // }
+
+
+    // private void DisplayObjective(Objective objective)
+    // {
+    //     print("display obj " + objective.title + " " + activeObjectivesAtOnce);
+    //     GameObject objectiveUI =  Instantiate(objectivePrefab, objectiveContainer);
+    //     objectiveUI.transform.SetAsFirstSibling();
+
+
+    //     description =  objectiveUI.transform.GetChild(0).GetComponent<TMP_Text>();
+    //     description.text = objective.description;
+    //     //
+
+    //     TMP_Text title = objectiveUI.transform.GetChild(1).GetComponent<TMP_Text>();
+    //     title.text = objective.title;
+
+    //     objective.isActive = true;
+    //     activeObjectivesAtOnce++;
+    // }
+
+
+
+    [SerializeField] private GameObject objectivePrefab;
+    [SerializeField] private Transform objectiveContainer;
+    [SerializeField] private int maxActiveObjectives = 2;
+    [SerializeField] FamilyManager familyManager;
+
+    public List<Objective> allObjectives;
+    public List<Objective> activeObjectives = new List<Objective>();
+    
+
+    //private void OnEnable()
+    //{
+    //    activeObjectives.Clear();
+    //}
+
+    public void ActivateRandomObjective(List<Objective> pool)
     {
-        activeObjectivesAtOnce = 0;
-        activeobjectives.Clear();
+        if (activeObjectives.Count >= maxActiveObjectives || pool.Count == 0) return;
+
+        var obj = pool[Random.Range(0, pool.Count)];
+        obj.Activate();
+        activeObjectives.Add(obj);
+        familyManager.AddActiveObjectiveToMember(obj);
+        Debug.Log("ObjectiveManager:: random objctive activated" + obj.name);
+        DisplayObjectiveUI(obj);
     }
 
-
-    public void HandleObjectiveCompleted(Objective completedObjective)
+    private void DisplayObjectiveUI(Objective obj)
     {
-        completedObjective.DeactivateObjective(); // Clean up
-        activeobjectives.Remove(completedObjective);
+        var go = Instantiate(objectivePrefab, objectiveContainer);
+        var texts = go.GetComponentsInChildren<TMP_Text>();
 
-        foreach (Transform objectiveUI in objectiveContainer)
+        texts[0].text = obj.description;
+        texts[1].text = obj.title;
+        Debug.Log("ObjectiveManager:: display objctive activated " + obj.name);
+    }
+
+    public void CompleteObjective(Objective obj)
+    {
+        print("complete objectives " + obj.name);
+        if (!activeObjectives.Remove(obj)) return;
+        obj.Complete();
+
+        foreach (Transform child in objectiveContainer)
         {
-            description = objectiveUI.transform.GetChild(0).GetComponent<TMP_Text>();
-            if (description.text == completedObjective.description)
+            //var txt = child.GetComponentInChildren<TMP_Text>();
+            TMP_Text txt = child.transform.GetChild(0).GetComponent<TMP_Text>();
+            print("complete objective " + txt.gameObject.name);
+            if (txt.text == obj.description)
             {
-                //description = objectiveContainer.GetChild(activeobjectives.Count - 1 - activeIndex).transform.GetChild(0).GetComponent<TMP_Text>();
-                description.text = "<s>" + description.text;
-                //completedObjective.DeactivateObjective(); // Clean up
-                                                          //Invoke("DeleteObjectiveFromUIList", 0.5f);
-                StartCoroutine(UndisplayObjective(description.transform.parent.gameObject, completedObjective));
-                //currentObjectiveIndex++;
-                print("completed quest");
-
-                //activeobjectives.Remove(completedObjective);
+                print("hide objective");
+                //StartCoroutine(StrikethroughThenHide(child.gameObject));
+                StartCoroutine(StrikethroughThenHide(txt));
+                break;
             }
         }
-        //objective.Complete();
-        //StartNextObjective();
     }
 
-
-    IEnumerator UndisplayObjective(GameObject listedObjective, Objective completedObjective)
+    private IEnumerator StrikethroughThenHide(TMP_Text text_)
     {
-        //<S> WITH </S> DOES NOT WORK DINAMICALLY. IT DOES NOT UPDATE THE UI TEXT 
-        //string initialText = description.text; //we need this because <s> modifies the length of the string at run time
-        //string textBeforeIndex = "";
-        //for (int i = 0; i < initialText.Length; i++)
-        //{
-
-        //    //string textBeforeIndex = initialText.Substring(0, i);
-        //    textBeforeIndex += initialText[i];
-        //    string textAfterIndex = initialText.Substring(i);
-
-        //    description.text = "<s>" + textBeforeIndex + "</s>" + textAfterIndex;
-        //    print(description.text);
-
-        //    yield return new WaitForSeconds(0.5f);
-        //}
-
-       
-        yield return new WaitForSeconds(2.5f);
-        listedObjective.SetActive(false);
-        print(currentObjectiveIndex);
-        completedObjective.isCompleted = false;
-
-    }
-
-
-
-    public void StartNextObjective(List<Objective> inactiveObjectives)
-    {
-
-        //List<Objective> inactiveObjectives = new List<Objective>();
-        //foreach (Objective obj in memberObjectives)
-        //    if (!obj.isActive)
-        //        inactiveObjectives.Add(obj);
-
-        if (SceneManager.GetActiveScene().name == "Quarters" && inactiveObjectives.Any() && activeObjectivesAtOnce<2)
-        {
-            print("active objectives at once" + activeObjectivesAtOnce);
-            int objectiveIndex = Random.Range(0, inactiveObjectives.Count);
-
-         
-            currentObjectiveIndex = objectiveIndex;
-
-            Objective objective = inactiveObjectives[objectiveIndex];
-
-           
-                DisplayObjective(objective);
-             
-                activeobjectives.Add(objective);
-                objective.ActivateObjective();
-
-           
-        }
+        //var txt = go.GetComponentInChildren<TMP_Text>(); 
         
-
+        text_.text = $"<s>{text_.text}</s>";
+        yield return new WaitForSeconds(2.5f);
+        text_.transform.parent.gameObject.SetActive(false);
     }
 
-
-    private void DisplayObjective(Objective objective)
-    {
-        print("display obj " + objective.title + " " + activeObjectivesAtOnce);
-        GameObject objectiveUI =  Instantiate(objectivePrefab, objectiveContainer);
-        objectiveUI.transform.SetAsFirstSibling();
-
-
-        description =  objectiveUI.transform.GetChild(0).GetComponent<TMP_Text>();
-        description.text = objective.description;
-        //
-
-        TMP_Text title = objectiveUI.transform.GetChild(1).GetComponent<TMP_Text>();
-        title.text = objective.title;
-
-        objective.isActive = true;
-        activeObjectivesAtOnce++;
-    }
-
-  
 
     public void LoadData(ObjectiveDataToSave data)
     {
-    
+        activeObjectives.Clear();
 
-        foreach (Objective obj in objectives)
+        foreach (Objective obj in allObjectives)
         {
-            obj.isActive = false;
-            obj.leftCooldown = 0;
+            obj.Reset();
         }
 
 
@@ -186,7 +247,7 @@ public class ObjectiveManager : MonoBehaviour
         for (int i = 0; i < data.objectives.Count; i++)
         {
             Debug.Log("ObjectiveManager:: active objective: "+data.objectives[i]);
-            foreach (Objective obj in objectives)
+            foreach (Objective obj in allObjectives)
             {
                 
                 if (obj.id == data.objectives[i].id)
@@ -199,8 +260,8 @@ public class ObjectiveManager : MonoBehaviour
                     if (obj.isActive)
                     {
                         Debug.Log("ObjectiveManager:: objective: " + obj.name + " " + obj.id);
-                        activeobjectives.Add(obj);
-                        DisplayObjective(obj);
+                        activeObjectives.Add(obj);
+                        DisplayObjectiveUI(obj);
                     }
 
                     print("objective " + obj.name + " " + obj.isActive);

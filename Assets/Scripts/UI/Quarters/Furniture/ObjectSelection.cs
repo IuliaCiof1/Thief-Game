@@ -37,39 +37,25 @@ public class ObjectSelection : MonoBehaviour
 
     void OnLeftClick()
     {
-        print("left click");
         Vector2 screenPosition;
-        //if (playerInput.currentControlScheme == "Gamepad")
-        //{
-
-
-        //    //screenPosition = playerInput.gameObject.GetComponent<GamepadCursor>().virtualMouse.position.value;
-
-        //}
-        //else { screenPosition = (Input.mousePosition); }
-
+      
         screenPosition = (Input.mousePosition);
         Ray ray = topCamera.ScreenPointToRay(screenPosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 50000)) //include colliders set as trigger true
+        if (Physics.Raycast(ray, out hit, 50000))
         {
-            Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 2f);
-            print("place furniture" + hit.collider.gameObject.name);
-
+            //Player clicked on a furniture item
             if (hit.collider.gameObject.TryGetComponent<Furniture>(out furniture))
             {
-                print("furniture found");
                 if (!furniture.isPending && buildingManager.pendingObject == null)
                 {
-                    print("furniture not pending");
                     Select(hit.collider.gameObject);
                 }
             }
-            //if you want to move/delete object by clicking on a button, delete this if branch
+            //Player clicked on a non furniture object
             else if (selectedObject != null)
             {
-              
                 Deselect();
             }
         }
@@ -120,9 +106,7 @@ public class ObjectSelection : MonoBehaviour
     {
         moveDelete.SetActive(false);
         selectedFurniture = selectedObject.GetComponent<Furniture>();
-        selectedFurniture.isPending = true;
-        //PlayerStats.Instance.AddMoiney(selectedFurniture.furnitureSO.value);
-        //PlayerStats.Instance.RemoveReputation(selectedFurniture.furnitureSO.reputation);
+        selectedFurniture.isPending = true;  
 
         buildingManager.initialMaterial = selectedObject.GetComponent<MeshRenderer>().material;
         buildingManager.pendingObject = selectedObject;

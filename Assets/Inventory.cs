@@ -18,30 +18,10 @@ public class Inventory : MonoBehaviour
             ownedItems = new List<InventoryItem>();
     }
 
-    //Make the inventory persist between scenes
     void Start()
     {
-       
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        print("look for inventory");
         inventoryUI = FindObjectOfType<InventoryUI>();
-
-        //DontDestroyOnLoad(gameObject);
-
-        //if (instance is null)
-        //{
-
-        //    instance = this;
-        //}
-        //else
-        //{
-
-
-        //    Destroy(gameObject);
-        //}
-
-
     }
 
 
@@ -56,17 +36,9 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void AddToInventory(InventoryItem item)
-    {
-        ownedItems.Add(item);
-        //Instantiate(item, transform);
-    }
+    public void AddToInventory(InventoryItem item) { ownedItems.Add(item); }
 
-    public void RemoveFromInventory(InventoryItem item)
-    {
-        ownedItems.Remove(item);
-        //Instantiate(item, transform);
-    }
+    public void RemoveFromInventory(InventoryItem item){ ownedItems.Remove(item);}
 
     private void Update()
     {
@@ -92,7 +64,6 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        print("load ownedItems");
         ownedItems = new List<InventoryItem>();
         foreach (InventoryItem item in allItems)
         {

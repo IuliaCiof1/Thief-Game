@@ -23,7 +23,7 @@ public class PlayerActions : MonoBehaviour
     ThirdPersonController thirdPersonController;
 
 
-    [SerializeField] private Transform rayPosition;
+    [SerializeField] private Transform rayOrigin;
     [SerializeField] private float radius = 0.6f;
     private GameObject currentTarget;
 
@@ -60,10 +60,10 @@ public class PlayerActions : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (rayPosition == null) return;
+        if (rayOrigin == null) return;
 
-        Vector3 direction = rayPosition.forward;
-        Vector3 start = rayPosition.position;
+        Vector3 direction = rayOrigin.forward;
+        Vector3 start = rayOrigin.position;
         Vector3 end = start + direction.normalized * maxDistance;
 
         Gizmos.color = Color.red;
@@ -82,54 +82,22 @@ public class PlayerActions : MonoBehaviour
         Gizmos.DrawLine(start - right, end - right);
     }
 
-    //private void DebugDrawSphereCast(Vector3 origin, Vector3 direction, float radius, float distance, Color color)
-    //{
-    //    Vector3 end = origin + direction.normalized * distance;
-
-    //    // Draw the central ray
-    //    Debug.DrawLine(origin, end, color);
-
-    //    // Draw circles at start and end to represent the sphere
-    //    DebugExtension.DrawCircle(origin, Vector3.up, color, radius);
-    //    DebugExtension.DrawCircle(end, Vector3.up, color, radius);
-    //}
-
     void GetTarget()
     {
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //Camera.main.transform.TransformDirection(Vector3.forward), out RaycastHit hitInfo, distance)
-        // Physics.Raycast(rayPosition.position, rayPosition.forward, out RaycastHit hitInfo, distance)
-
-        //Collider[] colliders = Physics.OverlapSphere(rayPosition.position, radius);
-
-
-        //foreach (Collider collider in colliders)
-        //{
-        bool targetFound = false;
-
-        Vector3 direction = rayPosition.forward;
-
-        // Store all hits in an array
-        RaycastHit[] hits = Physics.SphereCastAll(rayPosition.position, radius, direction, maxDistance, ~0);
-        //DebugDrawSphereCast(rayPosition.position, direction, radius, maxDistance, Color.red);
+        RaycastHit[] hits = Physics.SphereCastAll(rayOrigin.position, radius, rayOrigin.forward, maxDistance, ~0);
+       
         foreach (RaycastHit hit in hits)
         {
             Collider collider = hit.collider;
             Vector3 targetPos = hit.collider.bounds.center;
-            Vector3 origin = rayPosition.position;
-            Vector3 dir = (targetPos - origin).normalized;
-            float distanceToTarget = Vector3.Distance(origin, targetPos);
-            Debug.DrawLine(origin, targetPos, Color.green, 0.1f);
-            // Linecast to see if target is obstructed
-            if (!Physics.Linecast(origin, targetPos, obstructionLayers))
-            {
+            
+            Debug.DrawLine(rayOrigin.position, targetPos, Color.green, 0.1f);
 
+            // Linecast to see if target is obstructed
+            if (!Physics.Linecast(rayOrigin.position, targetPos, obstructionLayers))
+            {
                 if (!actionInProgress)
                 {
-                    //showKeyboardHint = false;
-
-
-
                     if (collider.TryGetComponent(out NPC npc) && npc.isInspecting)
                     {
                         currentTarget = collider.gameObject;
@@ -138,7 +106,6 @@ public class PlayerActions : MonoBehaviour
                         keyboardHintText.text = "<size=26><sprite=64></size>  Pickpocket";
 
                         return;
-                        break;
                     }
                     else if (collider.TryGetComponent(out HomeEntrance homeEntrance))
                     {
@@ -146,14 +113,13 @@ public class PlayerActions : MonoBehaviour
 
                         showKeyboardHint = true;
                         keyboardHintText.text = "<size=26><sprite=64></size>  " + homeEntrance.GetMessage();
-                        targetFound = true;
+                      
                         return;
-                        break;
                     }
                     else if (collider.TryGetComponent(out LandLord landlord))
                     {
 
-                        foreach (Objective objective in landlord.GetComponent<MemberObjectives>().possibleObjectives)
+                        foreach (Objective objective in landlord.GetComponent<MemberObjectives>().activeObjectives)
                         {
                             if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                             {
@@ -169,55 +135,38 @@ public class PlayerActions : MonoBehaviour
                     }
                     else if (collider.TryGetComponent(out MemberObjectives familyMember))
                     {
-                        print("player actions :: member objective");
-
-                        bool itemFound = false;
-
-
-                        foreach (Objective objective in objectiveManager.activeobjectives)
+                        foreach (Objective objective in familyMember.activeObjectives)
                         {
-                            if (objective.member.ToLower().Contains(familyMember.gameObject.name.ToLower()))
+                            if (!objective.isActive)
+                                continue;
+
+                            // Money-based objective
+                            if (!objective.itemRequierd && PlayerStats.Instance.money >= objective.moneyNeeded)
                             {
-                                print("player actions :: " + objective.name);
-                                if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
-                                {
-                                    itemFound = true;
+                                currentTarget = collider.gameObject;
+                                showKeyboardHint = true;
+                                keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
+                                return;
+                            }
 
-
-                                    currentTarget = collider.gameObject;
-
-                                    showKeyboardHint = true;
-                                    keyboardHintText.text = $"<size=26><sprite=64> Give {objective.moneyNeeded}$ {objective.name}";
-
-                                    return;
-                                }
+                            // Item-based objective
+                            if (objective.itemRequierd)
+                            {
                                 foreach (InventoryItem item in playerInventory.ownedItems)
                                 {
-                                    print("player actions :: take item " + item.name + item.id + " " + objective.objectNeeded.id);
-                                    if (objective.isActive && item.id == objective.objectNeeded.id)
+                                    if (item.id == objective.objectNeeded.id)
                                     {
-                                        print("player actions :: item found " + item.name);
-                                        itemFound = true;
-
-
                                         currentTarget = collider.gameObject;
-
                                         showKeyboardHint = true;
-                                        keyboardHintText.text = "<size=26><sprite=64> Give " + objective.objectNeeded.name;
-
+                                        keyboardHintText.text = $"<size=26><sprite=64> Give {objective.objectNeeded.name}";
                                         return;
                                     }
-
-
                                 }
                             }
+                        
+                    
                         }
-                        if (itemFound)
-                        {
-                            return;
-                            break;
-                        }
-
+                      
 
                     }
                     else if (collider.TryGetComponent(out Shop shop))
@@ -296,7 +245,6 @@ public class PlayerActions : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         GetTarget();
@@ -306,50 +254,33 @@ public class PlayerActions : MonoBehaviour
         else
             keyboardHintPanel.SetActive(true);
 
-        //steal action
         if (Input.GetKeyDown(KeyCode.E) && currentTarget && !TutorialMain.uiActive)
         {
-            
             StopAllCoroutines();
-
-            //actionInProgress = true;
 
             if (currentTarget.TryGetComponent(out npc) && npc.isInspecting)
             {
-
-
                 if (!isStealing)
                 {
                     actionInProgress = true;
-                  
                     showKeyboardHint = false;
 
-
-                    //cameraController.RotateCamera(Quaternion.identity);
                     pocketItemsGeneraton.CreateItems(npc);
                    
                     if(!thirdPersonController.inTram)
                         cameraController.SetStealCamera();
-                    
-                    //cameraController.ToggleComponent<CinemachineFollowZoom>(true);
+                  
                     stealCanvas.SetActive(true);
 
-                    //thirdPersonController.enabled = false;
                     thirdPersonController.stopMovement = true;
                     animator.ResetTrigger("Idle");
                     animator.SetTrigger("Steal");
-
 
                     TutorialMain.OnPickpocket?.Invoke();
                 }
                 else if (isStealing)
                 {
-                    //animator.SetTrigger("PutInBag");
-
-
                     StartCoroutine(DisableStealUI());
-
-
                 }
 
                 isStealing = !isStealing;
@@ -363,13 +294,13 @@ public class PlayerActions : MonoBehaviour
             {
 
 
-                Objective objective = landlord.GetComponent<MemberObjectives>().possibleObjectives[0];
+                Objective objective = landlord.GetComponent<MemberObjectives>().activeObjectives[0];
                 if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                 {
                     PlayerStats.Instance.BuyWithMoney(objective.moneyNeeded);
                     landlord.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
                     landlord.Leave();
-                    objectiveManager.HandleObjectiveCompleted(objective);
+                    objectiveManager.CompleteObjective(objective);
                     showKeyboardHint = false;
 
                     actionInProgress = false;
@@ -379,14 +310,14 @@ public class PlayerActions : MonoBehaviour
             if (currentTarget.TryGetComponent(out MemberObjectives familyMember))
             {
 
-                for (int i = 0; i < objectiveManager.activeobjectives.Count; i++)
+                for (int i = 0; i < familyMember.activeObjectives.Count; i++)
                 {
-                    Objective objective = objectiveManager.activeobjectives[i];
+                    Objective objective = familyMember.activeObjectives[i];
                     if (!objective.itemRequierd && objective.isActive && PlayerStats.Instance.money >= objective.moneyNeeded)
                     {
                         PlayerStats.Instance.BuyWithMoney(objective.moneyNeeded);
                         familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
-                        objectiveManager.HandleObjectiveCompleted(objective);
+                        objectiveManager.CompleteObjective(objective);
                         showKeyboardHint = false;
 
                         actionInProgress = false;
@@ -401,7 +332,7 @@ public class PlayerActions : MonoBehaviour
                             //print("complete " + objective.title);
                             //objective.Complete();
                             familyMember.GetComponent<Health>().GiveHealth(objective.healthTaken * 2);
-                            objectiveManager.HandleObjectiveCompleted(objective);
+                            objectiveManager.CompleteObjective(objective);
                             //familyMember.currentObjective = null;
                             showKeyboardHint = false;
 

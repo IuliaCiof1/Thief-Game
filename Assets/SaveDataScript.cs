@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SaveDataScript : MonoBehaviour
 {
-    BuildingManager buildingManager;
-    ObjectiveManager objectiveManager;
-    FamilyManager familyManager;
-    Inventory inventory;
+   [SerializeField] BuildingManager buildingManager;
+    [SerializeField] ObjectiveManager objectiveManager;
+    [SerializeField] FamilyManager familyManager;
+    [SerializeField] Inventory inventory;
 
     public static SaveDataScript Instance;
 
@@ -24,10 +24,10 @@ public class SaveDataScript : MonoBehaviour
         }
 
         print("load");
-        buildingManager = FindAnyObjectByType<BuildingManager>();
-        objectiveManager = FindAnyObjectByType<ObjectiveManager>();
-        familyManager = FindAnyObjectByType<FamilyManager>();
-        inventory = FindAnyObjectByType<Inventory>();
+        //buildingManager = FindAnyObjectByType<BuildingManager>();
+        //objectiveManager = FindAnyObjectByType<ObjectiveManager>();
+        //familyManager = FindAnyObjectByType<FamilyManager>();
+        //inventory = FindAnyObjectByType<Inventory>();
         //SaveSystem.Load();
 
         GameData loadedData = SaveSystem.Load();
@@ -39,10 +39,11 @@ public class SaveDataScript : MonoBehaviour
 
             if (buildingManager != null)
                 buildingManager.LoadFurniture(furnitureData);
-            if (familyManager != null)
-                familyManager.LoadData();
             if (objectiveManager != null)
                 objectiveManager.LoadData(objectiveData);
+            if (familyManager != null)
+                familyManager.LoadData();
+            
             if (inventory != null)
                 inventory.LoadData(inventoryData);
 

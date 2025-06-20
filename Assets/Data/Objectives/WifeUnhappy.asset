@@ -15,7 +15,6 @@ MonoBehaviour:
   title: Happiness decreased
   description: Your wife is unhappy. Maybe some museum tickets will make her feel
     better
-  isCompleted: 0
   isActive: 0
   itemRequierd: 1
   objectNeeded: {fileID: 11400000, guid: 08df421057672a648baa26aa562e64d3, type: 2}

@@ -173,7 +173,8 @@ public class CameraController : MonoBehaviour
         //collisionMode = false;
         //vrCamCompZoom.enabled = false;
         RestorePreviousCameraSettings();
-       if(currentMode == CameraMode.Initial)
+        vrCamCompZoom.enabled = false;
+        if (currentMode == CameraMode.Initial)
         {
             StopAllCoroutines();
             print("camera controller reset to initial");

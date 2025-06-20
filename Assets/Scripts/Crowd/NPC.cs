@@ -76,53 +76,28 @@ public class NPC : AIControl
     {
         base.Update();
 
-        //isInspecting = GetIsInspecting();
-      
-        
-
         if (deadzoneStarted)
         {
-            
             if (deadzone.transform.localScale.x >= 8)
             {
-                print("deadzone reached max size");
                 deadzoneStarted = false;
                 deadzone.transform.localScale = Vector3.zero;
             }
             else
             {
-                print("deadzon change local scale");
                 deadzone.transform.localScale += Vector3.one * Time.deltaTime * crowdManager.GrowingSpeed;
             }
         }
-
-
-
     }
 
 
     public void StartDeadzoe()
     {
-        print("flee" + gameObject.name);
-        //crowdManager.DeadzoneObject.SetActive(true);
-        if (crowdManager is null)
-        {
-            print("crowd manager is null");
-
-        }
-
-        if (deadzone is null)
-        {
-            print("deadzone is ull is null");
-
-        }
-
         deadzone.transform.SetParent(transform);
         deadzone.gameObject.SetActive(true);
         deadzone.transform.localPosition = Vector3.zero;
 
         deadzoneStarted = true;
-        print("deadzone started");
     }
 
 
@@ -130,22 +105,15 @@ public class NPC : AIControl
 
     public void FleeFromPosition(Vector3 position)
     {
-
-       
-
-        // print("crowd manager "+crowdManager);
         if (crowdManager is null)
         {
-            print(gameObject.name+" crowd manager is null");
-
-            return;
+            print(gameObject.name+" crowd manager is null"); return;
         }
         SoundFXManager.instance.PlayRandomSoundFXClip(audioClips, transform, 0.02f);
 
         //NPC should run when player is not in tram
         if (!player.inTram && Vector3.Distance(position, transform.position) <= crowdManager.DetectionRadius)
         {
-            //print(gameObject.name + " i detectio radius");
             agent.ResetPath();
 
             Vector3 fleeDirection = (transform.position - position).normalized;
@@ -163,16 +131,11 @@ public class NPC : AIControl
                 return;
             }
 
-
             NavMeshPath path = new NavMeshPath();
             agent.CalculatePath(newGoal, path);
 
             if (path.status != NavMeshPathStatus.PathInvalid) //checks if the goal is on navmesh surface
             {
-
-                //print(gameObject.name + " fleeeeeeeeeee");
-                CancelInvoke("InspectionPointSearch");
-
                 StopAllCoroutines();
                 inspectionPoint = null;
                 isInspecting = false;

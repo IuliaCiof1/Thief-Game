@@ -58,8 +58,6 @@ public class CrowdManager : MonoBehaviour
     void Awake()
     {
         //Finds all goal point and inspection points in the scene
-
-        //goalLocations.AddRange(GameObject.FindGameObjectsWithTag("goal"));
         foreach (Transform child in goalLocationsParent.transform)
         {
             goalLocations.Add(child.gameObject);

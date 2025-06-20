@@ -11,6 +11,4 @@ public class FurnitureSO : ScriptableObject
     public GameObject objectPrefab;
     public int value;
     public int reputation;
-    //public string previewsFolder = "Assets/Data/ObjectPreviews/";
-    
 }

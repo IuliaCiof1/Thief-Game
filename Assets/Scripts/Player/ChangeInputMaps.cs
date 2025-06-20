@@ -16,7 +16,6 @@ public class ChangeInputMaps : MonoBehaviour
 
         //PlayerInput input = new PlayerInput();
       
-        print("controls");
         controls = new PlayerControls();
         //controls.BaseGameplay.Enable();
       

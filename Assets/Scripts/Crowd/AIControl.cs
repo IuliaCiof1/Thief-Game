@@ -66,12 +66,9 @@ protected GameObject inspectionPoint;
     protected void Start()
     {
         VisitedGoals = new GameObject[2];
-        //agent = GetComponent<NavMeshAgent>();
-
         defaultSpeed = agent.speed;
-        //Get values from CrowdManager
         crowdManager = FindAnyObjectByType<CrowdManager>();
-        //crowdManager = GetComponentInParent<CrowdManager>();
+       
         if (crowdManager == null)
         {
             Debug.LogError("No CrowdManager found in the scene!");
@@ -82,12 +79,7 @@ protected GameObject inspectionPoint;
         initialInspectionPoints = new List<GameObject>(crowdManager.InspectionPoints);
         inspectionPoints.AddRange(initialInspectionPoints);
 
-       goalLocations = new List<GameObject>(crowdManager.GoalLocations);
-       
-        //if (!transform.GetChild(0).TryGetComponent<Animator>(out animator))
-        //{
-        //    Debug.LogError("No Animator found on first child of crowd agent");
-        //}
+        goalLocations = new List<GameObject>(crowdManager.GoalLocations);
 
         walkOffsetRange = crowdManager.WalkOffsetRange;
         speedMultiplier = crowdManager.SpeedMultiplier;
@@ -96,11 +88,6 @@ protected GameObject inspectionPoint;
         lastGoalVisited = goalLocations[0];
         ResetAgentSpeed();
         goBack = false;
-        //NavMesh.CalculatePath(Vector3.zero, Vector3.forward * 5, NavMesh.AllAreas, new NavMeshPath());
-        // StartCoroutine(DelayedStart(Random.Range(0f, 1.5f)));
-        //SetNewDestination();
-
-        //InvokeRepeating("InspectionPointSearch", 2.0f, Random.Range(crowdManager.InspectionCooldown, crowdManager.InspectionCooldown+2));
     }
 
     IEnumerator DelayedStart(float delay)
@@ -115,31 +102,19 @@ protected GameObject inspectionPoint;
 
         if (inspectionTime <= 0)
         {
-
             inspectionTime = crowdManager.InspectionCooldown;
             InspectionPointSearch();
         }
+
         if (inspectionPoint != null && !isInspecting)
         {
-            //ResetAgentSpeed();
             agent.SetDestination(inspectionPoint.transform.position);
 
             if (agent.remainingDistance < 1.5f)
             {
-                ResetAgentSpeed();
-                // Make NPC look in the same direction as the inspection point's Z-axis
-                transform.rotation = Quaternion.LookRotation(inspectionPoint.transform.forward);
-
-                //Remove the visited Inspection Point from the list
-                inspectionPoints.Remove(inspectionPoint);
-                inspectionPoint = null;
-                //isInspecting = true;
-                StartCoroutine(InspectEnvironment());
+                Inspect();
             }
         }
-
-        
-
 
         Walk();
 
@@ -148,9 +123,20 @@ protected GameObject inspectionPoint;
 
         if (isInspecting)
             animator.SetBool("Inspect", true);
-        //AvoidPlayer();
     }
 
+    void Inspect()
+    {
+        ResetAgentSpeed();
+        // Make NPC look in the same direction as the inspection point's Z-axis
+        transform.rotation = Quaternion.LookRotation(inspectionPoint.transform.forward);
+
+        //Remove the visited Inspection Point from the list
+        inspectionPoints.Remove(inspectionPoint);
+        inspectionPoint = null;
+
+        StartCoroutine(InspectEnvironment());
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -176,21 +162,16 @@ protected GameObject inspectionPoint;
 
     void Avoid()
     {
-        //goBack = false;
-
         RaycastHit hit;
         Debug.DrawRay(transform.position + new Vector3(0, 1), transform.forward * avoidDistance, Color.yellow, 1f);
-        //Debug.DrawRay(transform.position + new Vector3(0, 1), transform.forward, Color.yellow, avoidDistance);
+     
         if (!goBack && Physics.Raycast(transform.position + new Vector3(0, 1), transform.forward, out hit, avoidDistance))
         {
-            //avoid vehicles
+            //Avoid vehicles
             if (hit.transform.TryGetComponent<VehicleAI>(out VehicleAI vehicleAI))
             {
-                
-               
-                //
-              //if the npc stays too much time in front of a vehicle, go back to the preveous goal, to avoid stuck traffic
-                    avoidTimer += Time.deltaTime;
+              //If the npc stays too long in front of a vehicle, go back to the preveous goal, to avoid stuck traffic
+                avoidTimer += Time.deltaTime;
                 respawnTimer += Time.deltaTime;
                 if (avoidTimer >= 4f)
                 {
@@ -201,35 +182,18 @@ protected GameObject inspectionPoint;
                     agent.SetDestination(VisitedGoals[1].transform.position);
                     goBack = true;
                 }
-                //if(respawnTimer>=10f)
-                //{
-                //    isInspecting = false;
-                //    agent.isStopped = false;
-                //    avoidTimer = 0f;
-                //    respawnTimer = 0;
-                //    agent.SetDestination(VisitedGoals[1].transform.position);
-                //    goBack = true;
-                //}
                 else
                 {
                     agent.isStopped = true;
                     isInspecting = true;
-                }
-                   
-                
 
+                    return;
+                }
             }
-            else
-            {
-                isInspecting = false;
-                agent.isStopped = false;
-            }
+           
         }
-        else
-        {
-            isInspecting = false;
-            agent.isStopped = false;
-        }
+        isInspecting = false;
+        agent.isStopped = false;
     }
 
     void AvoidPlayer()
@@ -351,8 +315,6 @@ protected GameObject inspectionPoint;
         float randomSpeedMult = Random.Range(speedMultiplier.x, speedMultiplier.y);
         animator.SetFloat("speedMultiplier", randomSpeedMult);
         agent.speed *= randomSpeedMult;
-        //InvokeRepeating("InspectionPointSearch", 2.0f, Random.Range(crowdManager.InspectionCooldown, crowdManager.InspectionCooldown + 2));
-
     }
 
 
@@ -361,37 +323,34 @@ protected GameObject inspectionPoint;
     protected virtual void Walk()
     {
         float playerDistance = Vector3.Distance(crowdManager.player.transform.position, this.transform.position);
+
+        //NPC is very close to the player
         if (playerDistance <= crowdManager.AvoidDistance)
         {
             if (!isInspecting)
             {
-
-                //vAvoid += (this.transform.position - crowdManager.player.transform.position).normalized / playerDistance;
-                //agentToAvoid = crowdManager.transform;
-                //groupSize++;
-               // isInspecting = true;
                 StartCoroutine(Wait());
             }
         }
-
+        //NPC is not inspecting, has arrived to its destination and path is not being calculated
         else if (agent.enabled && !isInspecting && agent.remainingDistance < 0.7f && !agent.pathPending)
         {
             agent.isStopped = false;
             animator.SetBool("Inspect", false);
-            // ResetAgentSpeed();
             goBack = false;
             SetNewDestination();
         }
+        //Path is still being calculated
         else if (agent.pathPending)
         {
-            animator.SetBool("Inspect", true); //trigger the inspecting animation with the path of the agent is still calculating
+            animator.SetBool("Inspect", true); 
         }
+        //NPC is inspecting
         else if (!isInspecting)
         {
             agent.isStopped = false;
             animator.SetBool("Inspect", false);
         }
-
     }
 
     void InspectionPointSearch()
@@ -401,19 +360,12 @@ protected GameObject inspectionPoint;
         if (inspectionPoint != null)
         {
             int stoppingChance = inspectionPoint.GetComponent<InspectionPoint>().StoppingChange;
-
-           
-            //to do: random.range(0, 100). daca value e mai mic decat stoppingChance, obtin sansa de a se opri
             int value = Random.Range(0, 100);
-           //print(gameObject.name+" "+inspectionPoint.name + " " + value);
-
+         
             if (value > stoppingChance)
             {
-                inspectionPoint = null;
-                
+                inspectionPoint = null;    
             }
-
-            
         }
     }
 
@@ -459,13 +411,10 @@ protected GameObject inspectionPoint;
 
         NavMeshPath path = new NavMeshPath();
 
-        NavMeshHit hit;
         foreach (GameObject point in goalLocations)
         {
-            
             if (point != VisitedGoals[0] && point != VisitedGoals[1] )
             {
-                
                //calculate the distance of the path the agent would take to another points, not just the distance between two points which can be shorter.
                 if(NavMesh.CalculatePath(transform.position, point.transform.position, agent.areaMask, path))
                 {
@@ -480,23 +429,17 @@ protected GameObject inspectionPoint;
                     {
                         goal = point;
                         possibleGoals[0] = goal;
-                       
-                       // print(goal.name + "is first close");
+
                         firstMaxDistance = distance;
                     }
                     else if (distance < secondMaxDistance && point!= possibleGoals[0]) 
                     {
                         goal = point;
                         possibleGoals[1] = goal;
-                        //print(goal.name + "is second close");
                         secondMaxDistance = distance;
                     }
-
                 }
-
-              
             }
-          
         }
 
         if (goal != null)
@@ -509,7 +452,6 @@ protected GameObject inspectionPoint;
 
             Vector3 offset = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f)); //add an offset to spread the walking path
             agent.SetDestination(possibleGoals[goalIndex].transform.position+offset);
-           // print("destination set");
         }
       
     }

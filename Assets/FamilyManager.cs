@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,25 +12,53 @@ public class FamilyManager : MonoBehaviour
 
     public void LoadData()
     {
+        ObjectiveManager objectiveManager = GetComponentInParent<ObjectiveManager>();
         int deadMembers = 0;
+
+        foreach (Objective activeObj in objectiveManager.activeObjectives)
+        {
+            foreach (MemberObjectives familyMember in familyMembers)
+            {
+                if (activeObj.member.Contains(familyMember.name, StringComparison.OrdinalIgnoreCase))
+                {
+                    familyMember.activeObjectives.Add(activeObj);
+                }
+            }
+        }
+
 
         foreach (MemberObjectives familyMember in familyMembers)
         {
-            print(familyMember.gameObject.name);
+           
+                print(familyMember.gameObject.name);
 
-            familyMember.GetComponent<Health>().LoadHealth();
+                familyMember.GetComponent<Health>().LoadHealth();
+                //familyMember.InitializeMemberObjectives();
 
-            if (familyMember.memberDead)
-            {
-                print("dead members " + deadMembers +familyMember.gameObject.name);
-                deadMembers++;
-            }
+                if (familyMember.IsDead)
+                {
+                    print("dead members " + deadMembers + familyMember.gameObject.name);
+                    //familyMember.OnMemberDeath();
+                    deadMembers++;
+                }
+            
         }
         print("dead members " + deadMembers);
 
         CheckEnding(deadMembers);
     }
 
+
+    public void AddActiveObjectiveToMember(Objective activeObj)
+    {
+        foreach (MemberObjectives familyMember in familyMembers)
+        {
+            if (activeObj.member.Contains(familyMember.name, StringComparison.OrdinalIgnoreCase))
+            {
+                familyMember.activeObjectives.Add(activeObj);
+            }
+        }
+    }
 
     private void CheckEnding(int deadMembers)
     {
@@ -43,11 +72,6 @@ public class FamilyManager : MonoBehaviour
                 EndingManager.Trigger(EndingManager.EndingType.bestEnding);
 
         }
-
-        //if (SceneManager.GetActiveScene().name == "Quarters")
-        //{
-
-        //}
     }
  
 }

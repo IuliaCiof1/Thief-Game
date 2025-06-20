@@ -15,7 +15,6 @@ MonoBehaviour:
   title: Hapiness Decreased
   description: Your youngest child is bored at home. Maybe you can buy some theatre
     tickets to make him feel better
-  isCompleted: 0
   isActive: 0
   itemRequierd: 1
   objectNeeded: {fileID: 11400000, guid: 9ff35f0625351014b8e2d682bbcf307f, type: 2}
