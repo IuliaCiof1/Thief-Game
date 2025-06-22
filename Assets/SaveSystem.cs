@@ -47,12 +47,18 @@ public static class SaveSystem
             Debug.Log("SaveSystem:: objective manager number of active obv " + objectiveManager.activeObjectives);
             data.objectiveData = new ObjectiveDataToSave(objectiveManager);
         }
-   
+
         if (inventory != null)
+        {
+            Debug.Log("SaveSystem:: save inventory " + inventory.ownedItems.Count);
+
             data.inventoryData = new InventoryDataToSave(inventory);
+        }
+        else
+            Debug.Log("SaveSystem:: save inventory. inventory is null ");
 
         //Save everything back to file
-        FileStream saveStream = new FileStream(path, FileMode.Create);
+       FileStream saveStream = new FileStream(path, FileMode.Create);
         formatter.Serialize(saveStream, data);
         saveStream.Close();
         

@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitToMainMenu()
     {
+        StartCoroutine(SaveDataScript.Instance.Save());
         SceneManager.LoadScene("MainMenu");
     }
 

@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] int maxReputation;
     public static int maxReputation_{ get; private set; }
-    [SerializeField] int reputationLoss = 20;
+    [SerializeField] int reputationLoss;
 
     private void Awake()
     {

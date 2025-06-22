@@ -11,10 +11,12 @@ public class EndingUI : MonoBehaviour
     [SerializeField] GameObject UI;
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeDuration;
+    CursorController cursorController;
 
     private void Awake()
     {
         EndingManager.endingEvent += HandleEnding;
+        cursorController = FindFirstObjectByType<CursorController>();
     }
 
     private void OnDisable()
@@ -25,7 +27,7 @@ public class EndingUI : MonoBehaviour
     void HandleEnding(string endText)
     {
         PlayerPrefs.SetInt("endingReached", 1);
-        FindFirstObjectByType<CursorController>().CursorVisibility(true);
+
         
         UI.SetActive(true);
         textUI.text = endText;
@@ -55,6 +57,8 @@ public class EndingUI : MonoBehaviour
 
             yield return null;
         }
+
+       cursorController.CursorVisibility(true);
         Time.timeScale = 0f;
     }
 }

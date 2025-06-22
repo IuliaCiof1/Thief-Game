@@ -77,6 +77,11 @@ public class SaveDataScript : MonoBehaviour
     {
         print("save");
 
+        if (inventory is null)
+            print("SaveDataScript:: inventory is null");
+        else
+            print("SaveDataScript:: inventory is not null");
+
         SaveSystem.Save(buildingManager, objectiveManager,inventory);
         yield return new WaitForSeconds(1.5f); //wait until file is written
         

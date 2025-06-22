@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
 
     public void GiveHealth(float amount)
     {
-        Debug.Log($"Giving {amount} health to {gameObject.name}");
+
         health += amount;
         health = Mathf.Min(health, maxHealth);
         healthUI.SetSliderValueUI(health);
@@ -81,7 +81,6 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
         {
-            print(gameObject.name+  "health is less than 0");
             HandleDeath();
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Child1School
   m_EditorClassIdentifier: 
   title: To know is to grow
-  description: Your eldest son needs to completed an asignment for school. Buy him
+  description: Your eldest son needs to complete an asignment for school. Buy him
     some books from the book store.
   isActive: 0
   itemRequierd: 1

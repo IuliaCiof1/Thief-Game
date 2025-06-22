@@ -3464,7 +3464,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 281.3, y: 121.9}
+  m_CellSize: {x: 281.3, y: 140.65}
   m_Spacing: {x: 0, y: 18.82}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -5676,23 +5676,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cda49dc177823748b47280154b52542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectives:
-  - {fileID: 11400000, guid: e39a3ad6a3c5d7d4ca47eb0cf610dbcb, type: 2}
-  - {fileID: 11400000, guid: 8eecdb939b9db8849a8d51442da716f3, type: 2}
-  - {fileID: 11400000, guid: 9d5dfefaa8ac33749b5706483b53265f, type: 2}
-  - {fileID: 11400000, guid: d64bf1761eda8a340904e1b331657d1f, type: 2}
-  - {fileID: 11400000, guid: 5292d559cb345364a8cf84995085997e, type: 2}
-  - {fileID: 11400000, guid: 4211c8ea0a2bd8f47a0288ec744e6f60, type: 2}
-  - {fileID: 11400000, guid: 46a04294a1596314184497a20f1bd0f1, type: 2}
-  - {fileID: 11400000, guid: 876015ff8b007ae408381a99cbf89f7c, type: 2}
-  - {fileID: 11400000, guid: 4266ded60f7b1c647a13420d05687314, type: 2}
-  - {fileID: 11400000, guid: 8360a1e452402c0489a9129edccc444d, type: 2}
-  - {fileID: 11400000, guid: c852307b2ce167f45898140bdda1380e, type: 2}
-  - {fileID: 11400000, guid: 507a17ceca380b842875cb2024c6dcc5, type: 2}
-  - {fileID: 11400000, guid: 4edc25e3c4af1264db03505a1c03a86b, type: 2}
-  activeobjectives: []
   objectivePrefab: {fileID: 5752752360103532526, guid: 739cfdf30535bbb43857c70a773e021c, type: 3}
   objectiveContainer: {fileID: 950237984119792078}
+  maxActiveObjectives: 2
+  familyManager: {fileID: 0}
+  allObjectives: []
+  activeObjectives: []
 --- !u!1 &7701665418793429515
 GameObject:
   m_ObjectHideFlags: 0
@@ -6896,8 +6885,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c6e8cefda3c5049bf99d3081f5b839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleObjectives:
-  - {fileID: 11400000, guid: 4266ded60f7b1c647a13420d05687314, type: 2}
+  PossibleObjectives: []
+  activeObjectives: []
 --- !u!114 &2724971767199014310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6925,6 +6914,7 @@ MonoBehaviour:
   lookAtPlayerDistance: 3
   sounds: []
   volume: 0
+  objectives: []
 --- !u!114 &163457145267001263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6938,7 +6928,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  health: 0
   healthUI: {fileID: 5297592799578027519}
   tombStone: {fileID: 7780819209198087317}
 --- !u!4 &4861649922488359762 stripped
@@ -7156,9 +7145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c6e8cefda3c5049bf99d3081f5b839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleObjectives:
-  - {fileID: 11400000, guid: 4211c8ea0a2bd8f47a0288ec744e6f60, type: 2}
-  - {fileID: 11400000, guid: 46a04294a1596314184497a20f1bd0f1, type: 2}
+  PossibleObjectives: []
+  activeObjectives: []
 --- !u!114 &3169314787434064525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7172,7 +7160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
-  health: 0
   healthUI: {fileID: 8949572403555596816}
   tombStone: {fileID: 9003179792368277196}
 --- !u!114 &3132159790880051423 stripped
@@ -7487,10 +7474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c6e8cefda3c5049bf99d3081f5b839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleObjectives:
-  - {fileID: 11400000, guid: c852307b2ce167f45898140bdda1380e, type: 2}
-  - {fileID: 11400000, guid: 507a17ceca380b842875cb2024c6dcc5, type: 2}
-  - {fileID: 11400000, guid: 4edc25e3c4af1264db03505a1c03a86b, type: 2}
+  PossibleObjectives: []
+  activeObjectives: []
 --- !u!114 &4295865892325023366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7504,7 +7489,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  health: 0
   healthUI: {fileID: 6710709587499120473}
   tombStone: {fileID: 7053279801159722238}
 --- !u!4 &7416168066289396938 stripped
@@ -7718,9 +7702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c6e8cefda3c5049bf99d3081f5b839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleObjectives:
-  - {fileID: 11400000, guid: 8eecdb939b9db8849a8d51442da716f3, type: 2}
-  - {fileID: 11400000, guid: 9d5dfefaa8ac33749b5706483b53265f, type: 2}
+  PossibleObjectives: []
+  activeObjectives: []
 --- !u!114 &8589327848212379976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7734,7 +7717,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 16
-  health: 0
   healthUI: {fileID: 3534868006991932025}
   tombStone: {fileID: 1309086339822075408}
 --- !u!1001 &6138874154465762432
@@ -7783,7 +7765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8648614257251995069, guid: 739cfdf30535bbb43857c70a773e021c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 121.9
+      value: 140.65
       objectReference: {fileID: 0}
     - target: {fileID: 8648614257251995069, guid: 739cfdf30535bbb43857c70a773e021c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7815,11 +7797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8648614257251995069, guid: 739cfdf30535bbb43857c70a773e021c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 149.11478
+      value: 149.1948
       objectReference: {fileID: 0}
     - target: {fileID: 8648614257251995069, guid: 739cfdf30535bbb43857c70a773e021c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -85.95
+      value: -95.325
       objectReference: {fileID: 0}
     - target: {fileID: 8648614257251995069, guid: 739cfdf30535bbb43857c70a773e021c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
